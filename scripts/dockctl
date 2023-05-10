@@ -50,8 +50,9 @@ for app in "${userapps[@]}"; do
     cmd="$terminal_cmd $cmd"
   # Create the widget.
   box="$box
- (eventbox :tooltip \"$name\" :onclick \"$cmd\" :cursor \"pointer\"
- (image :path \"$icon\" :image-width \"$icon_size\"))"
+ (eventbox :class \"dock-app-box\" :tooltip \"$name\"
+           :onclick \"$cmd\" :cursor \"pointer\"
+   (image :path \"$icon\" :image-width \"$icon_size\"))"
   index=$((index + 1))
 done
 

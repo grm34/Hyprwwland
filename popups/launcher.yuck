@@ -22,19 +22,19 @@
         (centerbox
 
           ;; browser
-          (button :tooltip "Browse the web"
+          (button :class "launcher-web"
+                  :tooltip "Browse the web"
                   :halign "center"
-                  :class "launcher-web"
                   :timeout "5s"
                   :onclick "eww close launcher_popup;\
                             ${hww.web_browser}"
             (label :text {icon-web}))
 
           ;; command input
-          (box :space-evenly true
+          (box :class "launcher-input"
+               :space-evenly true
                :halign "center"
                :width 440
-               :class "launcher-input"
             (input :class "cmd"
                    :value ""
                    :onchange ""
@@ -46,15 +46,15 @@
                :halign "center"
 
             ;; filemanager
-            (button :tooltip "File Manager"
-                    :class "launcher-files"
+            (button :class "launcher-files"
+                    :tooltip "File Manager"
                     :onclick "eww close launcher_popup;\
                               ${hww.file_manager} &"
               (label :text {icon-files}))
 
             ;; soundmanager
-            (button :tooltip "Audio Manager"
-                    :class "launcher-sound"
+            (button :class "launcher-sound"
+                    :tooltip "Audio Manager"
                     :onclick "eww close launcher_popup;\
                               ${hww.sound_manager} &"
               (label :text {icon-speaker})))

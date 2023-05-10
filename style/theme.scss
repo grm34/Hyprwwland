@@ -55,6 +55,10 @@
   padding-right: 10px;
 }
 
+.launcher-eventbox:hover {
+  box-shadow: inset 0px -3px #ed2939;
+}
+
 // cpu-ram-disk-temp
 .cpu-box-icon,
 .ram-box-icon,
@@ -151,9 +155,17 @@
   color: #007fff;
 }
 
+.weather-eventbox:hover {
+  box-shadow: inset 0px -3px #ed2939;
+}
+
 // sysinfo-box
 .sysinfo-box {
   padding-left: 6px;
+}
+
+.sysinfo-eventbox:hover {
+  box-shadow: inset 0px -3px #ed2939;
 }
 
 
@@ -166,6 +178,10 @@
   padding: 0px 6px 0px 10px;
   border-radius: 5px;
   box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.taskbar-events:hover {
+  box-shadow: inset 0px -3px #ed2939;
 }
 
 // updates-box
@@ -290,6 +306,11 @@
   padding: 0px 10px 0px 10px;
 }
 
+.dock-app-box:hover {
+  background-color: rgba(50, 205, 50, 0.8);
+  border-radius: 8px;
+}
+
 
 // ---------- launcher (popup) ---------- //
 .launcher-popup {
@@ -304,12 +325,18 @@
 }
 
 .launcher-web {
-  background-color: rgba(50, 129, 234, 0.3);
+  background-color: rgba(69, 69, 69, 0.6);
   color: #ff8c00;
   font-size: 32px;
   padding: 1px 9px 1px 8px;
   border: 2px solid #0a7e8c;
   border-radius: 6px;
+}
+
+.launcher-web:hover,
+.launcher-files:hover,
+.launcher-sound:hover {
+  background-color: rgba(50, 129, 234, 0.3);
 }
 
 .launcher-input {
@@ -355,6 +382,11 @@
   margin: 0px 2px 20px 2px;
   padding: 5px 0px 5px 0px;
   border: 2px solid #0a7e87;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.launcher-app-box:hover {
+  background-color: rgba(50, 205, 50, 0.8);
   border-radius: 20px 20px 0px 0px;
 }
 

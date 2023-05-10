@@ -6,7 +6,7 @@
 ;; - widgets.....: main fixed elements (topbar).
 ;; - scripts.....: some bash to perform action and/or return data.
 ;; - style.......: css/scss GTK theming.
-;; - assets......: images, icons.
+;; - assets......: images, icons, wallpapers.
 ;;
 
 ;; Import variables
