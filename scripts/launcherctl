@@ -40,11 +40,11 @@ for app in "${apps[@]}"; do
   cmd="eww close launcher_popup; $cmd"
   # Create the widget.
   box="$box
- (eventbox :class \"launcher-app-box\" :tooltip \"$name\"
-           :onclick \"$cmd\" :cursor \"pointer\"
-   (box :orientation \"v\" :space-evenly false :class \"app\"
-     (image :path \"$icon\" :image-width 38)
-     (label :text \"$name\" :limit-width 12)))"
+  (eventbox :class \"launcher-app-box\" :tooltip \"$name\"
+            :onclick \"$cmd\" :cursor \"pointer\"
+    (box :orientation \"v\" :space-evenly false :class \"app\"
+      (image :path \"$icon\" :image-width 38)
+      (label :text \"$name\" :limit-width 12)))"
 done
 
 printf '%s' "(box $box)" # This should output something...
