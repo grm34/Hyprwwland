@@ -1,0 +1,15 @@
+;; Hyprwwland > by darkmaster grm34.
+
+;; taskbar
+(defvar auto-up true)
+(defvar power-request "status")
+
+;; revealers
+(defvar cpu-graph-visible false)
+(defvar ram-graph-visible false)
+(defvar disk-graph-visible false)
+(defvar temp-graph-visible false)
+(defvar date-visible false)
+(defvar dock-visible false)
+(defvar power-visible false)
+

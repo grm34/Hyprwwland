@@ -1,0 +1,25 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow network_popup :monitor 0
+                         :geometry (geometry :x "0%"
+                                             :y "1%"
+                                             :width "10%"
+                                             :height "10%"
+                                             :anchor "top right")
+                         :stacking "fg"
+                         :exclusive false
+                         :focusable false
+  (_network_popup :network_devices {network_devices}))
+
+(defwidget _network_popup [network_devices]
+  (box :class "network-popup"
+       :orientation "v"
+       :space-evenly false
+       :active true
+       :visible true
+    (eventbox :onhoverlost "eww close network_popup"
+      (box :class "network-text"
+           :orientation "h"
+        (label :text {network_devices}))
+    )))
+

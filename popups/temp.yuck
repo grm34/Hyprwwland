@@ -1,0 +1,25 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow temp_popup :monitor 0
+                      :geometry (geometry :x "0%"
+                                          :y "1%"
+                                          :width "30%"
+                                          :height "10%"
+                                          :anchor "top center")
+                      :stacking "fg"
+                      :exclusive false
+                      :focusable false
+  (_temp_popup :temp_sensors {temp_sensors}))
+
+(defwidget _temp_popup [temp_sensors]
+  (box :class "temp-popup"
+       :orientation "v"
+       :space-evenly false
+       :active true
+       :visible true
+    (eventbox :onhoverlost "eww close temp_popup"
+      (box :class "temp-text"
+           :orientation "h"
+        (label :text {temp_sensors}))
+    )))
+

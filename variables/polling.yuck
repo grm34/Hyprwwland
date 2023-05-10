@@ -1,0 +1,91 @@
+;; Hyprwwland > by darkmaster grm34.
+
+;; Get user config as JSON.
+(defpoll hww :interval "2h"
+             :initial "{}"
+  "cat config.json")
+
+;; Get dock apps as STRING (containing YUCK).
+(defpoll dock :interval "5m"
+              :initial ""
+  "scripts/dockctl")
+
+;; Get status of active workspace as BOOL (occupied/free).
+(defpoll active :interval "1s"
+                :initial false
+  "hyprctl activewindow -j | jq '.mapped'")
+
+;; Get workspaces status as JSON.
+(defpoll workspaces :interval "1s"
+                    :initial "{}"
+  "scripts/workspacectl")
+
+;; Get launcher apps as STRING (containing YUCK).
+(defpoll launcher :interval "10m"
+                  :initial ""
+  "scripts/launcherctl")
+
+;; Get running PIDs (user) as STRING.
+(defpoll cpu_usage :interval "1s"
+  "bash -c 'top -s -b -n 1 -u $USER' | head -n 20")
+
+;; Get ram usage as STRING.
+(defpoll ram_usage :interval "5s"
+                   :initial ""
+  "free -h")
+
+;; Get disk usage as STRING.
+(defpoll disk_usage :interval "2m"
+                    :initial ""
+  "duf -output size,used,avail,usage,type,filesystem /")
+
+;; Get temp sensors as STRING.
+(defpoll temp_sensors :interval "5s"
+                      :initial ""
+  "sensors")
+
+;; Create weather PNG and return path as STRING.
+(defpoll weather :interval "1h"
+                 :initial "assets/weather/current.png"
+  "scripts/weatherctl")
+
+;; Get neofetch output as STRING.
+(defpoll sysinfo :interval "30m"
+                 :initial "Hyprwwland"
+  "neofetch --off --color_blocks off --stdout")
+
+;; Get number of pending updates as STRING.
+(defpoll updates :interval "15m"
+                 :initial "off"
+  "scripts/updatectl")
+
+;; Get standby status as BOOL.
+(defpoll standby :interval "2h"
+                 :initial true
+  "scripts/standbyctl")
+
+;; Get screen brightness as STRING.
+(defpoll brightness :interval "2s"
+                    :initial "90"
+  "light -G | cut -d'.' -f1")
+
+;; Get sound volume as STRING.
+(defpoll volume :interval "2s"
+                :initial "90"
+  "pulsemixer --get-volume | cut -d' ' -f1")
+
+;; Get network status as STRING (on/off).
+(defpoll network_status :interval "3s"
+                        :initial "none"
+  "nmcli networking connectivity")
+
+;; Get network devices as STRING.
+(defpoll network_devices :interval "30s"
+                         :initial ""
+  "nmcli device status")
+
+;; Get date and time as JSON.
+(defpoll datetime :interval "5s"
+                  :initial "{}"
+  "scripts/datetimectl")
+

@@ -1,0 +1,39 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow cpu_popup :monitor 0
+                     :geometry (geometry :x "0%"
+                                         :y "1%"
+                                         :width "30%"
+                                         :height "10%"
+                                         :anchor "top center")
+                     :stacking "fg"
+                     :exclusive false
+                     :focusable false
+  (_cpu_popup :cpu_usage {cpu_usage}))
+
+(defwidget _cpu_popup [cpu_usage]
+  (box :class "cpu-popup"
+       :orientation "v"
+       :space-evenly false
+       :active true
+       :visible true
+    (eventbox :onhoverlost "eww close cpu_popup"
+      (box :class "cpu-popup-box"
+           :orientation "v"
+           :space-evenly false
+
+        ;; title
+        (box :class "cpu-popup-title-box"
+             :orientation "h"
+             :halign "center"
+             :space-evenly false
+          (label :class "cpu-popup-title-icon"
+                 :text {icon-cpu})
+          (label :class "cpu-popup-title-text"
+                 :text "RUNNING PROCESS"))
+
+        ;; content
+        (label :class "cpu-popup-content"
+               :text {cpu_usage}))
+    )))
+

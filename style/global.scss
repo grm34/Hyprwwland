@@ -1,0 +1,147 @@
+// Hyprwwland > by darkmaster grm34.
+
+// progressbar
+progressbar trough {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+progressbar progress {
+  border-radius: 10px;
+  background-color: #32cd32;
+}
+
+// scale
+scale trough {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+scale highlight {
+  background-color: #32cd32;
+  padding: 0px 0px 10px 0px
+}
+
+// scrollbar
+scrollbar {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
+  background-color: #2C2C2C;
+}
+
+scrollbar slider {
+  transition: background-color 75ms cubic-bezier(0, 0, 0.2, 1);
+  min-width: 8px;
+  min-height: 8px;
+  border: 4px solid transparent;
+  border-radius: 9999px;
+  background-clip: padding-box;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+scrollbar slider:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+scrollbar slider:active {
+  background-color: white;
+}
+
+scrollbar slider:disabled {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+scrollbar.horizontal slider {
+  min-width: 40px;
+}
+
+scrollbar.vertical slider {
+  min-height: 24px;
+}
+
+// tooltip
+tooltip {
+  font-family: UbuntuNerdFont;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+tooltip.background,
+tooltip.background.csd {
+  border-radius: 10px;
+  background-color: rgba(25, 25, 25, 0.9);
+  color: white;
+}
+
+tooltip decoration {
+  background-color: transparent;
+}
+
+tooltip>box {
+  margin: -6px;
+  min-height: 24px;
+  padding: 4px 8px;
+}
+
+// actionbar
+actionbar>revealer>box .linked>button:not(.suggested-action):not(.destructive-action),
+button {
+  transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
+    background-size 300ms cubic-bezier(0, 0, 0.2, 1),
+    background-image 1200ms cubic-bezier(0, 0, 0.2, 1);
+  outline: none;
+  box-shadow: inset 0 0 0 9999px transparent;
+  background-image: radial-gradient(circle,
+      transparent 10%,
+      transparent 0%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1000% 1000%;
+  color: white;
+}
+
+// calendar
+calendar:disabled {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+calendar:selected {
+  border-radius: 5px;
+}
+
+calendar.header {
+  border-style: none none solid;
+  border-color: rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+}
+
+calendar.button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+calendar.highlight {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+calendar:indeterminate {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+// selection
+widget.entry:selected,
+evview.view.content-view:selected,
+evview.view.content-view:selected:backdrop,
+statuspage.search-view entry.search>window.background treeview.view:selected,
+calendar:selected,
+spinbutton.vertical selection,
+spinbutton:not(.vertical) selection,
+entry selection,
+label selection,
+textview text selection:focus,
+textview text selection,
+widget.view:selected,
+.view:selected {
+  color: white;
+  background-color: #3281EA;
+}

@@ -1,0 +1,16 @@
+{
+  "aur_helper": "paru",
+  "terminal": "alacritty",
+  "terminal_cmd": "alacritty -e",
+  "web_browser": "librewolf",
+  "file_manager": "alacritty -e felix",
+  "sound_manager": "alacritty -e pulsemixer",
+  "suspend_timeout": "300",
+  "sleep_timeout": "600",
+  "weather_location": "Montpellier",
+  "launcher_app_path": "/usr/share/applications",
+  "launcher_app_icon_path": "/usr/share/icons/ePapirus-Dark/96x96/apps",
+  "dock_app_path": "/usr/share/applications",
+  "dock_app_icon_path": "/usr/share/icons/ePapirus-Dark/96x96/apps",
+  "dock_app_icon_size": "38"
+}

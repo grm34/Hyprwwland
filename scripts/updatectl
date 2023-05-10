@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# Hyprwwland > by darkmaster grm34.
+# export RUST_BACKTRACE=full
+
+# Get required settings from config.json.
+readarray -t config <\
+  <(jq '.aur_helper,
+        .terminal_cmd' "$PWD/config.json")
+
+# Remove double quotes.
+aur_helper="${config[0]//\"}"
+terminal_cmd="${config[1]//\"}"
+
+# Check network status (on/off).
+function check_network() {
+  : "$(nmcli networking connectivity)"
+  if [[ $_ == "none" ]]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
+# Run paru once to update the cache.
+function check_updates() {
+  printf '%s' "n" | sudo "$aur_helper" &>/dev/null
+}
+
+# Get number of pending updates (status).
+function get_updates() {
+  : "$(sudo "$aur_helper" -Qu | wc -l)"
+  ! [[ $_ =~ ^[0-9]+$ ]] && : 0
+  printf '%s' "$_"
+}
+
+# Notify according to request.
+function notify_user() {
+  case $1 in
+    check) : "Checking for new updates..." ;;
+    down)  : "Waiting for network..." ;;
+    nb)    : "Arch Linux pending updates: $2" ;;
+    up)    : "Arch Linux is already up to date !"
+  esac
+  dunstify -i "pacman" "$_"
+}
+
+# Exit if network is down.
+if ! check_network; then
+  [[ $1 ]] && notify_user "down"
+  eww update updates="off"
+  exit
+fi
+
+case $1 in
+  update)
+    # onclick: check, run terminal, check again, update status.
+    : "$(get_updates)"
+    (( _ == 0 )) && { notify_user "up" && exit ;}
+    (( _ > 0 )) &&
+      eval "$terminal_cmd" sudo "$aur_helper" & wait $!
+    sleep 1
+    : "$(get_updates)"
+    eww update updates="$_"
+    ;;
+  check)
+    # onclick: check, notify pending updates, update status.
+    notify_user "check"
+    check_updates
+    nb="$(get_updates)"
+    [[ $nb =~ ^[0-9]+$ ]] && canberra-gtk-play -i "window-question"
+    : "nb" && [[ $nb == 0 ]] && : "up"
+    notify_user "$_" "$nb"
+    eww update updates="$nb"
+    ;;
+  *)
+    # onpoll: check and return status if auto-up is true (int).
+    : "$(eww get auto-up)"
+    if [[ $_ != "false" ]]; then  
+      check_updates
+      get_updates
+    fi
+esac
+
