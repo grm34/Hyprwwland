@@ -127,7 +127,7 @@ exec-once = eww open-many topbar dock
 
 ```text
 preload = ~/.config/eww/assets/wallpapers/od_neon.png
-preload = ~/.config/eww/assets/wallpapers/od_shards.png
+preload = ~/.config/eww/assets/wallpapers/od_tokyo.jpg
 wallpaper = ~/.config/eww/assets/wallpapers/od_neon.png
 ```
 
