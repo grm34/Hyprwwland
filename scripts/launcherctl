@@ -35,8 +35,11 @@ for app in "${apps[@]}"; do
   : "${_//Exec=}" && : "${_//\"}" && : "${_%% *}"
   # Define the opening cmd (terminal or standalone). 
   cmd="$(which "$_") &"
-  grep -qm 1 "Terminal=true" "$app" &&
-    cmd="$terminal_cmd $cmd" 
+  [[ $cmd == *"mpv &"* ]] && # fix mpv exec.
+    cmd="${cmd//mpv/mpv --player-operation-mode=pseudo-gui}"
+  { grep -qm 1 "Terminal=true" "$app"\
+    || [[ $cmd == *himalaya* ]] ;} && # fix himalaya exec.
+      cmd="$terminal_cmd ${cmd//himalaya/himalaya write}"
   cmd="eww close launcher_popup; $cmd"
   # Create the widget.
   box="$box
