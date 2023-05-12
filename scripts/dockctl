@@ -46,6 +46,8 @@ for app in "${userapps[@]}"; do
   : "$(grep -m 1 ^Exec "$app")"
   : "${_//Exec=}" && : "${_//\"}" && : "${_%% *}"
   cmd="$(which "$_") &"
+  [[ $cmd == *"mpv &"* ]] && # fix mpv exec command.
+    cmd="${cmd//mpv/mpv --player-operation-mode=pseudo-gui}"
   grep -qm 1 "Terminal=true" "$app" &&
     cmd="$terminal_cmd $cmd"
   # Create the widget.
