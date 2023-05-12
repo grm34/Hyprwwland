@@ -1,0 +1,25 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow disk_popup :monitor 0
+                      :geometry (geometry :x "0%"
+                                          :y "1%"
+                                          :width "30%"
+                                          :height "10%"
+                                          :anchor "top center")
+                         :stacking "fg"
+                         :exclusive false
+                         :focusable false
+  (_disk_popup :disk_usage {disk_usage}))
+
+(defwidget _disk_popup [disk_usage]
+  (box :class "disk-popup"
+       :orientation "v"
+       :space-evenly false
+       :active true
+       :visible true
+    (eventbox :onhoverlost "eww close disk_popup"
+      (box :class "disk-text"
+           :orientation "h"
+        (label :text {disk_usage}))
+    )))
+

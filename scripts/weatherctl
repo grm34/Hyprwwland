@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Hyprwwland > by darkmaster grm34.
+# export RUST_BACKTRACE=full
+
+# Get weather location from config.json.
+: "$(jq '.weather_location' "$PWD/config.json")"
+
+# Call wttr.in to retrieve local weather as PNG.
+curl wttr.in/"${_//\"}"_1nq.png\
+  --output "$PWD/assets/weather/current.png"\
+  &>/dev/null
+
+printf '%s' "assets/weather/current.png"
+

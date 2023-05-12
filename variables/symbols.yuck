@@ -1,0 +1,71 @@
+;; Hyprwwland > by darkmaster grm34.
+
+;; workspaces
+(defvar icon-ws1 " ₁")
+(defvar icon-ws2 " ₂")
+(defvar icon-ws3 " ₃")
+(defvar icon-ws4 "󱐏 ₄")
+(defvar icon-ws5 " ₅")
+(defvar icon-ws6 "󰈙 ₆")
+(defvar icon-ws7 "󰓃 ₇")
+(defvar icon-ws8 "󱛻 ₈")
+(defvar icon-ws9 "󰎔 ₉")
+
+;; monitoring
+(defvar icon-cpu "󰻠")
+(defvar icon-ram "󰍛")
+(defvar icon-disk "󰋊")
+(defvar icon-temp "󱠇")
+
+;; taskbar
+(defvar icon-updates-on "") 
+(defvar icon-updates-off "") 
+(defvar icon-standby-on " ")
+(defvar icon-standby-off " ")
+(defvar icon-light "󰃠")
+(defvar icon-sound-on "")
+(defvar icon-sound-off "󰖁")
+(defvar icon-net-on "󰱓 ")
+(defvar icon-net-off "󰅛 ")
+(defvar icon-batC100 "󰂅")
+(defvar icon-batC90 "󰂋")
+(defvar icon-batC80 "󰂊")
+(defvar icon-batC70 "󰢞")
+(defvar icon-batC60 "󰂉")
+(defvar icon-batC50 "󰢝")
+(defvar icon-batC40 "󰂈")
+(defvar icon-batC30 "󰂇")
+(defvar icon-batC20 "󰂆")
+(defvar icon-batC10 "󰢜")
+(defvar icon-batC00 "󰢟")
+(defvar icon-batN100 "󰁹")
+(defvar icon-batN90 "󰂂")
+(defvar icon-batN80 "󰂁")
+(defvar icon-batN70 "󰂀")
+(defvar icon-batN60 "󰁿")
+(defvar icon-batN50 "󰁾")
+(defvar icon-batN40 "󰁽")
+(defvar icon-batN30 "󰁼")
+(defvar icon-batN20 "󰁻")
+(defvar icon-batN10 "󰁺")
+(defvar icon-batN00 "󰂎")
+(defvar icon-power " ")
+
+;; launcher-popup
+(defvar icon-web " ")
+(defvar icon-files "")
+(defvar icon-speaker "󰓃")
+
+;; updates-popup
+(defvar icon-up-on "󰄸 ")
+(defvar icon-up-off "󰄷 ")
+
+;; powermenu-popup
+(defvar icon-shutdown " ")
+(defvar icon-reboot " ")
+(defvar icon-sleep "󰤄")
+(defvar icon-logout "󰍃")
+
+;; tooltip
+(defvar icon-arrow "  ")
+

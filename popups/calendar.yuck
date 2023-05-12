@@ -1,0 +1,35 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow calendar_popup :monitor 0
+                          :geometry (geometry :x "0%"
+                                              :y "1%"
+                                              :width "20%"
+                                              :height "20%"
+                                              :anchor "top right")
+                          :stacking "fg"
+                          :exclusive false
+                          :focusable false
+  (_calendar_popup :day {datetime.day}
+                   :month {datetime.month}
+                   :year {datetime.year}))
+
+(defwidget _calendar_popup [day month year]
+  (box :class "calendar-popup"
+       :space-evenly true
+       :orientation "h"
+       :valign "start"
+       :active true
+       :visible true
+
+    (eventbox :onhoverlost "eww close calendar_popup"
+      (calendar :class "calendar-builtin"
+                :day {day}
+                :month {month}
+                :year {year}
+                :show-details true
+                :show-heading true
+                :show-day-names true
+                :show-week-numbers true
+                :timeout "200s")
+    )))
+

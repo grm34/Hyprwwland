@@ -1,0 +1,676 @@
+// Hyprwwland > by darkmaster grm34.
+
+.topbar {}
+
+// ---------- workspaces (topbar) ---------- //
+.workspaces {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffd5cd;
+  font-family: UbuntuNerdFont;
+  font-size: 13px;
+  margin: 2px 10px 4px 10px;
+  padding: 0px 6px 0px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.ws-active,
+.ws-inactive,
+.ws-occupied {
+  padding-right: 6px;
+}
+
+.ws-active {
+  color: #32cd32;
+  box-shadow: inset 0px -3px #32cd32;
+}
+
+.ws-inactive {
+  color: #a89984;
+}
+
+.ws-occupied {
+  color: #ed2939;
+}
+
+.ws-occupied:hover,
+.ws-active:hover,
+.ws-inactive:hover {
+  box-shadow: inset 0px -3px #ed2939;
+}
+
+
+// ---------- monitoring (topbar) ---------- //
+.monitoring {
+  background-color: rgba(8, 8, 8, 0.6);
+  color: #ffd5cd;
+  margin: 2px 10px 0px 10px;
+  padding: 0px 6px 0px 10px;
+  border-radius: 3px 8px;
+  box-shadow: 2px 4px 2px 1px rgba(8, 8, 8, 0.5);
+}
+
+// launcher-box
+.launcher-box {
+  padding-right: 10px;
+}
+
+.launcher-eventbox:hover {
+  box-shadow: inset 0px -3px #ed2939;
+}
+
+// cpu-ram-disk-temp
+.cpu-box-icon,
+.ram-box-icon,
+.disk-box-icon,
+.temp-box-icon {
+  font-family: AnonymiceProNerdFont;
+  font-size: 12px;
+  padding-right: 6px;
+}
+
+.cpu-box-text,
+.ram-box-text,
+.disk-box-text,
+.temp-box-text {
+  font-family: UbuntuNerdFont;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+// cpu-box
+.cpu-box {
+  padding-right: 10px;
+}
+
+.cpu-box-icon {
+  color: #008080;
+}
+
+.cpu-box-text {
+  color: #c4aead;
+}
+
+.cpu-box-graph {
+  color: #ed2939;
+  min-height: 22px;
+}
+
+// ram-box
+.ram-box {
+  padding-right: 10px;
+}
+
+.ram-box-icon {
+  color: #008080;
+}
+
+.ram-box-text {
+  color: #c4aead;
+}
+
+.ram-box-graph {
+  color: #ed2939;
+  min-height: 22px;
+}
+
+// disk-box
+.disk-box {
+  padding-right: 10px;
+}
+
+.disk-box-icon {
+  color: #008080;
+}
+
+.disk-box-text {
+  color: #c4aead;
+}
+
+.disk-box-graph {
+  color: #ed2939;
+  min-height: 22px;
+}
+
+// temp-box
+.temp-box {
+  padding-right: 10px;
+}
+
+.temp-box-icon {
+  color: #008080;
+}
+
+.temp-box-text {
+  color: #c4aead;
+}
+
+.temp-box-graph {
+  color: #ed2939;
+  min-height: 22px;
+}
+
+// weather-box
+.weather-box {
+  color: #007fff;
+}
+
+.weather-eventbox:hover {
+  box-shadow: inset 0px -3px #ed2939;
+}
+
+// sysinfo-box
+.sysinfo-box {
+  padding-left: 6px;
+}
+
+.sysinfo-eventbox:hover {
+  box-shadow: inset 0px -3px #ed2939;
+}
+
+
+// ---------- taskbar (topbar) ---------- //
+.taskbar {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffd5cd;
+  font-family: JetBrainsMonoNerdFont;
+  margin: 2px 10px 4px 10px;
+  padding: 0px 6px 0px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.taskbar-events:hover {
+  box-shadow: inset 0px -3px #ed2939;
+}
+
+// updates-box
+.updates-box {
+  padding-right: 6px;
+}
+
+.updates-box-true {
+  color: #ed2939;
+}
+
+.updates-box-false {
+  color: #32cd32;
+}
+
+.updates-box-icon {
+  font-size: 12px;
+}
+
+.updates-box-text {
+  font-size: 10px;
+  padding-left: 4px;
+}
+
+// standby-box
+.standby-box {
+  padding-right: 0px;
+}
+
+.standby-box-on {
+  color: #8fbc8f;
+}
+
+.standby-box-off {
+  color: #004242;
+}
+
+// brightness-box
+.brightness-box {
+  color: #ffa343;
+  padding-right: 3px;
+}
+
+.brightness-box-icon {
+  font-size: 12px;
+  padding-right: 2px;
+}
+
+.brightness-box-text {
+  font-size: 10px;
+}
+
+// sound-box
+.sound-box {
+  color: #b0e0e6;
+  padding-right: 8px;
+}
+
+.sound-box-icon {
+  font-size: 12px;
+  padding-right: 1px;
+}
+
+.sound-box-text {
+  font-size: 10px;
+}
+
+// network-box
+.network-box {
+  font-size: 14px;
+  padding-right: 2px;
+}
+
+.network-on {
+  color: #32cd32;
+}
+
+.network-off {
+  color: #ed2939;
+}
+
+// datetime-box
+.datetime-box {
+  padding-right: 6px;
+  color: #c2b280;
+}
+
+.datetime-box-time {
+  font-size: 11px;
+}
+
+.datetime-box-date {
+  font-size: 10px;
+}
+
+// battery-box
+.battery-box {
+  color: #4f7942;
+  padding-right: 8px;
+}
+
+.battery-box-icon {
+  font-size: 12px;
+  padding-right: 6px;
+}
+
+.battery-box-text {
+  font-size: 10px;
+}
+
+// powermenu-box
+.powermenu-box {
+  color: #ed2939;
+  font-size: 12px;
+}
+
+
+// ---------- dock (leftbar) ---------- //
+.dock {}
+
+.dock-apps {
+  padding: 0px 10px 0px 10px;
+}
+
+.dock-app-box:hover {
+  background-color: rgba(50, 205, 50, 0.8);
+  border-radius: 8px;
+}
+
+
+// ---------- launcher (popup) ---------- //
+.launcher-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fffafa;
+  font-family: UbuntuNerdFont;
+  font-size: 14px;
+  margin: 2px 10px 4px 10px;
+  padding: 22px 10px 20px 10px;
+  border-radius: 20px;
+  box-shadow: inset 0px -2px #32cd32;
+}
+
+.launcher-web {
+  background-color: rgba(69, 69, 69, 0.6);
+  color: #ff8c00;
+  font-size: 32px;
+  padding: 1px 9px 1px 8px;
+  border: 2px solid #0a7e8c;
+  border-radius: 6px;
+}
+
+.launcher-web:hover,
+.launcher-files:hover,
+.launcher-sound:hover {
+  background-color: rgba(50, 129, 234, 0.3);
+}
+
+.launcher-input {
+  background-color: rgba(50, 129, 234, 0.3);
+  color: #32cd32;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 14px;
+  margin: 10px 16px 10px 0px;
+  border: 1px solid #3281EA;
+  border-radius: 2px;
+}
+
+.cmd {
+  padding: 0px 0px 0px 30px;
+}
+
+.launcher-files {
+  background-color: rgba(69, 69, 69, 0.6);
+  color: #007fff;
+  font-size: 28px;
+  margin: 5px;
+  padding: 0px 5px 0px 9px;
+  border: 2px solid #0a7e8c;
+  border-radius: 8px 16px;
+}
+
+.launcher-sound {
+  background-color: rgba(69, 69, 69, 0.6);
+  color: #007fff;
+  font-size: 28px;
+  margin: 5px;
+  padding: 0px 5px 0px 5px;
+  border: 2px solid #0a7e8c;
+  border-radius: 8px 16px;
+}
+
+.launcher-apps {
+  padding: 24px 0px 0px 0px;
+}
+
+.app {
+  background-color: rgba(69, 69, 69, 0.6);
+  margin: 0px 2px 20px 2px;
+  padding: 5px 0px 5px 0px;
+  border: 2px solid #0a7e87;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.launcher-app-box:hover {
+  background-color: rgba(50, 205, 50, 0.8);
+  border-radius: 20px 20px 0px 0px;
+}
+
+
+// ---------- cpu_usage (popup) ---------- //
+.cpu-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0px 20px 16px 20px;
+  border-radius: 0px 48px 0px 38px;
+  box-shadow: inset 0px -3px #32cd32;
+}
+
+.cpu-popup-box {}
+
+.cpu-popup-title-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 4px 100px 4px 100px;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.cpu-popup-title-icon {
+  color: #b8860b;
+  font-family: AnonymiceProNerdFont;
+  font-size: 32px;
+  padding-right: 20px;
+}
+
+.cpu-popup-title-text {
+  color: #32cd32;
+  font-family: UbuntuNerdFont;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cpu-popup-content {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #eee8aa;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 12px;
+  padding: 14px 10px 8px 14px;
+  border-left: 4px inset #b8860b;
+  border-top: 3px solid #ed2939;
+  border-radius: 0px 32px 0px 20px;
+}
+
+
+// ---------- ram_usage (popup) ---------- //
+.ram-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 2px 10px 4px 10px;
+  padding: 10px 10px 20px 20px;
+  border-radius: 20px;
+  box-shadow: inset 0px -2px #32cd32;
+}
+
+.ram-text {
+  color: #a1caf1;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 13px;
+  padding: 8px 10px 0px 2px;
+}
+
+
+// ---------- disk_usage (popup) ---------- //
+.disk-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 10px 20px 10px;
+  border-radius: 20px;
+  box-shadow: inset 0px -2px #32cd32;
+}
+
+.disk-text {
+  color: #a1caf1;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 13px;
+  padding: 4px 10px 0px 10px;
+}
+
+
+// ---------- temp_sensors (popup) ---------- //
+.temp-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 2px 10px 4px 10px;
+  padding: 10px 10px 20px 20px;
+  border-radius: 20px;
+  box-shadow: inset 0px -2px #32cd32;
+}
+
+.temp-text {
+  color: #a1caf1;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 13px;
+  padding: 8px 10px 0px 2px;
+}
+
+
+// ---------- sysinfo (popup) ---------- //
+.sysinfo-popup {
+  background-color: rgba(0, 0, 0, 1);
+  color: #32cd32;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 13px;
+  margin: 2px 10px 4px 10px;
+  padding: 10px 10px 20px 20px;
+  border-radius: 20px;
+  box-shadow: inset 0px -2px #32cd32;
+}
+
+
+// ---------- weather (popup) ---------- //
+.weather-popup {
+  background-color: rgba(0, 0, 0, 1);
+  margin: 2px 10px 4px 10px;
+  padding: 10px 10px 30px 10px;
+  border-radius: 20px;
+  box-shadow: inset 0px -2px #32cd32;
+}
+
+.weather-image {
+  padding: 10px 0px 0px 0px;
+}
+
+
+// ---------- updates (popup) ---------- //
+.updates-popup {
+  background-color: rgba(0, 0, 0, 0.7);
+  font-family: UbuntuNerdFont;
+  font-size: 18px;
+  margin: 2px 10px 4px 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.update-button,
+.check-button {
+  color: #ffffff;
+  font-family: UbuntuNerdFont;
+  font-size: 18px;
+  padding: 15px 32px;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+.update-button {
+  background-color: #32cd32;
+}
+
+.check-button {
+  background-color: #ed2939;
+}
+
+.update-button:hover {
+  color: #000000;
+}
+
+.check-button:hover {
+  color: #000000;
+}
+
+
+// --------- brightness (popup) ---------- //
+.brightness-popup {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffd5cd;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 12px;
+  margin: 2px 10px 4px 10px;
+  padding: 10px 18px 18px 18px;
+  border-radius: 6px;
+  box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.brightness-popup-icon {
+  font-family: AnonymiceProNerdFont;
+  font-size: 32px;
+  padding-right: 28px;
+}
+
+
+// ---------- sound (popup) ---------- //
+.sound-popup {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffd5cd;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 12px;
+  margin: 0px 10px 4px 10px;
+  padding: 10px 18px 18px 18px;
+  border-radius: 6px;
+  box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.sound-popup-icon {
+  font-family: AnonymiceProNerdFont;
+  font-size: 32px;
+  padding-right: 28px;
+}
+
+
+// ---------- network_devices (popup) ---------- //
+.network-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #a1caf1;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 13px;
+  margin: 2px 10px 4px 10px;
+  padding: 10px 10px 20px 20px;
+  border-radius: 20px;
+  box-shadow: inset 0px -2px #32cd32;
+}
+
+.network-text {
+  padding: 8px 10px 0px 8px;
+}
+
+
+// ---------- calendar (popup) ---------- //
+.calendar-popup {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ffd5cd;
+  font-family: JetBrainsMonoNerdFont;
+  font-size: 14px;
+  margin: 2px 10px 4px 10px;
+  padding: 0px 6px 0px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.calendar-builtin {}
+
+
+// ---------- powermenu (popup) ---------- //
+.powermenu-popup {
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 32px;
+  font-family: UbuntuNerdFont;
+  margin: 2px 10px 4px 10px;
+  padding: 0px 6px 0px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.shutdown-label {
+  color: #ed2939;
+}
+
+.reboot-label {
+  color: #ff8c00;
+}
+
+.sleep-label {
+  color: #ffd700;
+}
+
+.logout-label {
+  color: #008080;
+}
+
+.confirm-box {
+  padding-right: 4px;
+}
+
+.confirm-button,
+.cancel-button {
+  color: #ffffff;
+  font-family: MesloNerdFont;
+  font-size: 18px;
+  padding: 15px 32px;
+  border-radius: 6px;
+  transition-duration: 0.4s;
+}
+
+.confirm-button {
+  background-color: #32cd32;
+}
+
+.cancel-button {
+  background-color: #ed2939;
+}
+
+.confirm-button:hover {
+  color: #000000;
+}
+
+.cancel-button:hover {
+  color: #000000;
+}

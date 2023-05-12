@@ -1,0 +1,71 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow launcher_popup :monitor 0
+                          :geometry (geometry :x "0%"
+                                              :y "1%"
+                                              :width "50%"
+                                              :height "20%"
+                                              :anchor "top center")
+                          :stacking "fg"
+                          :exclusive false
+                          :focusable true
+  (_launcher_popup :apps {launcher}))
+
+(defwidget _launcher_popup [apps]
+  (box :class "launcher-popup"
+       :orientation "v"
+       :active true
+       :visible true
+    (eventbox :onhoverlost "eww close launcher_popup"
+      (box :orientation "v"
+           :space-evenly false
+        (centerbox
+
+          ;; browser
+          (button :class "launcher-web"
+                  :tooltip "Browse the web"
+                  :halign "center"
+                  :timeout "5s"
+                  :onclick "eww close launcher_popup;\
+                            ${hww.web_browser}"
+            (label :text {icon-web}))
+
+          ;; command input
+          (box :class "launcher-input"
+               :space-evenly true
+               :halign "center"
+               :width 440
+            (input :class "cmd"
+                   :value ""
+                   :onchange ""
+                   :timeout "5s"
+                   :onaccept "eww close launcher_popup; {} &"
+                   :password false))
+
+          (box :orientation "h"
+               :halign "center"
+
+            ;; filemanager
+            (button :class "launcher-files"
+                    :tooltip "File Manager"
+                    :onclick "eww close launcher_popup;\
+                              ${hww.file_manager} &"
+              (label :text {icon-files}))
+
+            ;; soundmanager
+            (button :class "launcher-sound"
+                    :tooltip "Audio Manager"
+                    :onclick "eww close launcher_popup;\
+                              ${hww.sound_manager} &"
+              (label :text {icon-speaker})))
+        )
+
+        ;; apps
+        (box :class "launcher-apps"
+             :orientation "v"
+             :space-evenly false
+          (scroll :hscroll true
+                  :vscroll false
+            (literal :content {apps})))
+      ))))
+

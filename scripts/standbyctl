@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Hyprwwland > by darkmaster @grm34.
+# export RUST_BACKTRACE=full
+
+# Get required settings from config.json.
+readarray -t config <\
+  <(jq '.suspend_timeout, .sleep_timeout'\
+       "$PWD/config.json")
+
+# Run swayidle with hyprctl (timeout from config.json).
+function standby_mode() {
+  pkill -f -9 swayidle
+	: "-F -e --fade-in 3s --effect-blur 8x3"
+	: "swaylock $_ -i assets/wallpapers/od_tokyo.jpg"
+	swayidle timeout "${config[0]//\"}" "$_"\
+	         timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
+	         resume "hyprctl dispatch dpms on" & disown
+}
+
+case $1 in
+  on)
+    # onclick: activate.
+    eww update standby=true
+    standby_mode
+    ;;
+	off)
+    # onclick: deactivate.
+    eww update standby=false
+    pkill -f -9 swayidle
+    ;;
+  *)
+    # onpoll: activate if required and return status (bool).
+    : "$(eww get standby)"
+    [[ $_ == "true" ]] && standby_mode
+    if [[ $_ ]]; then
+      printf '%s' "$_"
+    else
+      printf '%s' "true"
+    fi
+esac
+

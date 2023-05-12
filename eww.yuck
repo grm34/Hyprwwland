@@ -1,0 +1,35 @@
+;; Hyprwwland > by darkmaster grm34.
+;;
+;; How the code is structured
+;; - variables...: basic, polling, listening variables.
+;; - popups......: widgets that open up on events.
+;; - widgets.....: main fixed elements (topbar).
+;; - scripts.....: some bash to perform action and/or return data.
+;; - style.......: css/scss GTK theming.
+;; - assets......: images, icons, wallpapers.
+;;
+
+;; Import variables
+(include "variables/basic.yuck")
+(include "variables/polling.yuck")
+(include "variables/symbols.yuck")
+
+;; Import popups
+(include "popups/launcher.yuck")
+(include "popups/cpu.yuck")
+(include "popups/disk.yuck")
+(include "popups/ram.yuck")
+(include "popups/temp.yuck")
+(include "popups/sysinfo.yuck")
+(include "popups/weather.yuck")
+(include "popups/updates.yuck")
+(include "popups/brightness.yuck")
+(include "popups/sound.yuck")
+(include "popups/network.yuck")
+(include "popups/calendar.yuck")
+(include "popups/powermenu.yuck")
+
+;; Import widgets
+(include "widgets/dock.yuck")
+(include "widgets/topbar.yuck")
+

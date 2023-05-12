@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Hyprwwland > by darkmaster grm34.
+# export RUST_BACKTRACE=full
+
+# As you can see systemd is required here.
+case $1 in
+  poweroff|reboot|suspend|hibernate) systemctl "$1" ;;
+  logout) hyprctl dispatch exit
+esac
+

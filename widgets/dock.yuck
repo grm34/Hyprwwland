@@ -1,0 +1,47 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow dock :monitor 0
+                :geometry (geometry :x "0%"
+                                    :y "0%"
+                                    :width "0%"
+                                    :height "0%"
+                                    :anchor "left center")
+                :stacking "fg"
+                :exclusive true
+                :focusable false
+  (_dock :apps {dock}))
+
+(defwidget _dock [apps]
+  (box :class "dock"
+       :orientation "v"
+       :valign "center"
+       :active true
+       :visible true
+    (eventbox :timeout "200ms"
+              :valign "center"
+              :onhover {active != true
+                        ? "eww update dock-visible=true"
+                        : ""}
+              :onhoverlost "eww update dock-visible=false"
+      (box :space-evenly false
+
+        ;; dock button
+        (revealer :reveal "${!dock-visible}"
+                  :transition "slideright"
+                  :duration "250ms"
+          (eventbox :valign "center"
+                    :width 6
+                    :cursor "pointer"
+                    :tooltip "dock"
+                    :onclick "eww update dock-visible=true"
+            (image :path "assets/images/dock.png"
+                   :image-width 6)))
+
+        ;; dock apps
+        (revealer :reveal {dock-visible}
+                  :transition "slideleft"
+                  :duration "250ms"
+          (box :class "dock-apps"
+              (literal :content {apps})))
+      ))))
+

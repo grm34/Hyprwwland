@@ -1,0 +1,27 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow sysinfo_popup :monitor 0
+                         :geometry (geometry :x "0%"
+                                             :y "1%"
+                                             :width "15%"
+                                             :height "30%"
+                                             :anchor "top right")
+                         :stacking "fg"
+                         :exclusive false
+                         :focusable false
+  (_sysinfo_popup :sysinfo {sysinfo}))
+
+(defwidget _sysinfo_popup [sysinfo]
+  (box :class "sysinfo-popup"
+       :valign "start"
+       :active true
+       :visible true
+
+    (eventbox :onhoverlost "eww close sysinfo_popup"
+      (box :orientation "v"
+           :space-evenly false
+        (image :path "assets/images/archlinux-logo.svg"
+               :image-width 260)
+        (label :text {sysinfo})
+      ))))
+

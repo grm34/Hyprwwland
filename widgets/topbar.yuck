@@ -1,0 +1,448 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow topbar :monitor 0
+                  :geometry (geometry :x "0%"
+                                      :y "0%"
+                                      :width "100%"
+                                      :height "1%"
+                                      :anchor "top center")
+                  :stacking "fg"
+                  :exclusive true
+                  :focusable false
+
+  (_topbar :active {active}
+           :ws1 {workspaces.ws1}
+           :ws2 {workspaces.ws2}
+           :ws3 {workspaces.ws3}
+           :ws4 {workspaces.ws4}
+           :ws5 {workspaces.ws5}
+           :ws6 {workspaces.ws6}
+           :ws7 {workspaces.ws7}
+           :ws8 {workspaces.ws8}
+           :ws9 {workspaces.ws9}
+           :updates {updates}
+           :standby {standby}
+           :brightness {brightness}
+           :volume {volume}
+           :network {network_status}
+           :date {datetime.date}
+           :time {datetime.time}
+           :bat-pw {EWW_BATTERY.BAT0.capacity}
+           :bat100 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                    ? icon-batC100 : icon-batN100}
+           :bat90 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC90 : icon-batN90}
+           :bat80 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC80 : icon-batN80}
+           :bat70 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC70 : icon-batN70}
+           :bat60 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC60 : icon-batN60}
+           :bat50 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC50 : icon-batN50}
+           :bat40 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC40 : icon-batN40}
+           :bat30 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC30 : icon-batN30}
+           :bat20 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC20 : icon-batN20}
+           :bat10 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC10 : icon-batN10}
+           :bat00 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                   ? icon-batC00 : icon-batN00}))
+
+
+(defwidget _topbar [active ws1 ws2 ws3 ws4 ws5 ws6 ws7 ws8 ws9
+                    updates standby brightness volume network
+                    date time bat-pw bat100 bat90 bat80 bat70
+                    bat60 bat50 bat40 bat30 bat20 bat10 bat00]
+
+  (box :class "topbar"
+       :orientation "h"
+    (centerbox :orientation "h"
+
+      ;; -------------------- workspaces -------------------- ;;
+
+      (box :class "workspaces"
+           :orientation "h"
+           :space-evenly false
+           :halign "start"
+        (button :class {ws1}
+                :onclick "hyprctl dispatch workspace 1"
+          (label :text {icon-ws1}))
+        (button :class {ws2}
+                :onclick "hyprctl dispatch workspace 2"
+          (label :text {icon-ws2}))
+        (button :class {ws3}
+                :onclick "hyprctl dispatch workspace 3"
+          (label :text {icon-ws3}))
+        (button :class {ws4}
+                :onclick "hyprctl dispatch workspace 4"
+          (label :text {icon-ws4}))
+        (button :class {ws5}
+                :onclick "hyprctl dispatch workspace 5"
+          (label :text {icon-ws5}))
+        (button :class {ws6}
+                :onclick "hyprctl dispatch workspace 6"
+          (label :text {icon-ws6}))
+        (button :class {ws7}
+                :onclick "hyprctl dispatch workspace 7"
+          (label :text {icon-ws7}))
+        (button :class {ws8}
+                :onclick "hyprctl dispatch workspace 8"
+          (label :text {icon-ws8}))
+        (button :class {ws9}
+                :onclick "hyprctl dispatch workspace 9"
+          (label :text {icon-ws9}))
+      )
+
+      ;; -------------------- monitoring -------------------- ;;
+
+      (box :class "monitoring"
+           :space-evenly false
+           :orientation "h"
+           :halign "center"
+
+        ;; launcher-box
+        (box :class "launcher-box"
+          (eventbox :class "launcher-eventbox"
+                    :cursor "pointer"
+                    :onclick "eww open launcher_popup"
+                    :onrightclick "eww close launcher_popup"
+            (image :path "assets/images/appmenu.png"
+                   :image-width 20)))
+
+        ;; cpu-box
+        (box :class "cpu-box"
+          (eventbox :timeout "200ms"
+                    :onclick "eww open cpu_popup"
+                    :onrightclick "eww close cpu_popup"
+                    :onhover "eww update cpu-graph-visible=true"
+                    :onhoverlost "eww update cpu-graph-visible=false"
+                    :cursor "pointer"
+            (box :space-evenly false
+                 :orientation "v"
+              (revealer :reveal "${!cpu-graph-visible}"
+                        :transition "slideup"
+                        :duration "250ms"
+                (box :orientation "v"
+                  (box :orientation "h"
+                       :halign "center"
+                       :valign "end"
+                       :space-evenly false
+                    (label :class "cpu-box-icon"
+                           :text {icon-cpu})
+                    (label :class "cpu-box-text"
+                           :text "${EWW_CPU.avg}%"))
+                  (progress :valign "start"
+                            :value {EWW_CPU.avg}
+                            :orientation "h")))
+              (revealer :reveal {cpu-graph-visible}
+                        :transition "slidedown"
+                        :duration "250ms"
+                (box :class "cpu-box-graph"
+                     :orientation "v"
+                  (graph :thickness 4
+                         :value {EWW_CPU.avg}
+                         :time-range "10s"
+                         :dynamic true
+                         :line-style "round"))))))
+
+        ;; ram-box
+        (box :class "ram-box"
+          (eventbox :timeout "200ms"
+                    :onclick "eww open ram_popup"
+                    :onrightclick "eww close ram_popup"
+                    :onhover "eww update ram-graph-visible=true"
+                    :onhoverlost "eww update ram-graph-visible=false"
+                    :cursor "pointer"
+            (box :space-evenly false
+                 :orientation "v"
+              (revealer :reveal "${!ram-graph-visible}"
+                        :transition "slideup"
+                        :duration "250ms"
+                (box :orientation "v"
+                  (box :orientation "h"
+                       :halign "center"
+                       :valign "end"
+                       :space-evenly false
+                    (label :class "ram-box-icon"
+                           :text {icon-ram})
+                    (label :class "ram-box-text"
+                           :text "${EWW_RAM.used_mem_perc}%"))
+                  (progress :valign "start"
+                            :flipped false
+                            :value {EWW_RAM.used_mem_perc})))
+              (revealer :reveal {ram-graph-visible}
+                        :transition "slidedown"
+                        :duration "250ms"
+                (box :class "ram-box-graph"
+                      :orientation "v"
+                  (graph :thickness 4
+                         :value {EWW_RAM.used_mem_perc}
+                         :time-range "10s"
+                         :dynamic true
+                         :line-style "round"))))))
+
+        ;; disk-box
+        (box :class "disk-box"
+          (eventbox :timeout "200ms"
+                    :onclick "eww open disk_popup"
+                    :onrightclick "eww close disk_popup"
+                    :onhover "eww update disk-graph-visible=true"
+                    :onhoverlost "eww update disk-graph-visible=false"
+                    :cursor "pointer"
+            (box :space-evenly false
+                 :orientation "v"
+              (revealer :reveal "${!disk-graph-visible}"
+                        :transition "slideup"
+                        :duration "250ms"
+                (box :orientation "v"
+                  (box :orientation "h"
+                       :halign "center"
+                       :valign "end"
+                       :space-evenly false
+                    (label :class "disk-box-icon"
+                           :text {icon-disk})
+                    (label :class "disk-box-text"
+                           :text "${EWW_DISK["/"].used_perc}%"))
+                  (progress :valign "start"
+                            :flipped false
+                            :value {EWW_DISK["/"].used_perc})))
+              (revealer :reveal {disk-graph-visible}
+                        :transition "slidedown"
+                        :duration "250ms"
+                (box :class "disk-box-graph"
+                     :orientation "v"
+                  (graph :thickness 4
+                         :value {EWW_DISK["/"].used_perc}
+                         :time-range "30s"
+                         :dynamic true
+                         :line-style "round"))))))
+
+        ;; temp-box
+        (box :class "temp-box"
+          (eventbox :timeout "200ms"
+                    :onclick "eww open temp_popup"
+                    :onrightclick "eww close temp_popup"
+                    :onhover "eww update temp-graph-visible=true"
+                    :onhoverlost "eww update temp-graph-visible=false"
+                    :cursor "pointer"
+            (box :space-evenly false
+                 :orientation "v"
+              (revealer :reveal "${!temp-graph-visible}"
+                        :transition "slideup"
+                        :duration "250ms"
+                (box :orientation "v"
+                  (box :orientation "h"
+                       :halign "center"
+                       :valign "end"
+                       :space-evenly false
+                    (label :class "temp-box-icon"
+                           :text {icon-temp})
+                    (label :class "temp-box-text"
+                           :text "${EWW_TEMPS.CORETEMP_CORE_0}°C"))
+                  (progress :valign "start"
+                            :flipped false
+                            :value {EWW_TEMPS.CORETEMP_CORE_0})))
+              (revealer :reveal {temp-graph-visible}
+                        :transition "slidedown"
+                        :duration "250ms"
+                (box :class "temp-box-graph"
+                     :orientation "v"
+                  (graph :thickness 4
+                         :value {EWW_TEMPS.DELL_SMM_CPU}
+                         :time-range "5s"
+                         :dynamic true
+                         :line-style "round"))))))
+
+        ;; weather-box
+        (box :class "weather-box"
+          (eventbox :class "weather-eventbox"
+                    :cursor "pointer"
+                    :onclick "eww open weather_popup"
+                    :onrightclick "eww close weather_popup;\
+                                   eww update active=true"
+                    :onhover {
+                      active != true ? "eww open weather_popup" : ""}
+                    :onhoverlost {
+                      active != true ? "eww close weather_popup" : ""}
+            (image :path "assets/images/cloudy.png"
+                   :image-width 16)))
+
+        ;; sysinfo-box
+        (box :class "sysinfo-box"
+          (eventbox :class "sysinfo-eventbox"
+                    :cursor "pointer"
+                    :onclick "eww open sysinfo_popup"
+                    :onrightclick "eww close sysinfo_popup;\
+                                   eww update active=true"
+                    :onhover {
+                      active != true ? "eww open sysinfo_popup" : ""}
+                    :onhoverlost {
+                      active != true ? "eww close sysinfo_popup" : ""}
+            (image :path "assets/images/cpu.png"
+                   :image-width 18)))
+      )
+
+      ;; -------------------- taskbar -------------------- ;;
+
+      (box :class "taskbar"
+           :orientation "h"
+           :space-evenly false
+           :halign "end"
+
+        ;; updates-box
+        (box :class "updates-box"
+          (eventbox :class {
+                      updates == "0" && network != "none"
+                        ? "updates-box-false taskbar-events"
+                        : "updates-box-true taskbar-events"} 
+                    :tooltip
+                      "Arch Linux updates ${icon-arrow} ${updates}"
+                    :onclick "eww open updates_popup"
+                    :onrightclick "eww close updates_popup"
+                    :timeout "10s"
+                    :cursor "pointer"
+            (box
+              (label :class "updates-box-icon"
+                     :text {
+                       auto-up == false || updates == "off"
+                                        || network == "none"
+                       ? icon-updates-off : icon-updates-on})
+              (label :class "updates-box-text"
+                     :text {
+                       auto-up == false || updates == "off"
+                                        || network == "none"
+                                        || updates == "0"
+                       ? "" : "${updates}"}))))
+
+        ;; standby-box
+        (box :class "standby-box"
+          (eventbox :class {
+                      standby == true ? "standby-box-on taskbar-events"
+                                      : "standby-box-off taskbar-events"}
+                    :tooltip {
+                      standby == true ? "Swayidle is ON taskbar-events"
+                                      : "Swayidle is OFF taskbar-events"}
+                    :onclick {
+                      standby != true ? "scripts/standbyctl on"
+                      : "scripts/standbyctl off"}
+                    :timeout "5s"
+                    :cursor "pointer"
+            (label :text {
+                     standby == true ? icon-standby-on
+                                     : icon-standby-off})))
+
+        ;; brightness-box
+        (box :class "brightness-box"
+          (eventbox :class "taskbar-events"
+                    :tooltip "Brightness ${icon-arrow} ${brightness}%"
+                    :onclick "eww open brightness_popup"
+                    :onmiddleclick "light -S 100"
+                    :onrightclick "eww close brightness_popup"
+                    :cursor "pointer"
+            (box
+              (label :class "brightness-box-icon"
+                     :text {icon-light})
+              (label :class "brightness-box-text"
+                     :text "${brightness}%"))))
+
+        ;; sound-box
+        (box :class "sound-box"
+          (eventbox :class "taskbar-events"
+                    :tooltip "Volume ${icon-arrow} ${volume}%"
+                    :onclick "eww open sound_popup"
+                    :onmiddleclick "pamixer --mute"
+                    :onrightclick "eww close sound_popup"
+                    :cursor "pointer"
+            (box
+              (label :class "sound-box-icon"
+                     :text {
+                       volume != "0" ? "${icon-sound-on}"
+                       : "${icon-sound-off}"})
+              (label :class "sound-box-text"
+                     :text {volume != "0"
+                            ? "${volume}%" : "0%"}))))
+
+        ;; network-box
+        (box :class "network-box"
+          (eventbox :class "taskbar-events"
+                    :tooltip {
+                      network == "none" ? "Network is down..."
+                      : ""}
+                    :onclick "eww open network_popup"
+                    :onrightclick "${hww.terminal_cmd} nmtui &"
+                    :cursor "pointer"
+            (label :class {
+                     network == "none" ? "network-off"
+                     : "network-on"}
+                   :text {
+                     network == "none" ? icon-net-off
+                     : icon-net-on})))
+
+        ;; datetime-box
+        (box :class "datetime-box"
+          (eventbox :class "taskbar-events"
+                    :timeout "250ms"
+                    :onhover "eww update date-visible=true"
+                    :onhoverlost "eww update date-visible=false"
+                    :cursor "pointer"
+                    :onclick "eww open calendar_popup"
+                    :onrightclick "eww close calendar_popup"
+            (box :space-evenly false
+                 :orientation "h"
+              (revealer :reveal "${!date-visible}"
+                        :transition "slideleft"
+                        :duration "250ms"
+                (label :class "datetime-box-time"
+                       :text {time}))
+              (revealer :reveal {date-visible}
+                        :transition "slideright"
+                        :duration "250ms"
+                (label :class "datetime-box-date"
+                       :text {date})))))
+
+        ;; battery-box
+        (box :class "battery-box"
+          (eventbox :class "taskbar-events"
+                    :cursor "progress"
+                    :tooltip {EWW_BATTERY.BAT0.status}
+            (box :space-evenly false
+              (label :class "battery-box-icon"
+                     :text {
+                       bat-pw > 95 ? "${bat100}"
+                       : bat-pw > 85 ? "${bat90}"
+                       : bat-pw > 75 ? "${bat80}"
+                       : bat-pw > 65 ? "${bat70}"
+                       : bat-pw > 55 ? "${bat60}"
+                       : bat-pw > 45 ? "${bat50}"
+                       : bat-pw > 35 ? "${bat40}"
+                       : bat-pw > 25 ? "${bat30}"
+                       : bat-pw > 15 ? "${bat20}"
+                       : bat-pw > 5 ? "${bat10}"
+                       : "${bat00}"})
+              (label :class "battery-box-text"
+                     :text {
+                       bat-pw > 95 ? "${bat-pw}%"
+                       : bat-pw > 85 ? "${bat-pw}%"
+                       : bat-pw > 75 ? "${bat-pw}%"
+                       : bat-pw > 65 ? "${bat-pw}%"
+                       : bat-pw > 55 ? "${bat-pw}%"
+                       : bat-pw > 45 ? "${bat-pw}%"
+                       : bat-pw > 35 ? "${bat-pw}%"
+                       : bat-pw > 25 ? "${bat-pw}%"
+                       : bat-pw > 15 ? "${bat-pw}%"
+                       : bat-pw > 5 ? "${bat-pw}%"
+                       : "${bat-pw}%"}))))
+
+        ;; powermenu-box
+        (box :class "powermenu-box"
+          (eventbox :class "taskbar-events"
+                    :cursor "pointer"
+                    :tooltip "powermenu"
+                    :onclick "eww open powermenu_popup"
+                    :onrightclick "eww close powermenu_popup" 
+            (label :text {icon-power})))
+      ))))
+

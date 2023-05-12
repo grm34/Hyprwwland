@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Hyprwwland > by darkmaster grm34.
+# export RUST_BACKTRACE=full
+
+# Get active workspace.
+on="$(hyprctl monitors -j | jq '.[].activeWorkspace.id')"
+
+# Get occupied workspaces ID(s).
+readarray -t w < <(hyprctl workspaces -j | jq '.[]?.id?')
+
+# Create array and append the status of each workspace.
+ws=()
+for i in {1..9}; do
+  if [[ $i == "$on" ]]; then
+    : "ws-active"
+  elif [[ ${w[*]} == *${i}* ]]; then
+    : "ws-occupied"
+  else
+    : "ws-inactive"
+  fi
+  ws+=("$_")
+done
+
+# Return workspaces status as JSON.
+printf '{
+  "ws1": "%s",
+  "ws2": "%s",
+  "ws3": "%s",
+  "ws4": "%s",
+  "ws5": "%s",
+  "ws6": "%s",
+  "ws7": "%s",
+  "ws8": "%s",
+  "ws9": "%s"
+}' "${ws[@]}"
+

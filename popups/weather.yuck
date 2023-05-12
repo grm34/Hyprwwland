@@ -1,0 +1,25 @@
+;; Hyprwwland > by darkmaster grm34.
+
+(defwindow weather_popup :monitor 0
+                         :geometry (geometry :x "0%"
+                                             :y "1%"
+                                             :width "42%"
+                                             :height "18%"
+                                             :anchor "top center")
+                         :stacking "fg"
+                         :exclusive false
+                         :focusable false
+  (_weather_popup :weather {weather}))
+
+(defwidget _weather_popup [weather]
+  (box :class "weather-popup"
+       :orientation "v"
+       :space-evenly false
+       :active true
+       :visible true
+    (eventbox :onhoverlost "eww close weather_popup"
+      (box :class "weather-image"
+           :orientation "h"
+        (image :path {weather}))
+    )))
+
