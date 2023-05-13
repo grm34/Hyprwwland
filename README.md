@@ -1,6 +1,6 @@
 # Hyprwwland
 
-A simple sharing of my Eww setup on Hyprland to serve as an example or basis for learning how to create your own desktop environment. Many thanks to [@ElKowar](https://github.com/elkowar) for this awesome standalone widget system made in Rust. To be used without moderation.
+A simple sharing of my [eww](https://github.com/elkowar/eww) setup on Hyprland to serve as an example or basis for learning how to create your own desktop environment. Many thanks to [@ElKowar](https://github.com/elkowar) for this awesome standalone widget system made in Rust. To be used without moderation.
 
 <a href="https://raw.githubusercontent.com/grm34/Hyprwwland/main/assets/screenshots/screen1.png">
   <img align="center" width="49%" src="assets/screenshots/screen1.png"/>
