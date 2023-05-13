@@ -323,8 +323,8 @@
                       standby == true ? "standby-box-on taskbar-events"
                                       : "standby-box-off taskbar-events"}
                     :tooltip {
-                      standby == true ? "Swayidle is ON taskbar-events"
-                                      : "Swayidle is OFF taskbar-events"}
+                      standby == true ? "Swayidle is ON"
+                                      : "Swayidle is OFF"}
                     :onclick {
                       standby != true ? "scripts/standbyctl on"
                       : "scripts/standbyctl off"}
