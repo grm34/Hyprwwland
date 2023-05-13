@@ -17,7 +17,7 @@ A simple sharing of my [eww](https://github.com/elkowar/eww) setup on Hyprland t
 
 https://github.com/grm34/Hyprwwland/assets/6394023/36422967-54ce-401f-bd17-5b7e22b8be2d
 
-In order to keep this clean, and being only an Eww configuration, my dotfiles are on a separate repository [Hyprwwland-dotfiles](https://github.com/grm34/Hyprwwland-dotfiles).
+In order to keep this clean, and being only an eww configuration, my dotfiles are on a separate repository [Hyprwwland-dotfiles](https://github.com/grm34/Hyprwwland-dotfiles).
 
 ## What I use
 
@@ -63,7 +63,7 @@ In order to keep this clean, and being only an Eww configuration, my dotfiles ar
 
 ## Quick Install on Arch Linux
 
-- Install Eww and Hyprland with the minimum requirements :
+- Install eww and Hyprland with the minimum requirements :
 
 ```bash
 paru --needed -S hyprland eww-wayland dunst libnotify libcanberra\
