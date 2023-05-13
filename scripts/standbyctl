@@ -4,8 +4,7 @@
 
 # Get required settings from config.json.
 readarray -t config <\
-  <(jq '.suspend_timeout, .sleep_timeout'\
-       "$PWD/config.json")
+  <(jaq '.suspend_timeout, .sleep_timeout' "$PWD/config.json")
 
 # Run swayidle with hyprctl (timeout from config.json).
 function standby_mode() {

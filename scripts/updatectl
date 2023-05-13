@@ -4,8 +4,8 @@
 
 # Get required settings from config.json.
 readarray -t config <\
-  <(jq '.aur_helper,
-        .terminal_cmd' "$PWD/config.json")
+  <(jaq '.aur_helper,
+         .terminal_cmd' "$PWD/config.json")
 
 # Remove double quotes.
 aur_helper="${config[0]//\"}"

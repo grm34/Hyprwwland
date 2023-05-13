@@ -3,10 +3,10 @@
 # export RUST_BACKTRACE=full
 
 # Get active workspace.
-on="$(hyprctl monitors -j | jq '.[].activeWorkspace.id')"
+on="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
 
 # Get occupied workspaces ID(s).
-readarray -t w < <(hyprctl workspaces -j | jq '.[]?.id?')
+readarray -t w < <(hyprctl workspaces -j | jaq '.[]?.id?')
 
 # Create array and append the status of each workspace.
 ws=()

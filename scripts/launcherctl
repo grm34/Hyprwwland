@@ -4,9 +4,9 @@
 
 # Get required settings from config.json.
 readarray -t config <\
-  <(jq '.launcher_app_path,
-        .launcher_app_icon_path,
-        .terminal_cmd' "$PWD/config.json")
+  <(jaq '.launcher_app_path,
+         .launcher_app_icon_path,
+         .terminal_cmd' "$PWD/config.json")
 
 # Remove double quotes.
 app_path="${config[0]//\"}"

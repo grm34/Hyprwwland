@@ -68,7 +68,7 @@ In order to keep this clean, and being only an Eww configuration, my dotfiles ar
 ```bash
 paru --needed -S hyprland eww-wayland dunst libnotify libcanberra\
                  hyprpaper swayidle swaylock-effects-git neofetch duf\
-                 wl-clipboard cliphist pulsemixer light jq networkmanager\
+                 wl-clipboard cliphist pulsemixer light jaq networkmanager\
                  sound-theme-freedesktop
 ```
 

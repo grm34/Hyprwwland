@@ -3,7 +3,7 @@
 # export RUST_BACKTRACE=full
 
 # Get weather location from config.json.
-: "$(jq '.weather_location' "$PWD/config.json")"
+: "$(jaq '.weather_location' "$PWD/config.json")"
 
 # Call wttr.in to retrieve local weather as PNG.
 curl wttr.in/"${_//\"}"_1nq.png\
