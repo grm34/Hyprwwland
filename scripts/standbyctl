@@ -4,13 +4,15 @@
 
 # Get required settings from config.json.
 readarray -t config <\
-  <(jaq '.suspend_timeout, .sleep_timeout' "$PWD/config.json")
+  <(jaq '.suspend_timeout,
+         .sleep_timeout,
+         .lock_effects,
+         .standby_wallpaper' "$PWD/config.json")
 
-# Run swayidle with hyprctl (timeout from config.json).
+# Run swayidle and hyprctl.
 function standby_mode() {
   pkill -f -9 swayidle
-	: "-F -e --fade-in 3s --effect-blur 8x3"
-	: "swaylock $_ -i assets/wallpapers/od_tokyo.jpg"
+	: "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
 	swayidle timeout "${config[0]//\"}" "$_"\
 	         timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
 	         resume "hyprctl dispatch dpms on" & disown
