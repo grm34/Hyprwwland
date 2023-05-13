@@ -15,7 +15,7 @@ function standby_mode() {
 	: "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
 	swayidle timeout "${config[0]//\"}" "$_"\
 	         timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
-	         resume "hyprctl dispatch dpms on"
+	         resume "hyprctl dispatch dpms on" &
 }
 
 case $1 in
