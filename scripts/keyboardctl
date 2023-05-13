@@ -4,7 +4,7 @@
 
 # This script is not used at the moment.
 : "$(hyprctl devices -j\
-  | jq '.keyboards?[0].active_keymap')"
+  | jaq '.keyboards?[0].active_keymap')"
 : "${_//\"}" && : "${_:0:2}"
 printf '%s' "${_^^}"
 
