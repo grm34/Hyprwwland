@@ -19,9 +19,9 @@
        :visible true
     (eventbox :timeout "200ms"
               :valign "center"
-              :onhover {active != true
-                        ? "eww update dock-visible=true"
-                        : ""}
+              :onhover {
+                active != true
+                  ? "eww update dock-visible=true" : ""}
               :onhoverlost "eww update dock-visible=false"
       (box :space-evenly false
 
@@ -42,6 +42,6 @@
                   :transition "slideleft"
                   :duration "250ms"
           (box :class "dock-apps"
-              (literal :content {apps})))
+            (literal :content {apps})))
       ))))
 
