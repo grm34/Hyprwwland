@@ -9,7 +9,7 @@
   "sound_manager": "alacritty -e pulsemixer",
   "video_player": "mpv --player-operation-mode=pseudo-gui",
   "music_player": "alacritty -e termusic",
-  "email_client": "alacritty -e himalaya list -f INBOX",
+  "email_client": "alacritty -e himalaya write",
   "cam_recorder": "cameractrlsgtk4.py",
   "screen_recorder": "wayfarer",
   "suspend_timeout": "300",
