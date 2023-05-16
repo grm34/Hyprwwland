@@ -29,7 +29,7 @@
                   :halign "center"
                   :timeout "5s"
                   :onclick "eww close launcher_popup;\
-                            ${hww.web_browser}"
+                            ${hww.web_browser} &"
             (label :text {icon-browser}))
 
           ;; filemanager
