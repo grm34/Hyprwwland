@@ -52,9 +52,16 @@
 (defvar icon-power " ")
 
 ;; launcher-popup
-(defvar icon-web " ")
-(defvar icon-files "")
-(defvar icon-speaker "󰓃")
+(defvar icon-browser " ")
+(defvar icon-filemanager "")
+(defvar icon-text-editor " ")
+(defvar icon-chat-client " ")
+(defvar icon-sound-manager "󰓃 ")
+(defvar icon-video-player "󱜅 ")
+(defvar icon-music-player "󰎄 ")
+(defvar icon-email-client "󰗰 ")
+(defvar icon-cam-recorder " ")
+(defvar icon-screen-recorder "󰄘 ")
 
 ;; updates-popup
 (defvar icon-up-on "󰄸 ")

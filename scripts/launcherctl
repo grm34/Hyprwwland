@@ -45,7 +45,8 @@ for app in "${apps[@]}"; do
   box="$box
   (eventbox :class \"launcher-app-box\" :tooltip \"$name\"
             :onclick \"$cmd\" :cursor \"pointer\"
-    (box :orientation \"v\" :space-evenly false :class \"app\"
+    (box :orientation \"v\" :space-evenly false
+         :class \"launcher-app-icon\"
       (image :path \"$icon\" :image-width 38)
       (label :text \"$name\" :limit-width 12)))"
 done
