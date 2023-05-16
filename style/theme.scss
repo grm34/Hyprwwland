@@ -314,79 +314,87 @@
 
 // ---------- launcher (popup) ---------- //
 .launcher-popup {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(69, 69, 69, 0.4);
   color: #fffafa;
   font-family: UbuntuNerdFont;
   font-size: 14px;
   margin: 2px 10px 4px 10px;
-  padding: 22px 10px 20px 10px;
+  padding: 10px;
   border-radius: 20px;
   box-shadow: inset 0px -2px #32cd32;
 }
 
-.launcher-web {
-  background-color: rgba(69, 69, 69, 0.6);
+.launcher-popup-box {}
+
+.launcher-favorite-box {
+  background-color: #1b1b1b;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.launcher-browser {
+  background-color: #1b1b1b;
   color: #ff8c00;
   font-size: 32px;
-  padding: 1px 9px 1px 8px;
-  border: 2px solid #0a7e8c;
+  margin-right: 10px;
+  padding: 4px 4px 4px 10px;
+  border: 2px solid #e5e4e2;
   border-radius: 6px;
 }
 
-.launcher-web:hover,
-.launcher-files:hover,
-.launcher-sound:hover {
-  background-color: rgba(50, 129, 234, 0.3);
+.launcher-browser:hover {
+  background-color: rgba(28, 40, 65, 0.6);
 }
 
-.launcher-input {
-  background-color: rgba(50, 129, 234, 0.3);
-  color: #32cd32;
-  font-family: JetBrainsMonoNerdFont;
-  font-size: 14px;
-  margin: 10px 16px 10px 0px;
-  border: 1px solid #3281EA;
-  border-radius: 2px;
+.launcher-filemanager:hover,
+.launcher-text-editor:hover,
+.launcher-chat-client:hover,
+.launcher-sound-manager:hover,
+.launcher-video-player:hover,
+.launcher-music-player:hover,
+.launcher-email-client:hover,
+.launcher-cam-recorder:hover,
+.launcher-screen-recorder:hover {
+  background-color: #e5e4e2;
+  color: #1a2421;
+  border: 2px solid #1c2841;
 }
 
-.cmd {
-  padding: 0px 0px 0px 30px;
-}
-
-.launcher-files {
-  background-color: rgba(69, 69, 69, 0.6);
-  color: #007fff;
+.launcher-filemanager,
+.launcher-text-editor,
+.launcher-chat-client,
+.launcher-sound-manager,
+.launcher-video-player,
+.launcher-music-player,
+.launcher-email-client,
+.launcher-cam-recorder,
+.launcher-screen-recorder {
+  background-color: rgba(69, 69, 69, 0.8);
+  color: #dcdcdc;
   font-size: 28px;
   margin: 5px;
-  padding: 0px 5px 0px 9px;
-  border: 2px solid #0a7e8c;
+  padding: 4px 2px 4px 8px;
+  border: 2px solid #50404d;
   border-radius: 8px 16px;
 }
 
-.launcher-sound {
-  background-color: rgba(69, 69, 69, 0.6);
-  color: #007fff;
-  font-size: 28px;
-  margin: 5px;
-  padding: 0px 5px 0px 5px;
-  border: 2px solid #0a7e8c;
-  border-radius: 8px 16px;
-}
-
-.launcher-apps {
+.launcher-applications {
   padding: 24px 0px 0px 0px;
-}
-
-.app {
-  background-color: rgba(69, 69, 69, 0.6);
-  margin: 0px 2px 20px 2px;
-  padding: 5px 0px 5px 0px;
-  border: 2px solid #0a7e87;
-  border-radius: 20px 20px 0px 0px;
 }
 
 .launcher-app-box:hover {
   background-color: rgba(50, 205, 50, 0.8);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.launcher-app-icon:hover {
+  color: #1c2841;
+}
+
+.launcher-app-icon {
+  background-color: #1b1b1b;
+  margin: 0px 2px 20px 2px;
+  padding: 10px 0px 5px 0px;
+  border: 2px solid #1c2841;
   border-radius: 20px 20px 0px 0px;
 }
 
