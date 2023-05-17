@@ -1,7 +1,8 @@
 /* Hyprwwland Copyright (c) 2023 darkmaster grm34.
    https://github.com/grm34/Hyprwwland */
 
-// progressbar
+
+// progressbar.
 progressbar trough {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.15);
@@ -12,7 +13,7 @@ progressbar progress {
   background-color: #32cd32;
 }
 
-// scale
+// scale.
 scale trough {
   background-color: rgba(255, 255, 255, 0.2);
 }
@@ -22,7 +23,7 @@ scale highlight {
   padding: 0px 0px 10px 0px
 }
 
-// scrollbar
+// scrollbar.
 scrollbar {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
   background-color: #2C2C2C;
@@ -58,7 +59,7 @@ scrollbar.vertical slider {
   min-height: 24px;
 }
 
-// tooltip
+// tooltip.
 tooltip {
   font-family: UbuntuNerdFont;
   font-size: 16px;
@@ -83,7 +84,7 @@ tooltip>box {
   padding: 4px 8px;
 }
 
-// actionbar
+// actionbar.
 actionbar>revealer>box .linked>button:not(.suggested-action):not(.destructive-action),
 button {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
@@ -100,7 +101,7 @@ button {
   color: white;
 }
 
-// calendar
+// calendar.
 calendar:disabled {
   color: rgba(255, 255, 255, 0.5);
 }
@@ -129,7 +130,7 @@ calendar:indeterminate {
   color: rgba(255, 255, 255, 0.3);
 }
 
-// selection
+// selection.
 widget.entry:selected,
 evview.view.content-view:selected,
 evview.view.content-view:selected:backdrop,
