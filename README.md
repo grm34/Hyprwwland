@@ -27,8 +27,8 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 - **Widgets** : [eww](https://github.com/elkowar/eww)
 - **Notifications** : [dunst](https://github.com/dunst-project/dunst)
 - **Clipboard** : [wl-clipboard](https://github.com/bugaevc/wl-clipboard) [cliphist](https://github.com/sentriz/cliphist)
-- **LockScreen** : [swayidle](https://github.com/swaywm/swayidle) [swaylock-effects](https://github.com/mortie/swaylock-effects)
-- **Sound** : [pipewire](https://docs.pipewire.org) [wireplumber](https://gitlab.freedesktop.org/pipewire/wireplumber) [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer)
+- **Lock Screen** : [swayidle](https://github.com/swaywm/swayidle) [swaylock-effects](https://github.com/mortie/swaylock-effects)
+- **Sound** : [pipewire](https://docs.pipewire.org) [wireplumber](https://gitlab.freedesktop.org/pipewire/wireplumber) [pulsemixer](https://github.com/GeorgeFilipkin/pulsemixer) [myxer](https://github.com/VixenUtils/Myxer)
 - **Brightness Control** : [light](https://haikarainen.github.io/light)
 - **Wallpaper Manager** : [hyprpaper](https://github.com/hyprwm/hyprpaper)
 - **App Launcher** : [fuzzel](https://codeberg.org/dnkl/fuzzel)
@@ -68,8 +68,8 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 ```bash
 paru --needed -S hyprland eww-wayland dunst libnotify libcanberra\
                  hyprpaper swayidle swaylock-effects-git neofetch duf\
-                 wl-clipboard cliphist pulsemixer light jaq networkmanager\
-                 sound-theme-freedesktop
+                 wl-clipboard cliphist pulsemixer myxer-bin light jaq\
+                 networkmanager sound-theme-freedesktop
 ```
 
 - Install required fonts :
@@ -97,7 +97,7 @@ The config is located in `~/.config/eww/config.json`.
 "file_manager": "alacritty -e felix",
 "text_editor": "alacritty -e helix",
 "chat_client": "gajim",
-"sound_manager": "alacritty -e pulsemixer",
+"sound_manager": "myxer",
 "video_player": "mpv --player-operation-mode=pseudo-gui",
 "music_player": "alacritty -e termusic",
 "email_client": "alacritty -e himalaya write",

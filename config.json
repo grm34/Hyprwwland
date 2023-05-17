@@ -6,7 +6,7 @@
   "file_manager": "alacritty -e felix",
   "text_editor": "alacritty -e helix",
   "chat_client": "gajim",
-  "sound_manager": "alacritty -e pulsemixer",
+  "sound_manager": "myxer",
   "video_player": "mpv --player-operation-mode=pseudo-gui",
   "music_player": "alacritty -e termusic",
   "email_client": "alacritty -e himalaya write",
