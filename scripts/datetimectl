@@ -8,7 +8,7 @@
 
 # export RUST_BACKTRACE=full
 
-# get date and time.
+# Get date and time.
 readarray -td/ date < <(date '+%d/%m/%Y/%H:%M/')
 
 # Return as json.

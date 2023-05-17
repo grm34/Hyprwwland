@@ -43,12 +43,15 @@ done
 index=0 && box=
 for app in "${userapps[@]}"; do
   ((index > 14)) && break # Max 15 apps.
+
   # get app icon.
   : "$(grep -m 1 "^Icon=" "$app")"
   icon="$icon_path/${_//Icon=}.svg"
+
   # get app real name.
   : "$(grep -m 1 ^Name= "$app")"
   name="${_//Name=}"
+
   # define the opening cmd (terminal or standalone).
   : "$(grep -m 1 ^Exec "$app")"
   : "${_//Exec=}" && : "${_//\"}" && : "${_%% *}"
@@ -59,6 +62,7 @@ for app in "${userapps[@]}"; do
     cmd="$terminal_cmd $cmd"
   [[ ${cmd// &} == *alacritty ]] && # open terminal from $HOME.
     cmd="${cmd// &} --working-directory $HOME &"
+
   # create the widget.
   box="$box
   (eventbox :class \"dock-app-box\" :tooltip \"$name\"
