@@ -1,8 +1,9 @@
-// Hyprwwland > by darkmaster grm34.
+/* Hyprwwland Copyright (c) 2023 darkmaster grm34.
+   https://github.com/grm34/Hyprwwland */
 
 .topbar {}
 
-// ---------- workspaces (topbar) ---------- //
+// *** workspaces (topbar) ***
 .workspaces {
   background-color: rgba(0, 0, 0, 0.6);
   color: #ffd5cd;
@@ -40,7 +41,7 @@
 }
 
 
-// ---------- monitoring (topbar) ---------- //
+// *** monitoring (topbar) ***
 .monitoring {
   background-color: rgba(8, 8, 8, 0.6);
   color: #ffd5cd;
@@ -169,7 +170,7 @@
 }
 
 
-// ---------- taskbar (topbar) ---------- //
+// *** taskbar (topbar) ***
 .taskbar {
   background-color: rgba(0, 0, 0, 0.6);
   color: #ffd5cd;
@@ -299,7 +300,7 @@
 }
 
 
-// ---------- dock (leftbar) ---------- //
+// *** dock (leftbar) ***
 .dock {}
 
 .dock-apps {
@@ -312,7 +313,7 @@
 }
 
 
-// ---------- launcher (popup) ---------- //
+// *** launcher (popup) ***
 .launcher-popup {
   background-color: rgba(69, 69, 69, 0.4);
   color: #fffafa;
@@ -399,7 +400,7 @@
 }
 
 
-// ---------- cpu_usage (popup) ---------- //
+// *** cpu_usage (popup) ***
 .cpu-popup {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 0px 20px 16px 20px;
@@ -441,7 +442,7 @@
 }
 
 
-// ---------- ram_usage (popup) ---------- //
+// *** ram_usage (popup) ***
 .ram-popup {
   background-color: rgba(0, 0, 0, 0.8);
   margin: 2px 10px 4px 10px;
@@ -458,7 +459,7 @@
 }
 
 
-// ---------- disk_usage (popup) ---------- //
+// *** disk_usage (popup) ***
 .disk-popup {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 10px 10px 20px 10px;
@@ -474,7 +475,7 @@
 }
 
 
-// ---------- temp_sensors (popup) ---------- //
+// *** temp_sensors (popup) ***
 .temp-popup {
   background-color: rgba(0, 0, 0, 0.8);
   margin: 2px 10px 4px 10px;
@@ -517,7 +518,7 @@
 }
 
 
-// ---------- sysinfo (popup) ---------- //
+// *** sysinfo (popup) ***
 .sysinfo-popup {
   background-color: rgba(0, 0, 0, 1);
   color: #32cd32;
@@ -530,7 +531,7 @@
 }
 
 
-// ---------- weather (popup) ---------- //
+// *** weather (popup) ***
 .weather-popup {
   background-color: rgba(0, 0, 0, 1);
   margin: 2px 10px 4px 10px;
@@ -544,7 +545,7 @@
 }
 
 
-// ---------- updates (popup) ---------- //
+// *** updates (popup) ***
 .updates-popup {
   background-color: rgba(0, 0, 0, 0.7);
   font-family: UbuntuNerdFont;
@@ -582,7 +583,7 @@
 }
 
 
-// --------- brightness (popup) ---------- //
+// *** brightness (popup) ***
 .brightness-popup {
   background-color: rgba(0, 0, 0, 0.7);
   color: #ffd5cd;
@@ -601,7 +602,7 @@
 }
 
 
-// ---------- sound (popup) ---------- //
+// *** sound (popup) ***
 .sound-popup {
   background-color: rgba(0, 0, 0, 0.7);
   color: #ffd5cd;
@@ -620,7 +621,7 @@
 }
 
 
-// ---------- network_devices (popup) ---------- //
+// *** network_devices (popup) ***
 .network-popup {
   background-color: rgba(0, 0, 0, 0.8);
   color: #a1caf1;
@@ -637,7 +638,7 @@
 }
 
 
-// ---------- calendar (popup) ---------- //
+// *** calendar (popup) ***
 .calendar-popup {
   background-color: rgba(0, 0, 0, 0.9);
   color: #ffd5cd;
@@ -652,7 +653,7 @@
 .calendar-builtin {}
 
 
-// ---------- powermenu (popup) ---------- //
+// *** powermenu (popup) ***
 .powermenu-popup {
   background-color: rgba(0, 0, 0, 0.7);
   font-size: 32px;

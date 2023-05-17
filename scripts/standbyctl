@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Hyprwwland > by darkmaster @grm34.
+
+# Hyprwwland Copyright (c) 2023 darkmaster grm34.
+# https://github.com/grm34/Hyprwwland
+
 # export RUST_BACKTRACE=full
 
 # Get required settings from config.json.

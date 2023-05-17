@@ -1,4 +1,5 @@
-;; Hyprwwland > by darkmaster grm34.
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
 
 (defwindow powermenu_popup :monitor 0
                            :geometry (geometry :x "0%"
@@ -25,7 +26,7 @@
       (box :space-evenly false
            :orientation "v"
 
-        ;; powermenu
+        ; powermenu.
         (revealer :reveal "${!power-visible}"
                   :transition "slideup"
                   :duration "250ms"
@@ -55,7 +56,7 @@
               (label :class "logout-label"
                      :text {icon-logout}))))
 
-        ;; confirm/cancel
+        ; confirm/cancel.
         (revealer :reveal "${power-visible}"
                   :transition "slidedown"
                   :duration "250ms" 
