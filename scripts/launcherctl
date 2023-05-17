@@ -40,6 +40,8 @@ for app in "${apps[@]}"; do
   { grep -qm 1 "Terminal=true" "$app"\
     || [[ $cmd == *himalaya* ]] ;} && # fix himalaya exec.
       cmd="$terminal_cmd ${cmd//himalaya/himalaya write}"
+  [[ ${cmd// &} == *alacritty ]] && # open terminal from HOME.
+    cmd="${cmd// &} --working-directory $HOME &"  
   cmd="eww close launcher_popup; $cmd"
   # Create the widget.
   box="$box

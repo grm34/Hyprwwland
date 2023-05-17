@@ -50,6 +50,8 @@ for app in "${userapps[@]}"; do
     cmd="${cmd//mpv/mpv --player-operation-mode=pseudo-gui}"
   grep -qm 1 "Terminal=true" "$app" &&
     cmd="$terminal_cmd $cmd"
+  [[ ${cmd// &} == *alacritty ]] && # open terminal from HOME.
+    cmd="${cmd// &} --working-directory $HOME &"
   # Create the widget.
   box="$box
   (eventbox :class \"dock-app-box\" :tooltip \"$name\"
