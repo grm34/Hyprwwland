@@ -353,8 +353,8 @@
           (eventbox :class "taskbar-events"
                     :tooltip "Volume ${icon-arrow} ${volume}%"
                     :onclick "eww open sound_popup"
-                    :onmiddleclick "pamixer --mute"
-                    :onrightclick "eww close sound_popup"
+                    :onmiddleclick "pulsemixer --set-volume 0"
+                    :onrightclick "myxer &"
                     :cursor "pointer"
             (box
               (label :class "sound-box-icon"

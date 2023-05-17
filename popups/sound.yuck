@@ -27,7 +27,7 @@
         (scale :width 180
                :flipped false
                :min 0
-               :max 101
+               :max 151
                :draw-value true
                :round-digits 0
                :value {volume}
