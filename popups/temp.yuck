@@ -18,8 +18,22 @@
        :active true
        :visible true
     (eventbox :onhoverlost "eww close temp_popup"
-      (box :class "temp-text"
-           :orientation "h"
-        (label :text {temp_sensors}))
+      (box :class "temp-popup-box"
+           :orientation "v"
+           :space-evenly false
+
+        ;; title
+        (box :class "temp-popup-title-box"
+             :orientation "h"
+             :halign "center"
+             :space-evenly false
+          (label :class "temp-popup-title-icon"
+                 :text {icon-temp})
+          (label :class "temp-popup-title-text"
+                 :text "SYSTEM SENSORS"))
+
+        ;; content
+        (label :class "temp-popup-content"
+               :text {temp_sensors}))
     )))
 

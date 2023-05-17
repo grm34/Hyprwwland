@@ -478,16 +478,42 @@
 .temp-popup {
   background-color: rgba(0, 0, 0, 0.8);
   margin: 2px 10px 4px 10px;
-  padding: 10px 10px 20px 20px;
-  border-radius: 20px;
-  box-shadow: inset 0px -2px #32cd32;
+  padding: 0px 10px 20px 20px;
+  border-radius: 0px 48px 0px 38px;
+  box-shadow: inset 0px -3px #32cd32;
 }
 
-.temp-text {
-  color: #a1caf1;
+.temp-popup-box {}
+
+.temp-popup-title-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 4px 100px 4px 100px;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.temp-popup-title-icon {
+  color: #b8860b;
+  font-family: AnonymiceProNerdFont;
+  font-size: 32px;
+  padding-right: 20px;
+}
+
+.temp-popup-title-text {
+  color: #32cd32;
+  font-family: UbuntuNerdFont;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.temp-popup-content {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #eee8aa;
   font-family: JetBrainsMonoNerdFont;
-  font-size: 13px;
-  padding: 8px 10px 0px 2px;
+  font-size: 12px;
+  padding: 14px 10px 8px 14px;
+  border-left: 4px inset #b8860b;
+  border-top: 3px solid #ed2939;
+  border-radius: 0px 32px 0px 20px;
 }
 
 
