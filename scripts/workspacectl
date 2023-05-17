@@ -1,36 +1,39 @@
 #!/usr/bin/env bash
-# Hyprwwland > by darkmaster grm34.
+
+# Hyprwwland Copyright (c) 2023 darkmaster grm34.
+# https://github.com/grm34/Hyprwwland
+
 # export RUST_BACKTRACE=full
 
-# Get active workspace.
-on="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
+function update_occupied_workspaces() {
+  # get active workspace(s).
+  readarray -t workspaces < <(hyprctl workspaces -j | jaq '.[]?.id?')
+  # update occupied workspace(s) status.
+  for id in "${workspaces[@]}"; do
+    [[ $id != "$1" ]] && eww update ws"$id"=ws-occupied
+  done
+}
 
-# Get occupied workspaces ID(s).
-readarray -t w < <(hyprctl workspaces -j | jaq '.[]?.id?')
+function handle() {
+  # handle workspaces status on events.
+  case $1 in
+    workspace*|createworkspace*)
+      eww update ws"${1##*>>}"=ws-active
+      update_occupied_workspaces "${1##*>>}"
+    ;;
+    destroyworkspace*)
+      eww update ws"${1##*>>}"=ws-inactive
+  esac
 
-# Create array and append the status of each workspace.
-ws=()
-for i in {1..9}; do
-  if [[ $i == "$on" ]]; then
-    : "ws-active"
-  elif [[ ${w[*]} == *${i}* ]]; then
-    : "ws-occupied"
-  else
-    : "ws-inactive"
-  fi
-  ws+=("$_")
-done
+}
 
-# Return workspaces status as JSON.
-printf '{
-  "ws1": "%s",
-  "ws2": "%s",
-  "ws3": "%s",
-  "ws4": "%s",
-  "ws5": "%s",
-  "ws6": "%s",
-  "ws7": "%s",
-  "ws8": "%s",
-  "ws9": "%s"
-}' "${ws[@]}"
+# Get workspaces status on start.
+active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
+eww update ws"$active"=ws-active
+update_occupied_workspaces "$active"
+
+# Listen for hyprland socket2 events.
+socat -U\
+  - UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock\
+  | while read -r line; do handle "$line"; done
 

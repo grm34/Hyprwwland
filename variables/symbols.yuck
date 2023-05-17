@@ -1,6 +1,7 @@
-;; Hyprwwland > by darkmaster grm34.
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
 
-;; workspaces
+; workspaces.
 (defvar icon-ws1 " ₁")
 (defvar icon-ws2 " ₂")
 (defvar icon-ws3 " ₃")
@@ -11,13 +12,13 @@
 (defvar icon-ws8 "󱛻 ₈")
 (defvar icon-ws9 "󰎔 ₉")
 
-;; monitoring
+; monitoring.
 (defvar icon-cpu "󰻠")
 (defvar icon-ram "󰍛")
 (defvar icon-disk "󰋊")
 (defvar icon-temp "󱠇")
 
-;; taskbar
+; taskbar.
 (defvar icon-updates-on "") 
 (defvar icon-updates-off "") 
 (defvar icon-standby-on " ")
@@ -51,7 +52,7 @@
 (defvar icon-batN00 "󰂎")
 (defvar icon-power " ")
 
-;; launcher-popup
+; launcher-popup.
 (defvar icon-browser " ")
 (defvar icon-filemanager "")
 (defvar icon-text-editor " ")
@@ -63,16 +64,16 @@
 (defvar icon-cam-recorder " ")
 (defvar icon-screen-recorder "󰄘 ")
 
-;; updates-popup
+; updates-popup.
 (defvar icon-up-on "󰄸 ")
 (defvar icon-up-off "󰄷 ")
 
-;; powermenu-popup
+; powermenu-popup.
 (defvar icon-shutdown " ")
 (defvar icon-reboot " ")
 (defvar icon-sleep "󰤄")
 (defvar icon-logout "󰍃")
 
-;; tooltip
+; tooltip.
 (defvar icon-arrow "  ")
 

@@ -69,7 +69,7 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 paru --needed -S hyprland eww-wayland dunst libnotify libcanberra\
                  hyprpaper swayidle swaylock-effects-git neofetch duf\
                  wl-clipboard cliphist pulsemixer myxer-bin light jaq\
-                 networkmanager sound-theme-freedesktop
+                 networkmanager sound-theme-freedesktop socat fd
 ```
 
 - Install required fonts :

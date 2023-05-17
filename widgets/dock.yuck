@@ -1,4 +1,5 @@
-;; Hyprwwland > by darkmaster grm34.
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
 
 (defwindow dock :monitor 0
                 :geometry (geometry :x "0%"
@@ -19,13 +20,11 @@
        :visible true
     (eventbox :timeout "200ms"
               :valign "center"
-              :onhover {
-                active != true
-                  ? "eww update dock-visible=true" : ""}
+              :onhover "scripts/activewindow dock"
               :onhoverlost "eww update dock-visible=false"
       (box :space-evenly false
 
-        ;; dock button
+        ; dock button.
         (revealer :reveal "${!dock-visible}"
                   :transition "slideright"
                   :duration "250ms"
@@ -37,7 +36,7 @@
             (image :path "assets/images/dock.png"
                    :image-width 6)))
 
-        ;; dock apps
+        ; dock apps.
         (revealer :reveal {dock-visible}
                   :transition "slideleft"
                   :duration "250ms"

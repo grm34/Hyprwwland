@@ -1,4 +1,5 @@
-;; Hyprwwland > by darkmaster grm34.
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
 
 (defwindow topbar :monitor 0
                   :geometry (geometry :x "0%"
@@ -10,16 +11,7 @@
                   :exclusive true
                   :focusable false
 
-  (_topbar :active {active}
-           :ws1 {workspaces.ws1}
-           :ws2 {workspaces.ws2}
-           :ws3 {workspaces.ws3}
-           :ws4 {workspaces.ws4}
-           :ws5 {workspaces.ws5}
-           :ws6 {workspaces.ws6}
-           :ws7 {workspaces.ws7}
-           :ws8 {workspaces.ws8}
-           :ws9 {workspaces.ws9}
+  (_topbar :workspaces {workspaces}
            :updates {updates}
            :standby {standby}
            :brightness {brightness}
@@ -52,16 +44,15 @@
                    ? icon-batC00 : icon-batN00}))
 
 
-(defwidget _topbar [active ws1 ws2 ws3 ws4 ws5 ws6 ws7 ws8 ws9
-                    updates standby brightness volume network
-                    date time bat-pw bat100 bat90 bat80 bat70
-                    bat60 bat50 bat40 bat30 bat20 bat10 bat00]
+(defwidget _topbar [workspaces updates standby brightness volume
+                    network date time bat-pw bat100 bat90 bat80
+                    bat70 bat60 bat50 bat40 bat30 bat20 bat10 bat00]
 
   (box :class "topbar"
        :orientation "h"
     (centerbox :orientation "h"
 
-      ;; -------------------- workspaces -------------------- ;;
+      ; *** WORKSPACES ***
 
       (box :class "workspaces"
            :orientation "h"
@@ -96,30 +87,32 @@
           (label :text {icon-ws9}))
       )
 
-      ;; -------------------- monitoring -------------------- ;;
+      ; *** MONITORING ***
 
       (box :class "monitoring"
            :space-evenly false
            :orientation "h"
            :halign "center"
 
-        ;; launcher-box
+        ; launcher-box.
         (box :class "launcher-box"
           (eventbox :class "launcher-eventbox"
                     :cursor "pointer"
+                    :tooltip "Launcher"
                     :onclick "eww open launcher_popup"
                     :onrightclick "eww close launcher_popup"
             (image :path "assets/images/appmenu.png"
                    :image-width 20)))
 
-        ;; cpu-box
+        ; cpu-box.
         (box :class "cpu-box"
           (eventbox :timeout "200ms"
+                    :cursor "pointer"
+                    :tooltip "Running process"
                     :onclick "eww open cpu_popup"
                     :onrightclick "eww close cpu_popup"
                     :onhover "eww update cpu-graph-visible=true"
                     :onhoverlost "eww update cpu-graph-visible=false"
-                    :cursor "pointer"
             (box :space-evenly false
                  :orientation "v"
               (revealer :reveal "${!cpu-graph-visible}"
@@ -148,14 +141,15 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ;; ram-box
+        ; ram-box.
         (box :class "ram-box"
           (eventbox :timeout "200ms"
+                    :cursor "pointer"
+                    :tooltip "Memory usage"
                     :onclick "eww open ram_popup"
                     :onrightclick "eww close ram_popup"
                     :onhover "eww update ram-graph-visible=true"
                     :onhoverlost "eww update ram-graph-visible=false"
-                    :cursor "pointer"
             (box :space-evenly false
                  :orientation "v"
               (revealer :reveal "${!ram-graph-visible}"
@@ -184,14 +178,15 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ;; disk-box
+        ; disk-box.
         (box :class "disk-box"
           (eventbox :timeout "200ms"
+                    :cursor "pointer"
+                    :tooltip "Disk usage"
                     :onclick "eww open disk_popup"
                     :onrightclick "eww close disk_popup"
                     :onhover "eww update disk-graph-visible=true"
                     :onhoverlost "eww update disk-graph-visible=false"
-                    :cursor "pointer"
             (box :space-evenly false
                  :orientation "v"
               (revealer :reveal "${!disk-graph-visible}"
@@ -220,14 +215,15 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ;; temp-box
+        ; temp-box.
         (box :class "temp-box"
           (eventbox :timeout "200ms"
+                    :cursor "pointer"
+                    :tooltip "System sensors"
                     :onclick "eww open temp_popup"
                     :onrightclick "eww close temp_popup"
                     :onhover "eww update temp-graph-visible=true"
                     :onhoverlost "eww update temp-graph-visible=false"
-                    :cursor "pointer"
             (box :space-evenly false
                  :orientation "v"
               (revealer :reveal "${!temp-graph-visible}"
@@ -256,43 +252,37 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ;; weather-box
+        ; weather-box.
         (box :class "weather-box"
           (eventbox :class "weather-eventbox"
                     :cursor "pointer"
+                    :tooltip "Weather in ${hww.weather_location}"
                     :onclick "eww open weather_popup"
-                    :onrightclick "eww close weather_popup;\
-                                   eww update active=true"
-                    :onhover {
-                      active != true ? "eww open weather_popup" : ""}
-                    :onhoverlost {
-                      active != true ? "eww close weather_popup" : ""}
+                    :onrightclick "eww close weather_popup"
+                    :onhoverlost "eww close weather_popup"
             (image :path "assets/images/cloudy.png"
                    :image-width 16)))
 
-        ;; sysinfo-box
+        ; sysinfo-box.
         (box :class "sysinfo-box"
           (eventbox :class "sysinfo-eventbox"
                     :cursor "pointer"
+                    :tooltip "System information"
                     :onclick "eww open sysinfo_popup"
-                    :onrightclick "eww close sysinfo_popup;\
-                                   eww update active=true"
-                    :onhover {
-                      active != true ? "eww open sysinfo_popup" : ""}
-                    :onhoverlost {
-                      active != true ? "eww close sysinfo_popup" : ""}
+                    :onrightclick "eww close sysinfo_popup"
+                    :onhoverlost "eww close sysinfo_popup"
             (image :path "assets/images/cpu.png"
                    :image-width 18)))
       )
 
-      ;; -------------------- taskbar -------------------- ;;
+      ; *** TASKBAR ***
 
       (box :class "taskbar"
            :orientation "h"
            :space-evenly false
            :halign "end"
 
-        ;; updates-box
+        ; updates-box.
         (box :class "updates-box"
           (eventbox :class {
                       updates == "0" && network != "none"
@@ -317,7 +307,7 @@
                                         || updates == "0"
                        ? "" : "${updates}"}))))
 
-        ;; standby-box
+        ; standby-box.
         (box :class "standby-box"
           (eventbox :class {
                       standby == true ? "standby-box-on taskbar-events"
@@ -334,7 +324,7 @@
                      standby == true ? icon-standby-on
                                      : icon-standby-off})))
 
-        ;; brightness-box
+        ; brightness-box.
         (box :class "brightness-box"
           (eventbox :class "taskbar-events"
                     :tooltip "Brightness ${icon-arrow} ${brightness}%"
@@ -348,7 +338,7 @@
               (label :class "brightness-box-text"
                      :text "${brightness}%"))))
 
-        ;; sound-box
+        ; sound-box.
         (box :class "sound-box"
           (eventbox :class "taskbar-events"
                     :tooltip "Volume ${icon-arrow} ${volume}%"
@@ -365,7 +355,7 @@
                      :text {volume != "0"
                             ? "${volume}%" : "0%"}))))
 
-        ;; network-box
+        ; network-box.
         (box :class "network-box"
           (eventbox :class "taskbar-events"
                     :tooltip {
@@ -381,7 +371,7 @@
                      network == "none" ? icon-net-off
                      : icon-net-on})))
 
-        ;; datetime-box
+        ; datetime-box.
         (box :class "datetime-box"
           (eventbox :class "taskbar-events"
                     :timeout "250ms"
@@ -403,7 +393,7 @@
                 (label :class "datetime-box-date"
                        :text {date})))))
 
-        ;; battery-box
+        ; battery-box.
         (box :class "battery-box"
           (eventbox :class "taskbar-events"
                     :cursor "progress"
@@ -436,7 +426,7 @@
                        : bat-pw > 5 ? "${bat-pw}%"
                        : "${bat-pw}%"}))))
 
-        ;; powermenu-box
+        ; powermenu-box.
         (box :class "powermenu-box"
           (eventbox :class "taskbar-events"
                     :cursor "pointer"
