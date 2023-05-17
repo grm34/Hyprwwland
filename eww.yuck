@@ -1,20 +1,22 @@
-;; Hyprwwland > by darkmaster grm34.
-;;
-;; How the code is structured
+;; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+;; https://github.com/grm34/Hyprwwland
+
+;; How the code is structured :
 ;; - variables...: basic, polling, listening variables.
 ;; - popups......: widgets that open up on events.
 ;; - widgets.....: main fixed elements (topbar).
 ;; - scripts.....: some bash to perform action and/or return data.
 ;; - style.......: css/scss GTK theming.
 ;; - assets......: images, icons, wallpapers.
-;;
 
-;; Import variables
+
+;; Import variables.
 (include "variables/basic.yuck")
+(include "variables/listening.yuck")
 (include "variables/polling.yuck")
 (include "variables/symbols.yuck")
 
-;; Import popups
+;; Import popups.
 (include "popups/launcher.yuck")
 (include "popups/cpu.yuck")
 (include "popups/disk.yuck")
@@ -29,7 +31,7 @@
 (include "popups/calendar.yuck")
 (include "popups/powermenu.yuck")
 
-;; Import widgets
+;; Import widgets.
 (include "widgets/dock.yuck")
 (include "widgets/topbar.yuck")
 

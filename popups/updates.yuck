@@ -1,4 +1,5 @@
-;; Hyprwwland > by darkmaster grm34.
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
 
 (defwindow updates_popup :monitor 0
                          :geometry (geometry :x "0%"
@@ -20,7 +21,7 @@
     (eventbox :onhoverlost "eww close updates_popup"
       (box :orientation "v"
         
-        ;; on/off
+        ; on/off.
         (box :orientation "h"
           (eventbox :onclick {auto-up == true
                               ? "eww update auto-up=false\
@@ -32,7 +33,7 @@
                           ? "${icon-up-on} Arch Linux Updates"
                           : "${icon-up-off} Arch Linux Updates"})))
         
-        ;; update/check
+        ; update/check.
         (box :orientation "h"
           (eventbox :class "update-button"
                     :timeout "5s"

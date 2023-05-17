@@ -1,4 +1,5 @@
-;; Hyprwwland > by darkmaster grm34.
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
 
 (defwindow disk_popup :monitor 0
                       :geometry (geometry :x "0%"
@@ -17,6 +18,7 @@
        :space-evenly false
        :active true
        :visible true
+
     (eventbox :onhoverlost "eww close disk_popup"
       (box :class "disk-text"
            :orientation "h"

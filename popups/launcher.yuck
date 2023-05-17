@@ -1,4 +1,5 @@
-;; Hyprwwland > by darkmaster grm34.
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
 
 (defwindow launcher_popup :monitor 0
                           :geometry (geometry :x "0%"
@@ -23,7 +24,7 @@
              :orientation "h"
              :halign "center"
 
-          ;; browser
+          ; browser.
           (button :class "launcher-browser"
                   :tooltip "Browse the web"
                   :halign "center"
@@ -32,63 +33,63 @@
                             ${hww.web_browser} &"
             (label :text {icon-browser}))
 
-          ;; filemanager
+          ; filemanager.
           (button :class "launcher-filemanager"
                   :tooltip "File Manager"
                   :onclick "eww close launcher_popup;\
                             ${hww.file_manager} &"
             (label :text {icon-filemanager}))
 
-          ;; text_editor
+          ; text_editor.
           (button :class "launcher-text-editor"
                   :tooltip "Text Editor"
                   :onclick "eww close launcher_popup;\
                             ${hww.text_editor} &"
             (label :text {icon-text-editor}))
 
-          ;; chat_client
+          ; chat_client.
           (button :class "launcher-chat-client"
                   :tooltip "Chat Client"
                   :onclick "eww close launcher_popup;\
                             ${hww.chat_client} &"
             (label :text {icon-chat-client}))
 
-          ;; sound_manager
+          ; sound_manager.
           (button :class "launcher-sound-manager"
                   :tooltip "Sound Manager"
                   :onclick "eww close launcher_popup;\
                             ${hww.sound_manager} &"
             (label :text {icon-sound-manager}))              
 
-          ;; video_player
+          ; video_player.
           (button :class "launcher-video-player"
                   :tooltip "Video Player"
                   :onclick "eww close launcher_popup;\
                             ${hww.video_player} &"
             (label :text {icon-video-player}))
 
-          ;; music_player
+          ; music_player.
           (button :class "launcher-music-player"
                   :tooltip "Music Player"
                   :onclick "eww close launcher_popup;\
                             ${hww.music_player} &"
             (label :text {icon-music-player}))
 
-          ;; email_client
+          ; email_client.
           (button :class "launcher-email-client"
                   :tooltip "Email Client"
                   :onclick "eww close launcher_popup;\
                             ${hww.email_client} &"
             (label :text {icon-email-client}))
 
-          ;; cam_recorder
+          ; cam_recorder.
           (button :class "launcher-cam-recorder"
                   :tooltip "Camera Recorder"
                   :onclick "eww close launcher_popup;\
                             ${hww.cam_recorder} &"
             (label :text {icon-cam-recorder}))
 
-          ;; screen_recorder
+          ; screen_recorder.
           (button :class "launcher-screen-recorder"
                   :tooltip "Screen Recorder"
                   :onclick "eww close launcher_popup;\
@@ -96,7 +97,7 @@
             (label :text {icon-screen-recorder}))        
         )
 
-        ;; launcher
+        ; launcher.
         (box :class "launcher-applications"
              :orientation "v"
              :space-evenly false

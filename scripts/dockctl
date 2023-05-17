@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Hyprwwland > by darkmaster grm34.
+
+# Hyprwwland Copyright (c) 2023 darkmaster grm34.
+# https://github.com/grm34/Hyprwwland
+
 # export RUST_BACKTRACE=full
 
 # Get required settings from config.json.
@@ -17,9 +20,9 @@ terminal_cmd="${config[3]//\"}"
 
 # Get user apps.
 readarray -t apps\
-  < <(find "$app_path"/*\
-           -mindepth 0 -maxdepth 2 -type f\
-           -name "*.desktop" -readable)
+  < <(fd . "$app_path"\
+           --min-depth 0 --max-depth 2\
+           --type file --extension desktop)
 
 # Skip nodisplay/Qt and icon less apps.
 userapps=()
