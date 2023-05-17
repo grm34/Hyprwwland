@@ -33,6 +33,7 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 - **Wallpaper Manager** : [hyprpaper](https://github.com/hyprwm/hyprpaper)
 - **App Launcher** : [fuzzel](https://codeberg.org/dnkl/fuzzel)
 - **File Manager** : [felix](https://kyoheiu.dev/felix)
+- **Core Utilities** : [coreutils (rust)](https://github.com/uutils/coreutils)
 - **System info** :  [neofetch](https://github.com/dylanaraps/neofetch) [duf](https://github.com/muesli/duf) [macchina](https://github.com/Macchina-CLI/macchina)
 - **Monitoring** : [btop](https://github.com/aristocratos/btop) [htop](https://github.com/htop-dev/htop) [bandwhich](https://github.com/imsnif/bandwhich) [sniffnet](https://github.com/GyulyVGC/sniffnet)
 - **Shell** : [nushell](https://www.nushell.sh)
