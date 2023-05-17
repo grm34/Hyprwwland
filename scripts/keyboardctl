@@ -6,8 +6,7 @@
 # export RUST_BACKTRACE=full
 
 # This script is not used at the moment.
-: "$(hyprctl devices -j\
-  | jaq '.keyboards?[0].active_keymap')"
+: "$(hyprctl devices -j | jaq '.keyboards?[0].active_keymap')"
 : "${_//\"}" && : "${_:0:2}"
 printf '%s' "${_^^}"
 

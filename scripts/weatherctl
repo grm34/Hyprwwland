@@ -3,12 +3,15 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
+# This script is executed by a polling variable.
+# It creates an image of the local weather.
+
 # export RUST_BACKTRACE=full
 
 # Get weather location from config.json.
 : "$(jaq '.weather_location' "$PWD/config.json")"
 
-# Call wttr.in to retrieve local weather as PNG.
+# Call wttr.in to retrieve local weather.
 curl wttr.in/"${_//\"}"_1nq.png\
   --output "$PWD/assets/weather/current.png"\
   &>/dev/null
