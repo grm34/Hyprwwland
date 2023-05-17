@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Hyprwwland Copyright (c) 2023 darkmaster grm34.
+# https://github.com/grm34/Hyprwwland
+
+# export RUST_BACKTRACE=full
+
+# Get the status of the focused window.
+: "$(hyprctl activewindow -j | jaq '.mapped')"
+
+case $1 in
+  dock)
+    [[ $_ != "true" ]] && eww update dock-visible=true
+esac
+
