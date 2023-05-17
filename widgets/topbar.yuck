@@ -52,7 +52,8 @@
        :orientation "h"
     (centerbox :orientation "h"
 
-      ; *** WORKSPACES ***
+      ; WORKSPACES
+      ; ----------
 
       (box :class "workspaces"
            :orientation "h"
@@ -87,14 +88,15 @@
           (label :text {icon-ws9}))
       )
 
-      ; *** MONITORING ***
+      ; MONITORING
+      ; ----------
 
       (box :class "monitoring"
            :space-evenly false
            :orientation "h"
            :halign "center"
 
-        ; launcher-box.
+        ; launcher.
         (box :class "launcher-box"
           (eventbox :class "launcher-eventbox"
                     :cursor "pointer"
@@ -104,7 +106,7 @@
             (image :path "assets/images/appmenu.png"
                    :image-width 20)))
 
-        ; cpu-box.
+        ; cpu.
         (box :class "cpu-box"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
@@ -141,7 +143,7 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ; ram-box.
+        ; ram.
         (box :class "ram-box"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
@@ -178,7 +180,7 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ; disk-box.
+        ; disk.
         (box :class "disk-box"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
@@ -215,7 +217,7 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ; temp-box.
+        ; temp.
         (box :class "temp-box"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
@@ -252,7 +254,7 @@
                          :dynamic true
                          :line-style "round"))))))
 
-        ; weather-box.
+        ; weather.
         (box :class "weather-box"
           (eventbox :class "weather-eventbox"
                     :cursor "pointer"
@@ -263,7 +265,7 @@
             (image :path "assets/images/cloudy.png"
                    :image-width 16)))
 
-        ; sysinfo-box.
+        ; sysinfo.
         (box :class "sysinfo-box"
           (eventbox :class "sysinfo-eventbox"
                     :cursor "pointer"
@@ -275,14 +277,15 @@
                    :image-width 18)))
       )
 
-      ; *** TASKBAR ***
+      ; TASKBAR
+      ; -------
 
       (box :class "taskbar"
            :orientation "h"
            :space-evenly false
            :halign "end"
 
-        ; updates-box.
+        ; updates.
         (box :class "updates-box"
           (eventbox :class {
                       updates == "0" && network != "none"
@@ -307,7 +310,7 @@
                                         || updates == "0"
                        ? "" : "${updates}"}))))
 
-        ; standby-box.
+        ; standby.
         (box :class "standby-box"
           (eventbox :class {
                       standby == true ? "standby-box-on taskbar-events"
@@ -324,7 +327,7 @@
                      standby == true ? icon-standby-on
                                      : icon-standby-off})))
 
-        ; brightness-box.
+        ; brightness.
         (box :class "brightness-box"
           (eventbox :class "taskbar-events"
                     :tooltip "Brightness ${icon-arrow} ${brightness}%"
@@ -338,7 +341,7 @@
               (label :class "brightness-box-text"
                      :text "${brightness}%"))))
 
-        ; sound-box.
+        ; sound.
         (box :class "sound-box"
           (eventbox :class "taskbar-events"
                     :tooltip "Volume ${icon-arrow} ${volume}%"
@@ -355,7 +358,7 @@
                      :text {volume != "0"
                             ? "${volume}%" : "0%"}))))
 
-        ; network-box.
+        ; network.
         (box :class "network-box"
           (eventbox :class "taskbar-events"
                     :tooltip {
@@ -371,7 +374,7 @@
                      network == "none" ? icon-net-off
                      : icon-net-on})))
 
-        ; datetime-box.
+        ; datetime.
         (box :class "datetime-box"
           (eventbox :class "taskbar-events"
                     :timeout "250ms"
@@ -393,7 +396,7 @@
                 (label :class "datetime-box-date"
                        :text {date})))))
 
-        ; battery-box.
+        ; battery.
         (box :class "battery-box"
           (eventbox :class "taskbar-events"
                     :cursor "progress"
@@ -426,7 +429,7 @@
                        : bat-pw > 5 ? "${bat-pw}%"
                        : "${bat-pw}%"}))))
 
-        ; powermenu-box.
+        ; powermenu.
         (box :class "powermenu-box"
           (eventbox :class "taskbar-events"
                     :cursor "pointer"

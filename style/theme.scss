@@ -1,9 +1,12 @@
 /* Hyprwwland Copyright (c) 2023 darkmaster grm34.
    https://github.com/grm34/Hyprwwland */
 
+
 .topbar {}
 
-// *** workspaces (topbar) ***
+/* workspaces (topbar)
+---------------------*/
+
 .workspaces {
   background-color: rgba(0, 0, 0, 0.6);
   color: #ffd5cd;
@@ -41,7 +44,9 @@
 }
 
 
-// *** monitoring (topbar) ***
+/* monitoring (topbar)
+---------------------*/
+
 .monitoring {
   background-color: rgba(8, 8, 8, 0.6);
   color: #ffd5cd;
@@ -51,7 +56,7 @@
   box-shadow: 2px 4px 2px 1px rgba(8, 8, 8, 0.5);
 }
 
-// launcher-box
+// launcher (monit).
 .launcher-box {
   padding-right: 10px;
 }
@@ -60,7 +65,7 @@
   box-shadow: inset 0px -3px #ed2939;
 }
 
-// cpu-ram-disk-temp
+// cpu-ram-disk-temp (monit).
 .cpu-box-icon,
 .ram-box-icon,
 .disk-box-icon,
@@ -79,7 +84,7 @@
   font-weight: bold;
 }
 
-// cpu-box
+// cpu (monit).
 .cpu-box {
   padding-right: 10px;
 }
@@ -97,7 +102,7 @@
   min-height: 22px;
 }
 
-// ram-box
+// ram (monit).
 .ram-box {
   padding-right: 10px;
 }
@@ -115,7 +120,7 @@
   min-height: 22px;
 }
 
-// disk-box
+// disk (monit).
 .disk-box {
   padding-right: 10px;
 }
@@ -133,7 +138,7 @@
   min-height: 22px;
 }
 
-// temp-box
+// temp (monit).
 .temp-box {
   padding-right: 10px;
 }
@@ -151,7 +156,7 @@
   min-height: 22px;
 }
 
-// weather-box
+// weather (monit).
 .weather-box {
   color: #007fff;
 }
@@ -160,7 +165,7 @@
   box-shadow: inset 0px -3px #ed2939;
 }
 
-// sysinfo-box
+// sysinfo (monit).
 .sysinfo-box {
   padding-left: 6px;
 }
@@ -170,7 +175,9 @@
 }
 
 
-// *** taskbar (topbar) ***
+/* taskbar (topbar)
+------------------*/
+
 .taskbar {
   background-color: rgba(0, 0, 0, 0.6);
   color: #ffd5cd;
@@ -185,7 +192,7 @@
   box-shadow: inset 0px -3px #ed2939;
 }
 
-// updates-box
+// updates (taskbar).
 .updates-box {
   padding-right: 6px;
 }
@@ -207,7 +214,7 @@
   padding-left: 4px;
 }
 
-// standby-box
+// standby (taskbar).
 .standby-box {
   padding-right: 0px;
 }
@@ -220,7 +227,7 @@
   color: #004242;
 }
 
-// brightness-box
+// brightness (taskbar).
 .brightness-box {
   color: #ffa343;
   padding-right: 3px;
@@ -235,7 +242,7 @@
   font-size: 10px;
 }
 
-// sound-box
+// sound (taskbar).
 .sound-box {
   color: #b0e0e6;
   padding-right: 8px;
@@ -250,7 +257,7 @@
   font-size: 10px;
 }
 
-// network-box
+// network (taskbar).
 .network-box {
   font-size: 14px;
   padding-right: 2px;
@@ -264,7 +271,7 @@
   color: #ed2939;
 }
 
-// datetime-box
+// datetime (taskbar).
 .datetime-box {
   padding-right: 6px;
   color: #c2b280;
@@ -278,7 +285,7 @@
   font-size: 10px;
 }
 
-// battery-box
+// battery (taskbar).
 .battery-box {
   color: #4f7942;
   padding-right: 8px;
@@ -293,14 +300,16 @@
   font-size: 10px;
 }
 
-// powermenu-box
+// powermenu (taskbar).
 .powermenu-box {
   color: #ed2939;
   font-size: 12px;
 }
 
 
-// *** dock (leftbar) ***
+/* dock (leftbar)
+----------------*/
+
 .dock {}
 
 .dock-apps {
@@ -313,7 +322,10 @@
 }
 
 
-// *** launcher (popup) ***
+/* popups widgets
+-----------------*/
+
+// launcher (popup).
 .launcher-popup {
   background-color: rgba(69, 69, 69, 0.4);
   color: #fffafa;
@@ -400,7 +412,7 @@
 }
 
 
-// *** cpu_usage (popup) ***
+// cpu_usage (popup).
 .cpu-popup {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 0px 20px 16px 20px;
@@ -442,7 +454,7 @@
 }
 
 
-// *** ram_usage (popup) ***
+// ram_usage (popup).
 .ram-popup {
   background-color: rgba(0, 0, 0, 0.8);
   margin: 2px 10px 4px 10px;
@@ -459,7 +471,7 @@
 }
 
 
-// *** disk_usage (popup) ***
+// disk_usage (popup).
 .disk-popup {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 10px 10px 20px 10px;
@@ -475,7 +487,7 @@
 }
 
 
-// *** temp_sensors (popup) ***
+// temp_sensors (popup).
 .temp-popup {
   background-color: rgba(0, 0, 0, 0.8);
   margin: 2px 10px 4px 10px;
@@ -518,7 +530,7 @@
 }
 
 
-// *** sysinfo (popup) ***
+// sysinfo (popup).
 .sysinfo-popup {
   background-color: rgba(0, 0, 0, 1);
   color: #32cd32;
@@ -531,7 +543,7 @@
 }
 
 
-// *** weather (popup) ***
+// weather (popup).
 .weather-popup {
   background-color: rgba(0, 0, 0, 1);
   margin: 2px 10px 4px 10px;
@@ -545,7 +557,7 @@
 }
 
 
-// *** updates (popup) ***
+// updates (popup).
 .updates-popup {
   background-color: rgba(0, 0, 0, 0.7);
   font-family: UbuntuNerdFont;
@@ -583,7 +595,7 @@
 }
 
 
-// *** brightness (popup) ***
+// brightness (popup).
 .brightness-popup {
   background-color: rgba(0, 0, 0, 0.7);
   color: #ffd5cd;
@@ -602,7 +614,7 @@
 }
 
 
-// *** sound (popup) ***
+// sound (popup).
 .sound-popup {
   background-color: rgba(0, 0, 0, 0.7);
   color: #ffd5cd;
@@ -621,7 +633,7 @@
 }
 
 
-// *** network_devices (popup) ***
+// network_devices (popup).
 .network-popup {
   background-color: rgba(0, 0, 0, 0.8);
   color: #a1caf1;
@@ -638,7 +650,7 @@
 }
 
 
-// *** calendar (popup) ***
+// calendar (popup).
 .calendar-popup {
   background-color: rgba(0, 0, 0, 0.9);
   color: #ffd5cd;
@@ -653,7 +665,7 @@
 .calendar-builtin {}
 
 
-// *** powermenu (popup) ***
+// powermenu (popup).
 .powermenu-popup {
   background-color: rgba(0, 0, 0, 0.7);
   font-size: 32px;
