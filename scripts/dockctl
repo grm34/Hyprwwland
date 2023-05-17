@@ -3,6 +3,10 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
+# This script is executed by a polling variable.
+# It recursively scans a folder for applications and
+# returns a yuck widget containing each shortcut found.
+
 # export RUST_BACKTRACE=full
 
 # Get required settings from config.json.
@@ -39,13 +43,13 @@ done
 index=0 && box=
 for app in "${userapps[@]}"; do
   ((index > 14)) && break # Max 15 apps.
-  # Get app icon.
+  # get app icon.
   : "$(grep -m 1 "^Icon=" "$app")"
   icon="$icon_path/${_//Icon=}.svg"
-  # Get app real name.
+  # get app real name.
   : "$(grep -m 1 ^Name= "$app")"
   name="${_//Name=}"
-  # Define the opening cmd (terminal or standalone).
+  # define the opening cmd (terminal or standalone).
   : "$(grep -m 1 ^Exec "$app")"
   : "${_//Exec=}" && : "${_//\"}" && : "${_%% *}"
   cmd="$(which "$_") &"
@@ -53,9 +57,9 @@ for app in "${userapps[@]}"; do
     cmd="${cmd//mpv/mpv --player-operation-mode=pseudo-gui}"
   grep -qm 1 "Terminal=true" "$app" &&
     cmd="$terminal_cmd $cmd"
-  [[ ${cmd// &} == *alacritty ]] && # open terminal from HOME.
+  [[ ${cmd// &} == *alacritty ]] && # open terminal from $HOME.
     cmd="${cmd// &} --working-directory $HOME &"
-  # Create the widget.
+  # create the widget.
   box="$box
   (eventbox :class \"dock-app-box\" :tooltip \"$name\"
             :onclick \"$cmd\" :cursor \"pointer\"

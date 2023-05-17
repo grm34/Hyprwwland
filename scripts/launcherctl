@@ -3,6 +3,10 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
+# This script is executed by a polling variable.
+# It recursively scans a folder for applications and
+# returns a yuck widget containing each shortcut found.
+
 # export RUST_BACKTRACE=full
 
 # Get required settings from config.json.
@@ -25,18 +29,18 @@ readarray -t apps\
 # Create a widget for each app.
 box=
 for app in "${apps[@]}"; do
-  # Skip nodisplay apps.
+  # skip nodisplay apps.
   grep -qm 1 "NoDisplay=true" "$app" && continue
-  # Check for app icon (use help icon if none found).
+  # check for app icon (use help icon if none found).
   : "$(grep -m 1 "^Icon=" "$app")"
   icon="$icon_path/${_//Icon=}.svg"
   ! [[ -f $icon ]] && icon="$icon_path/help_index.svg"
-  # Get app real name.
+  # get app real name.
   : "$(grep -m 1 ^Name= "$app")" && name="${_//Name=}"
-  # Get app executable.
+  # get app executable.
   : "$(grep -m 1 ^Exec "$app")"
   : "${_//Exec=}" && : "${_//\"}" && : "${_%% *}"
-  # Define the opening cmd (terminal or standalone). 
+  # define the opening cmd (terminal or standalone). 
   cmd="$(which "$_") &"
   [[ $cmd == *"mpv &"* ]] && # fix mpv exec.
     cmd="${cmd//mpv/mpv --player-operation-mode=pseudo-gui}"
@@ -46,7 +50,7 @@ for app in "${apps[@]}"; do
   [[ ${cmd// &} == *alacritty ]] && # open terminal from HOME.
     cmd="${cmd// &} --working-directory $HOME &"  
   cmd="eww close launcher_popup; $cmd"
-  # Create the widget.
+  # create the widget.
   box="$box
   (eventbox :class \"launcher-app-box\" :tooltip \"$name\"
             :onclick \"$cmd\" :cursor \"pointer\"

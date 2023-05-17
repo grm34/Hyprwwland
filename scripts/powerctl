@@ -3,11 +3,17 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
+# This script is executed on event.
+# It simply controls power management.
+
 # export RUST_BACKTRACE=full
 
 # As you can see systemd is required here.
 case $1 in
-  poweroff|reboot|suspend|hibernate) systemctl "$1" ;;
-  logout) hyprctl dispatch exit
+  poweroff|reboot|suspend|hibernate)
+    systemctl "$1"
+    ;;
+  logout)
+    hyprctl dispatch exit
 esac
 

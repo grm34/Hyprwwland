@@ -3,36 +3,37 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
+# This script is controlled by a listening variable.
+# It returns the state of the workspaces at startup and
+# then listens for events to update them automatically.
+
 # export RUST_BACKTRACE=full
 
 function update_occupied_workspaces() {
-  # get active workspace(s).
   readarray -t workspaces < <(hyprctl workspaces -j | jaq '.[]?.id?')
-  # update occupied workspace(s) status.
   for id in "${workspaces[@]}"; do
     [[ $id != "$1" ]] && eww update ws"$id"=ws-occupied
   done
 }
 
 function handle() {
-  # handle workspaces status on events.
   case $1 in
     workspace*|createworkspace*)
       eww update ws"${1##*>>}"=ws-active
       update_occupied_workspaces "${1##*>>}"
-    ;;
+      ;;
     destroyworkspace*)
       eww update ws"${1##*>>}"=ws-inactive
   esac
 
 }
 
-# Get workspaces status on start.
+# On start: get workspaces status.
 active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
 eww update ws"$active"=ws-active
 update_occupied_workspaces "$active"
 
-# Listen for hyprland socket2 events.
+# Listen UNIX Socket for events (IPC).
 socat -U\
   - UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock\
   | while read -r line; do handle "$line"; done

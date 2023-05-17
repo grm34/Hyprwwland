@@ -1,81 +1,81 @@
 ; Hyprwwland Copyright (c) 2023 darkmaster grm34.
 ; https://github.com/grm34/Hyprwwland
 
-; Get user config as JSON.
+; Get user config (json).
 (defpoll hww :interval "2h"
              :initial "{}"
   "cat config.json")
 
-; Get dock apps as STRING (containing YUCK).
+; Get dock applications (str).
 (defpoll dock :interval "5m"
               :initial ""
   "scripts/dockctl")
 
-; Get launcher apps as STRING (containing YUCK).
+; Get launcher applications (str).
 (defpoll launcher :interval "10m"
                   :initial ""
   "scripts/launcherctl")
 
-; Get running PIDs (user) as STRING.
+; Get running PIDs (str).
 (defpoll cpu_usage :interval "1s"
   "bash -c 'top -s -b -n 1 -u $USER' | head -n 20")
 
-; Get ram usage as STRING.
+; Get ram usage (str).
 (defpoll ram_usage :interval "5s"
                    :initial ""
   "free -h")
 
-; Get disk usage as STRING.
+; Get disk usage (str).
 (defpoll disk_usage :interval "2m"
                     :initial ""
   "duf -output size,used,avail,usage,type,filesystem /")
 
-; Get temp sensors as STRING.
+; Get temp sensors (str).
 (defpoll temp_sensors :interval "5s"
                       :initial ""
   "sensors")
 
-; Create weather PNG and return path as STRING.
+; Get weather path (str).
 (defpoll weather :interval "1h"
                  :initial "assets/weather/current.png"
   "scripts/weatherctl")
 
-; Get neofetch output as STRING.
+; Get neofetch (str).
 (defpoll sysinfo :interval "30m"
                  :initial "Hyprwwland"
   "neofetch --off --color_blocks off --stdout")
 
-; Get number of pending updates as STRING.
+; Get number of pending updates (str).
 (defpoll updates :interval "15m"
                  :initial "off"
   "scripts/updatectl")
 
-; Get standby status as BOOL.
+; Get standby state (bool).
 (defpoll standby :interval "2h"
                  :initial true
   "scripts/standbyctl")
 
-; Get screen brightness as STRING.
+; Get screen brightness (str).
 (defpoll brightness :interval "2s"
                     :initial "90"
   "light -G | cut -d'.' -f1")
 
-; Get sound volume as STRING.
+; Get sound volume (str).
 (defpoll volume :interval "2s"
                 :initial "90"
   "pulsemixer --get-volume | cut -d' ' -f1")
 
-; Get network status as STRING (on/off).
+; Get network state (str).
 (defpoll network_status :interval "3s"
                         :initial "none"
   "nmcli networking connectivity")
 
-; Get network devices as STRING.
+; Get network devices (str).
 (defpoll network_devices :interval "30s"
                          :initial ""
   "nmcli device status")
 
-; Get date and time as JSON.
+; Get date and time (json).
 (defpoll datetime :interval "5s"
                   :initial "{}"
   "scripts/datetimectl")

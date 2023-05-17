@@ -3,6 +3,10 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
+# This script is executed by a polling variable
+# but can also be executed by user events (button).
+# It simply controls the management of the sleep mode.
+
 # export RUST_BACKTRACE=full
 
 # Get required settings from config.json.
@@ -33,7 +37,7 @@ case $1 in
     pkill -f -9 swayidle
     ;;
   *)
-    # onpoll: activate if required and return status (bool).
+    # onpoll: activate if required and return state (bool).
     : "$(eww get standby)"
     [[ $_ == "true" ]] && standby_mode
     if [[ $_ ]]; then
