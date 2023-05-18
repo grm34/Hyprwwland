@@ -18,10 +18,24 @@
        :space-evenly false
        :active true
        :visible true
-
     (eventbox :onhoverlost "eww close ram_popup"
-      (box :class "ram-text"
-           :orientation "h"
-        (label :text {ram_usage}))
-    )))
+      (box :class "ram-popup-box"
+           :orientation "v"
+           :space-evenly false
+
+        ; title.
+        (box :class "ram-popup-title-box"
+             :orientation "h"
+             :halign "center"
+             :space-evenly false
+          (label :class "ram-popup-title-icon"
+                 :text {icon-ram})
+          (label :class "ram-popup-title-text"
+                 :text "MEMORY USAGE"))
+
+        ; content.
+        (box :class "ram-popup-content"
+             :orientation "h"
+          (label :text {ram_usage}))
+    ))))
 
