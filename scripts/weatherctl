@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
@@ -7,6 +6,7 @@
 # It creates an image of the local weather.
 
 # export RUST_BACKTRACE=full
+
 
 # Get weather location from config.json.
 : "$(jaq '.weather_location' "$PWD/config.json")"
