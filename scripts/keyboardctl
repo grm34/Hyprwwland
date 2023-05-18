@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
 # export RUST_BACKTRACE=full
+
 
 # This script is not used at the moment.
 : "$(hyprctl devices -j | jaq '.keyboards?[0].active_keymap')"

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
@@ -7,6 +6,7 @@
 # It simply controls power management.
 
 # export RUST_BACKTRACE=full
+
 
 # As you can see systemd is required here.
 case $1 in

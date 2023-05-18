@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
@@ -8,6 +7,7 @@
 # then listens for events to update them automatically.
 
 # export RUST_BACKTRACE=full
+
 
 function update_occupied_workspaces() {
   readarray -t workspaces < <(hyprctl workspaces -j | jaq '.[]?.id?')
