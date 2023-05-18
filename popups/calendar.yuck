@@ -2,17 +2,19 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow calendar_popup :monitor 0
-                          :geometry (geometry :x "0%"
-                                              :y "1%"
-                                              :width "20%"
-                                              :height "20%"
-                                              :anchor "top right")
+                          :geometry (
+                            geometry :x "0%"
+                                     :y "1%"
+                                     :width "20%"
+                                     :height "20%"
+                                     :anchor "top right")
                           :stacking "fg"
                           :exclusive false
                           :focusable false
   (_calendar_popup :day {datetime.day}
                    :month {datetime.month}
-                   :year {datetime.year}))
+                   :year {datetime.year})
+)
 
 (defwidget _calendar_popup [day month year]
   (box :class "calendar-popup"
@@ -23,7 +25,8 @@
        :visible true
 
     (eventbox :onhoverlost "eww close calendar_popup"
-      (calendar :class "calendar-builtin"
+
+      (calendar :class "calendar-popup-calendar"
                 :day {day}
                 :month {month}
                 :year {year}
@@ -32,5 +35,6 @@
                 :show-day-names true
                 :show-week-numbers true
                 :timeout "200s")
-    )))
+    )
+))
 

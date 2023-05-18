@@ -2,15 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow sound_popup :monitor 0
-                       :geometry (geometry :x "0%"
-                                           :y "1%"
-                                           :width "20%"
-                                           :height "5%"
-                                           :anchor "top right")
+                       :geometry (
+                         geometry :x "0%"
+                                  :y "1%"
+                                  :width "20%"
+                                  :height "5%"
+                                  :anchor "top right")
                        :stacking "fg"
                        :exclusive false
                        :focusable false
-  (_sound_popup :volume {volume}))
+  (_sound_popup :volume {volume})
+)
 
 (defwidget _sound_popup [volume]
   (box :class "sound-popup"
@@ -23,9 +25,12 @@
     (eventbox :onhoverlost "eww close sound_popup"
       (box :orientation "h"
            :space-evenly false
+
         (label :class "sound-popup-icon"
                :text {icon-sound-on})
-        (scale :width 180
+
+        (scale :class "sound-popup-scale"
+               :width 180
                :flipped false
                :min 0
                :max 151
@@ -34,5 +39,6 @@
                :value {volume}
                :timeout "5s"
                :onchange "pulsemixer --set-volume {}")
-      ))))
+    ))
+))
 

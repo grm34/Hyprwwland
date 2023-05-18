@@ -2,15 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow dock :monitor 0
-                :geometry (geometry :x "0%"
-                                    :y "0%"
-                                    :width "0%"
-                                    :height "0%"
-                                    :anchor "left center")
+                :geometry (
+                  geometry :x "0%"
+                           :y "0%"
+                           :width "0%"
+                           :height "0%"
+                           :anchor "left center")
                 :stacking "fg"
                 :exclusive true
                 :focusable false
-  (_dock :apps {dock}))
+  (_dock :apps {dock})
+)
 
 (defwidget _dock [apps]
   (box :class "dock"
@@ -18,6 +20,7 @@
        :valign "center"
        :active true
        :visible true
+
     (eventbox :timeout "200ms"
               :valign "center"
               :onhover "scripts/activewindow dock"
@@ -40,7 +43,8 @@
         (revealer :reveal {dock-visible}
                   :transition "slideleft"
                   :duration "250ms"
-          (box :class "dock-apps"
+          (box :class "dock-applications"
             (literal :content {apps})))
-      ))))
+    ))
+))
 

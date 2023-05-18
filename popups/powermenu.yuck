@@ -2,15 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow powermenu_popup :monitor 0
-                           :geometry (geometry :x "0%"
-                                               :y "1%"
-                                               :width "15%"
-                                               :height "20%"
-                                               :anchor "top right")
+                           :geometry (
+                             geometry :x "0%"
+                                      :y "1%"
+                                      :width "15%"
+                                      :height "20%"
+                                      :anchor "top right")
                            :stacking "fg"
                            :exclusive false
                            :focusable false
-  (_powermenu_popup))
+  (_powermenu_popup)
+)
 
 (defwidget _powermenu_popup []
   (box :class "powermenu-popup"
@@ -19,10 +21,12 @@
        :valign "start"
        :active true
        :visible true
+
     (eventbox :timeout "200ms"
-              :onhoverlost {power-visible != true
-                              ? "eww close powermenu_popup"
-                              : ""}
+              :onhoverlost {
+                power-visible != true
+                  ? "eww close powermenu_popup"
+                  : ""}
       (box :space-evenly false
            :orientation "v"
 
@@ -31,45 +35,61 @@
                   :transition "slideup"
                   :duration "250ms"
           (box :orientation "h"
-            (eventbox :onclick "eww update power-visible=true\
+
+            ; shutdown.
+            (eventbox :class "powermenu-popup-shutdown"
+                      :onclick "eww update power-visible=true\
                                 power-request=poweroff"
                       :cursor "pointer"
                       :tooltip "Shutdown"
-              (label :class "shutdown-label"
-                     :text {icon-shutdown}))
-            (eventbox :onclick "eww update power-visible=true\
+              (label :text {icon-shutdown}))
+
+            ; reboot.
+            (eventbox :class "powermenu-popup-reboot"
+                      :onclick "eww update power-visible=true\
                                 power-request=reboot"
                       :cursor "pointer"
                       :tooltip "Reboot"
-              (label :class "reboot-label"
-                     :text {icon-reboot}))
-            (eventbox :onclick "eww update power-visible=true\
+              (label :text {icon-reboot}))
+
+            ; suspend.
+            (eventbox :class "powermenu-popup-suspend"
+                      :onclick "eww update power-visible=true\
                                 power-request=suspend"
                       :cursor "pointer"
                       :tooltip "Suspend"
-              (label :class "sleep-label"
-                     :text {icon-sleep}))
-            (eventbox :onclick "eww update power-visible=true\
+              (label :text {icon-sleep}))
+
+            ; logout.
+            (eventbox :class "powermenu-popup-logout"
+                      :onclick "eww update power-visible=true\
                                 power-request=logout"
                       :cursor "pointer"
                       :tooltip "Logout"
-              (label :class "logout-label"
-                     :text {icon-logout}))))
+              (label :text {icon-logout}))
+        ))
 
         ; confirm/cancel.
         (revealer :reveal "${power-visible}"
                   :transition "slidedown"
                   :duration "250ms" 
-          (box :orientation "h"
-            (box :class "confirm-box"
-              (eventbox :class "confirm-button"
+          (box :class "powermenu-popup-confirmation"
+               :orientation "h"
+
+            ; confirm action.
+            (box :class "powermenu-popup-confirm"
+              (eventbox :class "powermenu-popup-confirm-button"
                         :onclick "scripts/powerctl ${power-request}"
                         :cursor "pointer"
                 (label :text "Confirm")))
-            (box :class "cancel-box"
-              (eventbox :class "cancel-button"
+
+            ; cancel action.
+            (box :class "powermenu-popup-cancel"
+              (eventbox :class "powermenu-popup-cancel-button"
                        :onclick "eww update power-visible=false"
                        :cursor "pointer"
-                (label :text "Cancel")))))
-      ))))
+                (label :text "Cancel")))
+        ))
+    ))
+))
 

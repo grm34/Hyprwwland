@@ -2,15 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow ram_popup :monitor 0
-                     :geometry (geometry :x "0%"
-                                         :y "1%"
-                                         :width "30%"
-                                         :height "10%"
-                                         :anchor "top center")
+                     :geometry (
+                       geometry :x "0%"
+                                :y "1%"
+                                :width "30%"
+                                :height "10%"
+                                :anchor "top center")
                      :stacking "fg"
                      :exclusive false
                      :focusable false
-  (_ram_popup :ram_usage {ram_usage}))
+  (_ram_popup :ram_usage {ram_usage})
+)
 
 (defwidget _ram_popup [ram_usage]
   (box :class "ram-popup"
@@ -18,6 +20,7 @@
        :space-evenly false
        :active true
        :visible true
+
     (eventbox :onhoverlost "eww close ram_popup"
       (box :class "ram-popup-box"
            :orientation "v"
@@ -37,5 +40,6 @@
         (box :class "ram-popup-content"
              :orientation "h"
           (label :text {ram_usage}))
-    ))))
+    ))
+))
 

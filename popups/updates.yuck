@@ -2,15 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow updates_popup :monitor 0
-                         :geometry (geometry :x "0%"
-                                             :y "1%"
-                                             :width "20%"
-                                             :height "5%"
-                                             :anchor "top right")
+                         :geometry (
+                           geometry :x "0%"
+                                    :y "1%"
+                                    :width "20%"
+                                    :height "5%"
+                                    :anchor "top right")
                          :stacking "fg"
                          :exclusive false
                          :focusable false
-  (_updates_popup :pending {updates}))
+  (_updates_popup :pending {updates})
+)
 
 (defwidget _updates_popup [pending]
   (box :class "updates-popup"
@@ -18,34 +20,44 @@
        :valign "start"
        :active true
        :visible true
+
     (eventbox :onhoverlost "eww close updates_popup"
       (box :orientation "v"
         
-        ; on/off.
-        (box :orientation "h"
-          (eventbox :onclick {auto-up == true
-                              ? "eww update auto-up=false\
-                                 updates=off"
-                              : "eww update auto-up=true\
-                                 updates=0"}
-                    :cursor "pointer"
-            (label :text {auto-up == true
-                          ? "${icon-up-on} Arch Linux Updates"
-                          : "${icon-up-off} Arch Linux Updates"})))
+        ; activate/deactivate auto-check.
+        (box :class "updates-popup-activate"
+             :orientation "h"
+          (eventbox :cursor "pointer"
+                    :onclick {
+                      auto-up == true
+                        ? "eww update auto-up=false updates=off"
+                        : "eww update auto-up=true updates=0"}
+            (label :text {
+                     auto-up == true
+                       ? "${icon-up-on} Arch Linux Updates"
+                       : "${icon-up-off} Arch Linux Updates"})
+        ))
         
-        ; update/check.
-        (box :orientation "h"
-          (eventbox :class "update-button"
-                    :timeout "5s"
-                    :onclick "eww close updates_popup;\
-                              scripts/updatectl update &"
-                    :cursor "pointer"
-            (label :text "Update"))
-          (eventbox :class "check-button"
-                    :timeout "5s"
-                    :onclick "eww close updates_popup;\
-                              scripts/updatectl check &"
-                    :cursor "pointer"
-            (label :text "Check")))
-      ))))
+        ; update/check buttons.
+        (box :class "updates-popup-action"
+             :orientation "h"
+
+          (box :class "updates-popup-button-up"
+            (eventbox :class "updates-popup-button-up-ev"
+                      :timeout "5s"
+                      :onclick "eww close updates_popup;\
+                                scripts/updatectl update &"
+                      :cursor "pointer"
+              (label :text "Update")))
+
+          (box :class "updates-popup-button-check"
+            (eventbox :class "updates-popup-button-check-ev"
+                      :timeout "5s"
+                      :onclick "eww close updates_popup;\
+                                scripts/updatectl check &"
+                      :cursor "pointer"
+              (label :text "Check")))
+        )
+    ))
+))
 

@@ -65,7 +65,7 @@ for app in "${userapps[@]}"; do
 
   # create the widget.
   box="$box
-  (eventbox :class \"dock-app-box\" :tooltip \"$name\"
+  (eventbox :class \"dock-app\" :tooltip \"$name\"
             :onclick \"$cmd\" :cursor \"pointer\"
     (image :path \"$icon\" :image-width \"$icon_size\"))"
   index=$((index + 1))
