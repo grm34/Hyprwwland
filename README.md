@@ -15,6 +15,9 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 
 ## What I use
 
+<details>
+  <summary>CLICK TO EXPAND</summary>
+
 - **Distro** : [arch](https://wiki.archlinux.org)
 - **AUR Helper** : [paru](https://github.com/Morganamilo/paru)
 - **Compositor** : [hyprland](https://wiki.hyprland.org)
@@ -56,6 +59,8 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 - **Xmpp Client** : [gajim](https://gajim.org)
 - **Desktop Portal** : [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland)
 
+</details>
+
 ## Quick Install on Arch Linux
 
 - Install eww and Hyprland with the minimum requirements :
@@ -82,32 +87,15 @@ git clone https://github.com/grm34/Hyprwwland "$HOME/.config/eww"
 
 ## Configuring
 
-The config is located in `~/.config/eww/config.json`.
+The [config](config.json) is located in `~/.config/eww/config.json`.
 
 ```json
 "aur_helper": "paru",
 "terminal": "alacritty",
 "terminal_cmd": "alacritty -e",
 "web_browser": "librewolf",
-"file_manager": "alacritty -e felix",
-"text_editor": "alacritty -e helix",
-"chat_client": "gajim",
-"sound_manager": "myxer",
-"video_player": "mpv --player-operation-mode=pseudo-gui",
-"music_player": "alacritty -e termusic",
-"email_client": "alacritty -e himalaya write",
-"cam_recorder": "cameractrlsgtk4.py",
-"screen_recorder": "wayfarer",
-"suspend_timeout": "300",
-"sleep_timeout": "600",
-"lock_effects": "--fade-in 5s --effect-vignette 0:1",
-"weather_location": "Montpellier",
-"standby_wallpaper": "assets/wallpapers/od_tokyo.jpg",
-"launcher_app_path": "/usr/share/applications",
-"launcher_app_icon_path": "/usr/share/icons/ePapirus-Dark/96x96/apps",
-"dock_app_path": "/usr/share/applications",
-"dock_app_icon_path": "/usr/share/icons/ePapirus-Dark/96x96/apps",
-"dock_app_icon_size": "38"
+
+(...)
 ```
 
 To be notified of new updates allow `paru` to be runned without password in `~/etc/sudoers` :
@@ -139,7 +127,7 @@ wallpaper = ~/.config/eww/assets/wallpapers/od_neon.png
 ## What else
 
 - Workspace manager that makes it easy to see the status of occupied spaces.
-- Real-time monitoring of processor, temp, RAM and disk usage.
+- Real-time monitoring of processor, memory, sensors and disk usage.
 - Application launcher dock which can be used for favorite applications.
 - Display of pending updates with the possibility to update in one click.
 - Quick access to volume and screen brightness controls.
