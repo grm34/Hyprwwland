@@ -18,10 +18,24 @@
        :space-evenly false
        :active true
        :visible true
-
     (eventbox :onhoverlost "eww close disk_popup"
-      (box :class "disk-text"
-           :orientation "h"
-        (label :text {disk_usage}))
-    )))
+      (box :class "disk-popup-box"
+           :orientation "v"
+           :space-evenly false
+
+        ; title.
+        (box :class "disk-popup-title-box"
+             :orientation "h"
+             :halign "center"
+             :space-evenly false
+          (label :class "disk-popup-title-icon"
+                 :text {icon-temp})
+          (label :class "disk-popup-title-text"
+                 :text "DISK USAGE"))
+
+        ; content.
+        (box :class "disk-popup-content"
+             :orientation "h"
+          (label :text {disk_usage}))
+    ))))
 
