@@ -2,11 +2,12 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow topbar :monitor 0
-                  :geometry (geometry :x "0%"
-                                      :y "0%"
-                                      :width "100%"
-                                      :height "1%"
-                                      :anchor "top center")
+                  :geometry (
+                    geometry :x "0%"
+                             :y "0%"
+                             :width "100%"
+                             :height "1%"
+                             :anchor "top center")
                   :stacking "fg"
                   :exclusive true
                   :focusable false
@@ -20,29 +21,51 @@
            :date {datetime.date}
            :time {datetime.time}
            :bat-pw {EWW_BATTERY.BAT0.capacity}
-           :bat100 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                    ? icon-batC100 : icon-batN100}
-           :bat90 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC90 : icon-batN90}
-           :bat80 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC80 : icon-batN80}
-           :bat70 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC70 : icon-batN70}
-           :bat60 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC60 : icon-batN60}
-           :bat50 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC50 : icon-batN50}
-           :bat40 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC40 : icon-batN40}
-           :bat30 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC30 : icon-batN30}
-           :bat20 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC20 : icon-batN20}
-           :bat10 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC10 : icon-batN10}
-           :bat00 {EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                   ? icon-batC00 : icon-batN00}))
-
+           :bat100 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC100
+               : icon-batN100}
+           :bat90 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC90
+               : icon-batN90}
+           :bat80 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC80
+               : icon-batN80}
+           :bat70 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC70
+               : icon-batN70}
+           :bat60 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC60
+               : icon-batN60}
+           :bat50 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC50
+               : icon-batN50}
+           :bat40 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC40
+               : icon-batN40}
+           :bat30 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC30
+               : icon-batN30}
+           :bat20 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC20
+               : icon-batN20}
+           :bat10 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC10
+               : icon-batN10}
+           :bat00 {
+             EWW_BATTERY.BAT0.status =~ "Full|Charging"
+               ? icon-batC00
+               : icon-batN00})
+)
 
 (defwidget _topbar [workspaces updates standby brightness volume
                     network date time bat-pw bat100 bat90 bat80
@@ -97,17 +120,18 @@
            :halign "center"
 
         ; launcher.
-        (box :class "launcher-box"
-          (eventbox :class "launcher-eventbox"
+        (box :class "launcher"
+          (eventbox :class "launcher-ev"
                     :cursor "pointer"
                     :tooltip "Launcher"
                     :onclick "eww open launcher_popup"
                     :onrightclick "eww close launcher_popup"
             (image :path "assets/images/appmenu.png"
-                   :image-width 20)))
+                   :image-width 20)
+        ))
 
-        ; cpu.
-        (box :class "cpu-box"
+        ; cpu usage.
+        (box :class "cpu-monit"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
                     :tooltip "Running process"
@@ -117,6 +141,8 @@
                     :onhoverlost "eww update cpu-graph-visible=false"
             (box :space-evenly false
                  :orientation "v"
+
+              ; cpu progress.
               (revealer :reveal "${!cpu-graph-visible}"
                         :transition "slideup"
                         :duration "250ms"
@@ -125,26 +151,32 @@
                        :halign "center"
                        :valign "end"
                        :space-evenly false
-                    (label :class "cpu-box-icon"
+                    (label :class "cpu-monit-icon"
                            :text {icon-cpu})
-                    (label :class "cpu-box-text"
+                    (label :class "cpu-monit-text"
                            :text "${EWW_CPU.avg}%"))
-                  (progress :valign "start"
+                  (progress :class "cpu-monit-progress"
+                            :valign "start"
                             :value {EWW_CPU.avg}
-                            :orientation "h")))
+                            :orientation "h")
+              ))
+
+              ; cpu graph.
               (revealer :reveal {cpu-graph-visible}
                         :transition "slidedown"
                         :duration "250ms"
-                (box :class "cpu-box-graph"
+                (box :class "cpu-monit-graph"
                      :orientation "v"
                   (graph :thickness 4
                          :value {EWW_CPU.avg}
                          :time-range "10s"
                          :dynamic true
-                         :line-style "round"))))))
+                         :line-style "round")
+              )))
+        ))
 
-        ; ram.
-        (box :class "ram-box"
+        ; ram usage.
+        (box :class "ram-monit"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
                     :tooltip "Memory usage"
@@ -154,6 +186,8 @@
                     :onhoverlost "eww update ram-graph-visible=false"
             (box :space-evenly false
                  :orientation "v"
+
+              ; ram progress.
               (revealer :reveal "${!ram-graph-visible}"
                         :transition "slideup"
                         :duration "250ms"
@@ -162,26 +196,32 @@
                        :halign "center"
                        :valign "end"
                        :space-evenly false
-                    (label :class "ram-box-icon"
+                    (label :class "ram-monit-icon"
                            :text {icon-ram})
-                    (label :class "ram-box-text"
+                    (label :class "ram-monit-text"
                            :text "${EWW_RAM.used_mem_perc}%"))
-                  (progress :valign "start"
+                  (progress :class "ram-monit-progress"
+                            :valign "start"
                             :flipped false
-                            :value {EWW_RAM.used_mem_perc})))
+                            :value {EWW_RAM.used_mem_perc})
+              ))
+
+              ; ram graph.
               (revealer :reveal {ram-graph-visible}
                         :transition "slidedown"
                         :duration "250ms"
-                (box :class "ram-box-graph"
+                (box :class "ram-monit-graph"
                       :orientation "v"
                   (graph :thickness 4
                          :value {EWW_RAM.used_mem_perc}
                          :time-range "10s"
                          :dynamic true
-                         :line-style "round"))))))
+                         :line-style "round")
+              )))
+        ))
 
-        ; disk.
-        (box :class "disk-box"
+        ; disk usage.
+        (box :class "disk-monit"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
                     :tooltip "Disk usage"
@@ -191,6 +231,8 @@
                     :onhoverlost "eww update disk-graph-visible=false"
             (box :space-evenly false
                  :orientation "v"
+
+              ; disk progress.
               (revealer :reveal "${!disk-graph-visible}"
                         :transition "slideup"
                         :duration "250ms"
@@ -199,26 +241,32 @@
                        :halign "center"
                        :valign "end"
                        :space-evenly false
-                    (label :class "disk-box-icon"
+                    (label :class "disk-monit-icon"
                            :text {icon-disk})
-                    (label :class "disk-box-text"
+                    (label :class "disk-monit-text"
                            :text "${EWW_DISK["/"].used_perc}%"))
-                  (progress :valign "start"
+                  (progress :class "disk-monit-progress"
+                            :valign "start"
                             :flipped false
-                            :value {EWW_DISK["/"].used_perc})))
+                            :value {EWW_DISK["/"].used_perc})
+              ))
+
+              ; disk graph.
               (revealer :reveal {disk-graph-visible}
                         :transition "slidedown"
                         :duration "250ms"
-                (box :class "disk-box-graph"
+                (box :class "disk-monit-graph"
                      :orientation "v"
                   (graph :thickness 4
                          :value {EWW_DISK["/"].used_perc}
                          :time-range "30s"
                          :dynamic true
-                         :line-style "round"))))))
+                         :line-style "round")
+              )))
+        ))
 
-        ; temp.
-        (box :class "temp-box"
+        ; temp sensors.
+        (box :class "temp-monit"
           (eventbox :timeout "200ms"
                     :cursor "pointer"
                     :tooltip "System sensors"
@@ -228,6 +276,8 @@
                     :onhoverlost "eww update temp-graph-visible=false"
             (box :space-evenly false
                  :orientation "v"
+
+              ; temp progress.
               (revealer :reveal "${!temp-graph-visible}"
                         :transition "slideup"
                         :duration "250ms"
@@ -236,45 +286,53 @@
                        :halign "center"
                        :valign "end"
                        :space-evenly false
-                    (label :class "temp-box-icon"
+                    (label :class "temp-monit-icon"
                            :text {icon-temp})
-                    (label :class "temp-box-text"
+                    (label :class "temp-monit-text"
                            :text "${EWW_TEMPS.CORETEMP_CORE_0}°C"))
-                  (progress :valign "start"
+                  (progress :class "temp-monit-progress"
+                            :valign "start"
                             :flipped false
-                            :value {EWW_TEMPS.CORETEMP_CORE_0})))
+                            :value {EWW_TEMPS.CORETEMP_CORE_0})
+              ))
+
+              ; temp graph.
               (revealer :reveal {temp-graph-visible}
                         :transition "slidedown"
                         :duration "250ms"
-                (box :class "temp-box-graph"
+                (box :class "temp-monit-graph"
                      :orientation "v"
                   (graph :thickness 4
                          :value {EWW_TEMPS.DELL_SMM_CPU}
                          :time-range "5s"
                          :dynamic true
-                         :line-style "round"))))))
+                         :line-style "round")
+              )))
+        ))
 
         ; weather.
-        (box :class "weather-box"
-          (eventbox :class "weather-eventbox"
+        (box :class "weather-monit"
+          (eventbox :class "weather-monit-ev"
                     :cursor "pointer"
                     :tooltip "Weather in ${hww.weather_location}"
                     :onclick "eww open weather_popup"
                     :onrightclick "eww close weather_popup"
                     :onhoverlost "eww close weather_popup"
             (image :path "assets/images/cloudy.png"
-                   :image-width 16)))
+                   :image-width 16)
+        ))
 
         ; sysinfo.
-        (box :class "sysinfo-box"
-          (eventbox :class "sysinfo-eventbox"
+        (box :class "sysinfo-monit"
+          (eventbox :class "sysinfo-monit-ev"
                     :cursor "pointer"
                     :tooltip "System information"
                     :onclick "eww open sysinfo_popup"
                     :onrightclick "eww close sysinfo_popup"
                     :onhoverlost "eww close sysinfo_popup"
             (image :path "assets/images/cpu.png"
-                   :image-width 18)))
+                   :image-width 18)
+        ))
       )
 
       ; TASKBAR
@@ -285,12 +343,12 @@
            :space-evenly false
            :halign "end"
 
-        ; updates.
-        (box :class "updates-box"
+        ; updates button.
+        (box :class "updates-button"
           (eventbox :class {
                       updates == "0" && network != "none"
-                        ? "updates-box-false taskbar-events"
-                        : "updates-box-true taskbar-events"} 
+                        ? "updates-button-false taskbar-ev"
+                        : "updates-button-true taskbar-ev"} 
                     :tooltip
                       "Arch Linux updates ${icon-arrow} ${updates}"
                     :onclick "eww open updates_popup"
@@ -298,85 +356,102 @@
                     :timeout "10s"
                     :cursor "pointer"
             (box
-              (label :class "updates-box-icon"
+              (label :class "updates-button-icon"
                      :text {
                        auto-up == false || updates == "off"
                                         || network == "none"
-                       ? icon-updates-off : icon-updates-on})
-              (label :class "updates-box-text"
+                         ? icon-updates-off
+                         : icon-updates-on})
+              (label :class "updates-button-text"
                      :text {
                        auto-up == false || updates == "off"
                                         || network == "none"
                                         || updates == "0"
-                       ? "" : "${updates}"}))))
+                         ? ""
+                         : "${updates}"})
+        )))
 
-        ; standby.
-        (box :class "standby-box"
+        ; standby button.
+        (box :class "standby-button"
           (eventbox :class {
-                      standby == true ? "standby-box-on taskbar-events"
-                                      : "standby-box-off taskbar-events"}
+                      standby == true
+                        ? "standby-button-on taskbar-ev"
+                        : "standby-button-off taskbar-ev"}
                     :tooltip {
-                      standby == true ? "Swayidle is ON"
-                                      : "Swayidle is OFF"}
+                      standby == true
+                        ? "Swayidle is ON"
+                        : "Swayidle is OFF"}
                     :onclick {
-                      standby != true ? "scripts/standbyctl on"
-                      : "scripts/standbyctl off"}
+                      standby != true
+                        ? "scripts/standbyctl on"
+                        : "scripts/standbyctl off"}
                     :timeout "5s"
                     :cursor "pointer"
             (label :text {
-                     standby == true ? icon-standby-on
-                                     : icon-standby-off})))
+                     standby == true
+                       ? icon-standby-on
+                       : icon-standby-off})
+        ))
 
-        ; brightness.
-        (box :class "brightness-box"
-          (eventbox :class "taskbar-events"
+        ; brightness button.
+        (box :class "brightness-button"
+          (eventbox :class "taskbar-ev"
                     :tooltip "Brightness ${icon-arrow} ${brightness}%"
                     :onclick "eww open brightness_popup"
                     :onmiddleclick "light -S 100"
                     :onrightclick "eww close brightness_popup"
                     :cursor "pointer"
             (box
-              (label :class "brightness-box-icon"
+              (label :class "brightness-button-icon"
                      :text {icon-light})
-              (label :class "brightness-box-text"
-                     :text "${brightness}%"))))
+              (label :class "brightness-button-text"
+                     :text "${brightness}%")
+        )))
 
-        ; sound.
-        (box :class "sound-box"
-          (eventbox :class "taskbar-events"
+        ; sound button.
+        (box :class "sound-button"
+          (eventbox :class "taskbar-ev"
                     :tooltip "Volume ${icon-arrow} ${volume}%"
                     :onclick "eww open sound_popup"
                     :onmiddleclick "pulsemixer --set-volume 0"
                     :onrightclick "myxer &"
                     :cursor "pointer"
             (box
-              (label :class "sound-box-icon"
+              (label :class "sound-button-icon"
                      :text {
-                       volume != "0" ? "${icon-sound-on}"
-                       : "${icon-sound-off}"})
-              (label :class "sound-box-text"
-                     :text {volume != "0"
-                            ? "${volume}%" : "0%"}))))
+                       volume != "0"
+                         ? "${icon-sound-on}"
+                         : "${icon-sound-off}"})
+              (label :class "sound-button-text"
+                     :text {
+                       volume != "0"
+                         ? "${volume}%"
+                         : "0%"})
+        )))
 
-        ; network.
-        (box :class "network-box"
-          (eventbox :class "taskbar-events"
+        ; network button.
+        (box :class "network-button"
+          (eventbox :class "taskbar-ev"
                     :tooltip {
-                      network == "none" ? "Network is down..."
-                      : ""}
+                      network == "none"
+                        ? "Network is down..."
+                        : ""}
                     :onclick "eww open network_popup"
                     :onrightclick "${hww.terminal_cmd} nmtui &"
                     :cursor "pointer"
             (label :class {
-                     network == "none" ? "network-off"
-                     : "network-on"}
+                     network == "none"
+                       ? "network-button-off"
+                       : "network-button-on"}
                    :text {
-                     network == "none" ? icon-net-off
-                     : icon-net-on})))
+                     network == "none"
+                       ? icon-net-off
+                       : icon-net-on})
+        ))
 
-        ; datetime.
-        (box :class "datetime-box"
-          (eventbox :class "taskbar-events"
+        ; datetime button.
+        (box :class "datetime-button"
+          (eventbox :class "taskbar-ev"
                     :timeout "250ms"
                     :onhover "eww update date-visible=true"
                     :onhoverlost "eww update date-visible=false"
@@ -388,21 +463,22 @@
               (revealer :reveal "${!date-visible}"
                         :transition "slideleft"
                         :duration "250ms"
-                (label :class "datetime-box-time"
+                (label :class "datetime-button-time"
                        :text {time}))
               (revealer :reveal {date-visible}
                         :transition "slideright"
                         :duration "250ms"
-                (label :class "datetime-box-date"
-                       :text {date})))))
+                (label :class "datetime-button-date"
+                       :text {date}))
+        )))
 
-        ; battery.
-        (box :class "battery-box"
-          (eventbox :class "taskbar-events"
+        ; battery button.
+        (box :class "battery-button"
+          (eventbox :class "taskbar-ev"
                     :cursor "progress"
                     :tooltip {EWW_BATTERY.BAT0.status}
             (box :space-evenly false
-              (label :class "battery-box-icon"
+              (label :class "battery-button-icon"
                      :text {
                        bat-pw > 95 ? "${bat100}"
                        : bat-pw > 85 ? "${bat90}"
@@ -415,7 +491,7 @@
                        : bat-pw > 15 ? "${bat20}"
                        : bat-pw > 5 ? "${bat10}"
                        : "${bat00}"})
-              (label :class "battery-box-text"
+              (label :class "battery-button-text"
                      :text {
                        bat-pw > 95 ? "${bat-pw}%"
                        : bat-pw > 85 ? "${bat-pw}%"
@@ -427,15 +503,18 @@
                        : bat-pw > 25 ? "${bat-pw}%"
                        : bat-pw > 15 ? "${bat-pw}%"
                        : bat-pw > 5 ? "${bat-pw}%"
-                       : "${bat-pw}%"}))))
+                       : "${bat-pw}%"})
+        )))
 
-        ; powermenu.
-        (box :class "powermenu-box"
-          (eventbox :class "taskbar-events"
+        ; powermenu button.
+        (box :class "powermenu-button"
+          (eventbox :class "taskbar-ev"
                     :cursor "pointer"
                     :tooltip "powermenu"
                     :onclick "eww open powermenu_popup"
                     :onrightclick "eww close powermenu_popup" 
-            (label :text {icon-power})))
-      ))))
+            (label :text {icon-power})
+        ))
+      )
+)))
 

@@ -2,15 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow cpu_popup :monitor 0
-                     :geometry (geometry :x "0%"
-                                         :y "1%"
-                                         :width "30%"
-                                         :height "10%"
-                                         :anchor "top center")
+                     :geometry (
+                       geometry :x "0%"
+                                :y "1%"
+                                :width "30%"
+                                :height "10%"
+                                :anchor "top center")
                      :stacking "fg"
                      :exclusive false
                      :focusable false
-  (_cpu_popup :cpu_usage {cpu_usage}))
+  (_cpu_popup :cpu_usage {cpu_usage})
+)
 
 (defwidget _cpu_popup [cpu_usage]
   (box :class "cpu-popup"
@@ -18,13 +20,13 @@
        :space-evenly false
        :active true
        :visible true
+
     (eventbox :onhoverlost "eww close cpu_popup"
-      (box :class "cpu-popup-box"
-           :orientation "v"
+      (box :orientation "v"
            :space-evenly false
 
         ; title.
-        (box :class "cpu-popup-title-box"
+        (box :class "cpu-popup-title"
              :orientation "h"
              :halign "center"
              :space-evenly false
@@ -35,6 +37,7 @@
 
         ; content.
         (label :class "cpu-popup-content"
-               :text {cpu_usage}))
-    )))
+               :text {cpu_usage})
+    ))
+))
 

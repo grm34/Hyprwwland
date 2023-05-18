@@ -2,15 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defwindow network_popup :monitor 0
-                         :geometry (geometry :x "0%"
-                                             :y "1%"
-                                             :width "10%"
-                                             :height "10%"
-                                             :anchor "top right")
+                         :geometry (
+                           geometry :x "0%"
+                                    :y "1%"
+                                    :width "10%"
+                                    :height "10%"
+                                    :anchor "top right")
                          :stacking "fg"
                          :exclusive false
                          :focusable false
-  (_network_popup :network_devices {network_devices}))
+  (_network_popup :network_devices {network_devices})
+)
 
 (defwidget _network_popup [network_devices]
   (box :class "network-popup"
@@ -20,8 +22,10 @@
        :visible true
 
     (eventbox :onhoverlost "eww close network_popup"
-      (box :class "network-text"
+      (box :class "network-popup-box"
            :orientation "h"
-        (label :text {network_devices}))
-    )))
+        (label :class "network-popup-content"
+               :text {network_devices})
+    ))
+))
 
