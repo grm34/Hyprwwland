@@ -8,14 +8,8 @@ A simple sharing of my [eww](https://github.com/elkowar/eww) setup on Hyprland t
 <a href="https://raw.githubusercontent.com/grm34/Hyprwwland/main/assets/screenshots/screen2.png">
   <img align="center" width="49%" src="assets/screenshots/screen2.png"/>
 </a>
-<a href="https://raw.githubusercontent.com/grm34/Hyprwwland/main/assets/screenshots/screen3.png">
-  <img align="center" width="49%" src="assets/screenshots/screen3.png"/>
-</a>
-<a href="https://raw.githubusercontent.com/grm34/Hyprwwland/main/assets/screenshots/screen4.png">
-  <img align="center" width="49%" src="assets/screenshots/screen4.png"/>
-</a>
 
-https://github.com/grm34/Hyprwwland/assets/6394023/36422967-54ce-401f-bd17-5b7e22b8be2d
+https://github.com/grm34/Hyprwwland/assets/6394023/c0e354b1-1dce-44f7-9534-fda2981d512b
 
 In order to keep this clean, and being only an eww configuration, my dotfiles are on a separate repository [Hyprwwland-dotfiles](https://github.com/grm34/Hyprwwland-dotfiles).
 
