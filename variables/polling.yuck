@@ -78,5 +78,6 @@
 ; Get date and time (json).
 (defpoll datetime :interval "5s"
                   :initial "{}"
+                  :run-while {!calendar_focused}
   "scripts/datetimectl")
 
