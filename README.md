@@ -56,7 +56,7 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 | **Cursors** | [capitaine-cursors](https://github.com/keeferrourke/capitaine-cursors) |
 | **Fonts** | [Nerd Fonts](https://www.nerdfonts.com) |
 | **Icons** | [papirus-icon-theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) |
-| **GTK/Qt Theme** | [Catppuccin Mocha](https://github.com/catppuccin/catppuccin) |
+| **Themes** | [breeze-gtk](https://invent.kde.org/plasma/breeze-gtk) [adwaita-qt](https://github.com/FedoraQt/adwaita-qt) [Catppuccin](https://github.com/catppuccin/catppuccin) |
 | **GUI Settings Editor** | [nwg-look](https://github.com/nwg-piotr/nwg-look) [qt5ct](https://sourceforge.net/projects/qt5ct) [qt6ct](https://github.com/trialuser02/qt6ct) |
 | **Desktop Portal** | [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland) |
 | **Xmpp Client** | [gajim](https://gajim.org) |
