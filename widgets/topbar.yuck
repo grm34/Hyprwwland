@@ -456,8 +456,10 @@
                     :onhover "eww update date-visible=true"
                     :onhoverlost "eww update date-visible=false"
                     :cursor "pointer"
-                    :onclick "eww open calendar_popup"
-                    :onrightclick "eww close calendar_popup"
+                    :onclick "eww open calendar_popup;\
+                              eww update calendar_focused=true"
+                    :onrightclick "eww close calendar_popup;\
+                                   eww update calendar_focused=true"
             (box :space-evenly false
                  :orientation "h"
               (revealer :reveal "${!date-visible}"

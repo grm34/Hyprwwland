@@ -24,7 +24,8 @@
        :active true
        :visible true
 
-    (eventbox :onhoverlost "eww close calendar_popup"
+    (eventbox :onhoverlost "eww close calendar_popup;\
+                            eww update calendar_focused=false"
 
       (calendar :class "calendar-popup-calendar"
                 :day {day}
