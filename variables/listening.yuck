@@ -1,5 +1,6 @@
 ; Hyprwwland Copyright (c) 2023 darkmaster grm34.
 ; https://github.com/grm34/Hyprwwland
 
-(deflisten workspaces "scripts/workspacectl")
+
+(deflisten workspaces_manager "scripts/workspaces_manager")
 

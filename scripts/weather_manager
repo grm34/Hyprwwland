@@ -2,9 +2,6 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# This script is executed by a polling variable.
-# It creates an image of the local weather.
-
 # export RUST_BACKTRACE=full
 
 

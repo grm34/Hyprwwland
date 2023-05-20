@@ -11,7 +11,7 @@
                          :stacking "fg"
                          :exclusive false
                          :focusable false
-  (_updates_popup :pending {updates})
+  (_updates_popup :pending {pending_updates})
 )
 
 (defwidget _updates_popup [pending]
@@ -29,11 +29,11 @@
              :orientation "h"
           (eventbox :cursor "pointer"
                     :onclick {
-                      auto-up == true
-                        ? "eww update auto-up=false updates=off"
-                        : "eww update auto-up=true updates=0"}
+                      auto_up == true
+                        ? "eww update auto_up=false updates=off"
+                        : "eww update auto_up=true updates=0"}
             (label :text {
-                     auto-up == true
+                     auto_up == true
                        ? "${icon-up-on} Arch Linux Updates"
                        : "${icon-up-off} Arch Linux Updates"})
         ))
@@ -46,7 +46,7 @@
             (eventbox :class "updates-popup-button-up-ev"
                       :timeout "5s"
                       :onclick "eww close updates_popup;\
-                                scripts/updatectl update &"
+                                scripts/updates_manager update &"
                       :cursor "pointer"
               (label :text "Update")))
 
@@ -54,7 +54,7 @@
             (eventbox :class "updates-popup-button-check-ev"
                       :timeout "5s"
                       :onclick "eww close updates_popup;\
-                                scripts/updatectl check &"
+                                scripts/updates_manager check &"
                       :cursor "pointer"
               (label :text "Check")))
         )

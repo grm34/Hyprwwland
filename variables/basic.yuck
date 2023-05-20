@@ -1,7 +1,7 @@
 ; Hyprwwland Copyright (c) 2023 darkmaster grm34.
 ; https://github.com/grm34/Hyprwwland
 
-; workspaces.
+; wsbar (topbar).
 (defvar ws1 "ws-inactive")
 (defvar ws2 "ws-inactive")
 (defvar ws3 "ws-inactive")
@@ -12,17 +12,23 @@
 (defvar ws8 "ws-inactive")
 (defvar ws9 "ws-inactive")
 
-; taskbar.
-(defvar auto-up true)
+; taskbar (topbar).
+(defvar auto_up true)
+(defvar pending_updates "0")
+(defvar standby_status true)
 (defvar calendar_focused false)
-(defvar power-request "status")
+(defvar power_request "status")
 
-; revealers.
-(defvar cpu-graph-visible false)
-(defvar ram-graph-visible false)
-(defvar disk-graph-visible false)
-(defvar temp-graph-visible false)
-(defvar date-visible false)
-(defvar dock-visible false)
-(defvar power-visible false)
+; mainbar (topbar).
+(defvar cpu_graph_visible false)
+(defvar ram_graph_visible false)
+(defvar disk_graph_visible false)
+(defvar temp_graph_visible false)
+(defvar date_visible false)
+
+; dock.
+(defvar dock_visible false)
+
+; powermenu.
+(defvar power_visible false)
 

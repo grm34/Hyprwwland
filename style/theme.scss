@@ -295,7 +295,6 @@
 
 // datetime (taskbar).
 .datetime-button {
-  padding-right: 6px;
   color: #c2b280;
 }
 
@@ -316,7 +315,6 @@
 
 .battery-button-icon {
   font-size: 12px;
-  padding-right: 6px;
 }
 
 .battery-button-text {
@@ -463,11 +461,15 @@
 }
 
 .cpu-popup-content {
-  background-color: #16181A;
   color: #eee8aa;
   font-family: JetBrainsMonoNerdFont;
   font-size: 12px;
-  padding: 14px 10px 8px 14px;
+  padding: 10px 30px 20px 20px;
+}
+
+.cpu-popup-scroll {
+  background-color: #16181A;
+  padding: 14px 10px 0px 4px;
   border-left: 4px solid #b8860b;
   border-top: 3px solid #ed2939;
   border-radius: 0px 32px 0px 20px;
