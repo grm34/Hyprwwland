@@ -25,7 +25,7 @@
       (box :orientation "v"
            :space-evenly false
 
-        ; title.
+        ; titlebar.
         (box :class "cpu-popup-title"
              :orientation "h"
              :halign "center"
@@ -36,8 +36,12 @@
                  :text "RUNNING PROCESS"))
 
         ; content.
-        (label :class "cpu-popup-content"
-               :text {cpu_usage})
+        (scroll :class "cpu-popup-scroll"
+                :vscroll true
+                :hscroll false
+                :height 300
+          (label :class "cpu-popup-content"
+                 :text {cpu_usage}))
     ))
 ))
 

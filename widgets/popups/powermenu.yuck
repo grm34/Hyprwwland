@@ -24,53 +24,53 @@
 
     (eventbox :timeout "200ms"
               :onhoverlost {
-                power-visible != true
+                power_visible != true
                   ? "eww close powermenu_popup"
                   : ""}
       (box :space-evenly false
            :orientation "v"
 
         ; powermenu.
-        (revealer :reveal "${!power-visible}"
+        (revealer :reveal "${!power_visible}"
                   :transition "slideup"
                   :duration "250ms"
           (box :orientation "h"
 
             ; shutdown.
             (eventbox :class "powermenu-popup-shutdown"
-                      :onclick "eww update power-visible=true\
-                                power-request=poweroff"
+                      :onclick "eww update power_visible=true\
+                                power_request=poweroff"
                       :cursor "pointer"
                       :tooltip "Shutdown"
               (label :text {icon-shutdown}))
 
             ; reboot.
             (eventbox :class "powermenu-popup-reboot"
-                      :onclick "eww update power-visible=true\
-                                power-request=reboot"
+                      :onclick "eww update power_visible=true\
+                                power_request=reboot"
                       :cursor "pointer"
                       :tooltip "Reboot"
               (label :text {icon-reboot}))
 
             ; suspend.
             (eventbox :class "powermenu-popup-suspend"
-                      :onclick "eww update power-visible=true\
-                                power-request=suspend"
+                      :onclick "eww update power_visible=true\
+                                power_request=suspend"
                       :cursor "pointer"
                       :tooltip "Suspend"
               (label :text {icon-sleep}))
 
             ; logout.
             (eventbox :class "powermenu-popup-logout"
-                      :onclick "eww update power-visible=true\
-                                power-request=logout"
+                      :onclick "eww update power_visible=true\
+                                power_request=logout"
                       :cursor "pointer"
                       :tooltip "Logout"
               (label :text {icon-logout}))
         ))
 
         ; confirm/cancel.
-        (revealer :reveal "${power-visible}"
+        (revealer :reveal "${power_visible}"
                   :transition "slidedown"
                   :duration "250ms" 
           (box :class "powermenu-popup-confirmation"
@@ -79,14 +79,14 @@
             ; confirm action.
             (box :class "powermenu-popup-confirm"
               (eventbox :class "powermenu-popup-confirm-button"
-                        :onclick "scripts/powerctl ${power-request}"
+                        :onclick "scripts/power_manager ${power_request}"
                         :cursor "pointer"
                 (label :text "Confirm")))
 
             ; cancel action.
             (box :class "powermenu-popup-cancel"
               (eventbox :class "powermenu-popup-cancel-button"
-                       :onclick "eww update power-visible=false"
+                       :onclick "eww update power_visible=false"
                        :cursor "pointer"
                 (label :text "Cancel")))
         ))

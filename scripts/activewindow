@@ -2,10 +2,6 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# This script is executed only on event.
-# It checks the state of the current window
-# in order to open or not the requested element.
-
 # export RUST_BACKTRACE=full
 
 

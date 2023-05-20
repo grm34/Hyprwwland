@@ -2,10 +2,6 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# This script is executed by a polling variable.
-# It recursively scans a folder for applications and
-# returns a yuck widget containing each shortcut found.
-
 # export RUST_BACKTRACE=full
 
 

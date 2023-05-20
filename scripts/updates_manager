@@ -2,10 +2,6 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# This script is executed by a polling variable
-# but can also be executed by user events (button).
-# It simply controls the management of system updates.
-
 # export RUST_BACKTRACE=full
 
 
@@ -54,7 +50,7 @@ function notify_user() {
 # Exit if network is down.
 if ! check_network; then
   [[ $1 ]] && notify_user "down"
-  eww update updates="off"
+  eww update pending_updates="off"
   exit
 fi
 
@@ -65,9 +61,7 @@ case $1 in
     (( _ == 0 )) && { notify_user "up" && exit ;}
     (( _ > 0 )) &&
       eval "$terminal_cmd" sudo "$aur_helper" & wait $!
-    sleep 1
-    : "$(get_updates)"
-    eww update updates="$_"
+    eww update pending_updates="$(get_updates)"
     ;;
   check)
     # onclick: check, notify pending updates, update status.
@@ -77,7 +71,7 @@ case $1 in
     [[ $nb =~ ^[0-9]+$ ]] && canberra-gtk-play -i "window-question"
     : "nb" && [[ $nb == 0 ]] && : "up"
     notify_user "$_" "$nb"
-    eww update updates="$nb"
+    eww update pending_updates="$nb"
     ;;
   *)
     # onpoll: check and return status if auto-up is true (int).
@@ -85,6 +79,7 @@ case $1 in
     if [[ $_ != "false" ]]; then  
       check_updates
       get_updates
+      eww update pending_updates="$(get_updates)"
     fi
 esac
 

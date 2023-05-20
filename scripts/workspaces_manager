@@ -2,10 +2,6 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# This script is controlled by a listening variable.
-# It returns the state of the workspaces at startup and
-# then listens for events to update them automatically.
-
 # export RUST_BACKTRACE=full
 
 

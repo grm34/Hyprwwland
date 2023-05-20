@@ -1,83 +1,82 @@
 ; Hyprwwland Copyright (c) 2023 darkmaster grm34.
 ; https://github.com/grm34/Hyprwwland
 
-; Get user config (json).
+
 (defpoll hww :interval "2h"
              :initial "{}"
   "cat config.json")
 
-; Get dock applications (str).
-(defpoll dock :interval "5m"
-              :initial ""
-  "scripts/dockctl")
 
-; Get launcher applications (str).
+(defpoll dock_manager :interval "5m"
+                      :initial ""
+  "scripts/dock_manager")
+
+
 (defpoll launcher :interval "10m"
                   :initial ""
-  "scripts/launcherctl")
+  "scripts/launcher_manager")
 
-; Get running PIDs (str).
+
 (defpoll cpu_usage :interval "1s"
-  "bash -c 'top -s -b -n 1 -u $USER' | head -n 20")
+  "bash -c 'top -s -b -n 1 -u $USER'")
 
-; Get ram usage (str).
+
 (defpoll ram_usage :interval "5s"
                    :initial ""
   "free -h")
 
-; Get disk usage (str).
+
 (defpoll disk_usage :interval "2m"
                     :initial ""
   "duf -output size,used,avail,usage,type,filesystem /")
 
-; Get temp sensors (str).
+
 (defpoll temp_sensors :interval "5s"
                       :initial ""
   "sensors")
 
-; Get weather path (str).
+
 (defpoll weather :interval "1h"
                  :initial "assets/weather/current.png"
-  "scripts/weatherctl")
+  "scripts/weather_manager")
 
-; Get neofetch (str).
+
 (defpoll sysinfo :interval "30m"
                  :initial "Hyprwwland"
   "neofetch --off --color_blocks off --stdout")
 
-; Get number of pending updates (str).
-(defpoll updates :interval "15m"
-                 :initial "off"
-  "scripts/updatectl")
 
-; Get standby state (bool).
+(defpoll updates_manager :interval "15m"
+  "scripts/updates_manager")
+
+
 (defpoll standby :interval "2h"
                  :initial true
-  "scripts/standbyctl")
+  "scripts/standby_manager")
 
-; Get screen brightness (str).
+
 (defpoll brightness :interval "2s"
                     :initial "90"
   "light -G | cut -d'.' -f1")
 
-; Get sound volume (str).
+
 (defpoll volume :interval "2s"
                 :initial "90"
   "pulsemixer --get-volume | cut -d' ' -f1")
 
-; Get network state (str).
+
 (defpoll network_status :interval "3s"
                         :initial "none"
   "nmcli networking connectivity")
 
-; Get network devices (str).
+
 (defpoll network_devices :interval "30s"
                          :initial ""
   "nmcli device status")
 
-; Get date and time (json).
+
 (defpoll datetime :interval "5s"
                   :initial "{}"
                   :run-while {!calendar_focused}
-  "scripts/datetimectl")
+  "scripts/date_manager")
 

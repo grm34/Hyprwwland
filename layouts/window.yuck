@@ -1,0 +1,38 @@
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
+
+
+(defwidget window [?title_icon ?title_text ?close_icon
+                   window_content ?footer_content]
+
+  ; Window title.
+  (box :class "window-title"
+       :orientation "h"
+       :halign "center"
+       :space-evenly false
+    (label :class "titlebar-icon"
+           :text {titlebar_icon})
+    (label :class "titlebar-text"
+           :text {titlebar_text})
+    (label :class "titlebar-close"
+           :text {close_icon})
+  )
+
+  ; Window content.
+  (box :class "window-content"
+       :orientation "v"
+       :valign "center"
+       :space-evenly false
+    (label :text {window_content})
+  )
+
+  ; Window footer.
+  (box :class "window-footer"
+       :orientation "h"
+       :valign "center"
+       :space-evenly false
+    (label :text {footer_content})
+  )
+
+)
+

@@ -129,19 +129,11 @@ wallpaper = ~/.config/eww/assets/wallpapers/od_neon.png
 
 - Workspace manager that makes it easy to see the status of occupied spaces.
 - Real-time monitoring of processor, memory, sensors and disk usage.
-- Application launcher dock which can be used for favorite applications.
+- Application launcher + dock which can be used for favorite applications.
 - Display of pending updates with the possibility to update in one click.
 - Quick access to volume and screen brightness controls.
 - Display of the local weather in terminal mode.
 - Power menu, network devices, sleep control and much more to come.
 - Easily customizable with simple CSS/SCSS.
 - Pick up everything you need, it's free.
-
-## Troubleshooting
-
-Sometimes hot reloading or `eww reload` doesn't work. In that case use :
-
-```bash
-pkill -f -9 eww; eww open-many topbar dock
-```
 

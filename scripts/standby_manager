@@ -2,10 +2,6 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# This script is executed by a polling variable
-# but can also be executed by user events (button).
-# It simply controls the management of the sleep mode.
-
 # export RUST_BACKTRACE=full
 
 
@@ -28,12 +24,12 @@ function standby_mode() {
 case $1 in
   on)
     # onclick: activate.
-    eww update standby=true
+    eww update standby_status=true
     standby_mode
     ;;
 	off)
     # onclick: deactivate.
-    eww update standby=false
+    eww update standby_status=false
     pkill -f -9 swayidle
     ;;
   *)
