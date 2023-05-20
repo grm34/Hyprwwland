@@ -11,35 +11,19 @@
                      :stacking "fg"
                      :exclusive false
                      :focusable false
-  (_ram_popup :ram_usage {ram_usage})
-)
 
-(defwidget _ram_popup [ram_usage]
-  (box :class "ram-popup"
-       :orientation "v"
-       :space-evenly false
-       :active true
-       :visible true
+  (window :main_class "ram-popup"
+          :ev_onhoverlost "eww close ram_popup"
+          :titlebar_class "ram-popup-titlebar"
+          :icon_class "ram-popup-title-icon"
+          :icon_content {icon-ram}
+          :title_class "ram-popup-title-text"
+          :title_content "MEMORY USAGE"
+          :window_class "ram-popup-content"
+          :window_content {ram_usage}
+          :footer_class "ram-popup-footer"
+          :footer_content ""
+          :ev_onhoverlost "eww close ram_popup"
 
-    (eventbox :onhoverlost "eww close ram_popup"
-      (box :class "ram-popup-box"
-           :orientation "v"
-           :space-evenly false
-
-        ; title.
-        (box :class "ram-popup-title-box"
-             :orientation "h"
-             :halign "center"
-             :space-evenly false
-          (label :class "ram-popup-title-icon"
-                 :text {icon-ram})
-          (label :class "ram-popup-title-text"
-                 :text "MEMORY USAGE"))
-
-        ; content.
-        (box :class "ram-popup-content"
-             :orientation "h"
-          (label :text {ram_usage}))
-    ))
 ))
 

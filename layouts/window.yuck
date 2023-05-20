@@ -2,37 +2,48 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwidget window [?title_icon ?title_text ?close_icon
-                   window_content ?footer_content]
+(defwidget window [main_class ?ev_onhoverlost ?titlebar_class
+                   ?icon_class ?icon_content ?title_class
+                   ?title_content ?window_class window_content
+                   ?footer_class ?footer_content]
 
-  ; Window title.
-  (box :class "window-title"
-       :orientation "h"
-       :halign "center"
-       :space-evenly false
-    (label :class "titlebar-icon"
-           :text {titlebar_icon})
-    (label :class "titlebar-text"
-           :text {titlebar_text})
-    (label :class "titlebar-close"
-           :text {close_icon})
-  )
+  (eventbox :onhoverlost {ev_onhoverlost}
+    (box :class {main_class}
+         :orientation "v"
+         :space-evenly false
 
-  ; Window content.
-  (box :class "window-content"
-       :orientation "v"
-       :valign "center"
-       :space-evenly false
-    (label :text {window_content})
-  )
+      ; Window title.
+      (box :class "window-title ${titlebar_class}"
+           :orientation "h"
+           :halign "center"
+           :space-evenly false
+           :visible {title_content != '' ? true : false}
+        (label :class "titlebar-icon ${icon_class}"
+               :text {icon_content})
+        (label :class "titlebar-text ${title_class}"
+               :text {title_content})
+        (label :class "titlebar-close"
+               :text "")
+      )
 
-  ; Window footer.
-  (box :class "window-footer"
-       :orientation "h"
-       :valign "center"
-       :space-evenly false
-    (label :text {footer_content})
-  )
+      ; Window content.
+      (box :class "window-content"
+           :orientation "v"
+           :valign "center"
+           :space-evenly false
+        (label :class {window_class}
+               :text {window_content})
+      )
 
-)
+      ; Window footer.
+      (box :class "window-footer"
+           :orientation "h"
+           :valign "center"
+           :space-evenly false
+           :visible {footer_content != '' ? true : false}
+        (label :class "footer-content ${footer_class}"
+               :text {footer_content})
+      )
+
+)))
 

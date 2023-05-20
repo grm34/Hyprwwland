@@ -11,6 +11,7 @@
 ; Import layouts.
 (include "layouts/event_button.yuck")
 (include "layouts/event_revealer.yuck")
+(include "layouts/window.yuck")
 
 ; Import popups.
 (include "widgets/popups/launcher.yuck")

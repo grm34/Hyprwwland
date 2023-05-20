@@ -2,7 +2,7 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwidget ev_button [?main_class ?ev_class ?ev_tooltip ?ev_cursor
+(defwidget ev_button [main_class ?ev_class ?ev_tooltip ?ev_cursor
                       ?ev_timeout ?ev_onclick ?ev_onmiddleclick
                       ?ev_onrightclick ?ev_icon_class ?ev_icon_content
                       ?ev_text_class ?ev_text_content]
