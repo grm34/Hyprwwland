@@ -61,7 +61,8 @@ case $1 in
     (( _ == 0 )) && { notify_user "up" && exit ;}
     (( _ > 0 )) &&
       eval "$terminal_cmd" sudo "$aur_helper" & wait $!
-    eww update pending_updates="$(get_updates)"
+    : "$(get_updates)"
+    eww update pending_updates="$_"
     ;;
   check)
     # onclick: check, notify pending updates, update status.
@@ -78,8 +79,8 @@ case $1 in
     : "$(eww get auto-up)"
     if [[ $_ != "false" ]]; then  
       check_updates
-      get_updates
-      eww update pending_updates="$(get_updates)"
+      : "$(get_updates)"
+      eww update pending_updates="$_"
     fi
 esac
 
