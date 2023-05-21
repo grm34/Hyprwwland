@@ -2,9 +2,10 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwidget window [main_class ?ev_onhoverlost ?titlebar_class
+(defwidget window [type main_class ?ev_onhoverlost ?titlebar_class
                    ?icon_class ?icon_content ?title_class
                    ?title_content ?window_class window_content
+                   ?scroll_class ?scroll_v ?scroll_h ?scroll_height
                    ?footer_class ?footer_content]
 
   (eventbox :onhoverlost {ev_onhoverlost}
@@ -31,8 +32,21 @@
            :orientation "v"
            :valign "center"
            :space-evenly false
+
+        ; Simple content.
         (label :class {window_class}
+               :visible {type == 'simple' ? true : false}
                :text {window_content})
+
+        ; Scrolled content.
+        (scroll :class {scroll_class}
+                :visible {type == 'scroll' ? true : false}
+                :vscroll {scroll_v}
+                :hscroll {scroll_h}
+                :height {scroll_height}
+          (label :class {window_class}
+                 :text {window_content}))
+
       )
 
       ; Window footer.
