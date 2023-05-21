@@ -28,7 +28,6 @@
           :window_content {cpu_usage}
           :footer_class "cpu-popup-footer"
           :footer_content ""
-          :ev_onhoverlost "eww close cpu_popup"
 
 ))
 

@@ -13,22 +13,20 @@
 (include "layouts/event_revealer.yuck")
 (include "layouts/window.yuck")
 
-; Import <monitoring> popups.
-(include "widgets/popups/monitoring/launcher.yuck")
+; Import popups.
+(include "widgets/popups/launcher/launcher.yuck")
 (include "widgets/popups/monitoring/cpu.yuck")
 (include "widgets/popups/monitoring/disk.yuck")
 (include "widgets/popups/monitoring/ram.yuck")
 (include "widgets/popups/monitoring/temp.yuck")
 (include "widgets/popups/monitoring/sysinfo.yuck")
 (include "widgets/popups/monitoring/weather.yuck")
-
-; Import <tasks> popups.
 (include "widgets/popups/tasks/updates.yuck")
 (include "widgets/popups/tasks/brightness.yuck")
 (include "widgets/popups/tasks/sound.yuck")
 (include "widgets/popups/tasks/network.yuck")
 (include "widgets/popups/tasks/calendar.yuck")
-(include "widgets/popups/tasks/powermenu.yuck")
+(include "widgets/popups/powermenu/powermenu.yuck")
 
 ; Import dock.
 (include "widgets/dock/dock.yuck")
