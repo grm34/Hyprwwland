@@ -1,6 +1,7 @@
 ; Hyprwwland Copyright (c) 2023 darkmaster grm34.
 ; https://github.com/grm34/Hyprwwland
 
+
 (defwindow weather_popup :monitor 0
                          :geometry (
                            geometry :x "0%"
@@ -11,20 +12,16 @@
                          :stacking "fg"
                          :exclusive false
                          :focusable false
-  (_weather_popup :weather {weather})
-)
 
-(defwidget _weather_popup [weather]
-  (box :class "weather-popup"
-       :orientation "v"
-       :space-evenly false
-       :active true
-       :visible true
+  (window :type "simple"
+          :main_class "weather-popup"
+          :ev_onhoverlost "eww close weather_popup"
+          :window_class "weather-popup-content"
+          :image_path {weather}
+          :image_width 504
+          :footer_class "weather-popup-footer"
+          :footer_content ""
+          :ev_onhoverlost "eww close weather_popup"
 
-    (eventbox :onhoverlost "eww close weather_popup"
-      (box :class "weather-popup-content"
-           :orientation "h"
-        (image :path {weather})
-    ))
 ))
 

@@ -1,0 +1,33 @@
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
+
+
+(defwindow cpu_popup :monitor 0
+                     :geometry (
+                       geometry :x "0%"
+                                :y "1%"
+                                :width "30%"
+                                :height "10%"
+                                :anchor "top center")
+                     :stacking "fg"
+                     :exclusive false
+                     :focusable false
+
+  (window :type "scroll"
+          :main_class "cpu-popup"
+          :ev_onhoverlost "eww close cpu_popup"
+          :titlebar_class "cpu-popup-titlebar"
+          :icon_class "cpu-popup-title-icon"
+          :icon_content {icon-cpu}
+          :title_class "cpu-popup-title-text"
+          :title_content "RUNNING PROCESS"
+          :scroll_class "cpu-popup-scroll"
+          :scroll_v true
+          :scroll_height 300
+          :window_class "cpu-popup-content"
+          :window_content {cpu_usage}
+          :footer_class "cpu-popup-footer"
+          :footer_content ""
+
+))
+
