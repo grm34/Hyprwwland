@@ -23,7 +23,6 @@
           :title_content "RUNNING PROCESS"
           :scroll_class "cpu-popup-scroll"
           :scroll_v true
-          :scroll_h false
           :scroll_height 300
           :window_class "cpu-popup-content"
           :window_content {cpu_usage}

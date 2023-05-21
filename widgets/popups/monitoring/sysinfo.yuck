@@ -1,6 +1,7 @@
 ; Hyprwwland Copyright (c) 2023 darkmaster grm34.
 ; https://github.com/grm34/Hyprwwland
 
+
 (defwindow sysinfo_popup :monitor 0
                          :geometry (
                            geometry :x "0%"
@@ -11,21 +12,14 @@
                          :stacking "fg"
                          :exclusive false
                          :focusable false
-  (_sysinfo_popup :sysinfo {sysinfo})
-)
 
-(defwidget _sysinfo_popup [sysinfo]
-  (box :class "sysinfo-popup"
-       :valign "start"
-       :active true
-       :visible true
+  (window :type "simple"
+          :main_class "sysinfo-popup"
+          :ev_onhoverlost "eww close sysinfo_popup"
+          :image_path "assets/images/archlinux-logo.svg"
+          :image_width 260
+          :window_content {sysinfo}
+          :ev_onhoverlost "eww close sysinfo_popup"
 
-    (eventbox :onhoverlost "eww close sysinfo_popup"
-      (box :orientation "v"
-           :space-evenly false
-        (image :path "assets/images/archlinux-logo.svg"
-               :image-width 260)
-        (label :text {sysinfo})
-    ))
 ))
 

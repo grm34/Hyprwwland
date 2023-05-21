@@ -3,9 +3,10 @@
 
 
 (defwidget window [type main_class ?ev_onhoverlost ?titlebar_class
-                   ?icon_class ?icon_content ?title_class
-                   ?title_content ?window_class window_content
+                   ?icon_class ?icon_content ?title_class ?title_content 
+                   ?image_path ?image_width
                    ?scroll_class ?scroll_v ?scroll_h ?scroll_height
+                   ?window_class ?window_content
                    ?footer_class ?footer_content]
 
   (eventbox :onhoverlost {ev_onhoverlost}
@@ -33,6 +34,11 @@
            :valign "center"
            :space-evenly false
 
+        ; Image header.
+        (image :path {image_path}
+               :image-width {image_width != '' ? image_width : 400}
+               :visible {image_path != '' ? true : false})
+
         ; Simple content.
         (label :class {window_class}
                :visible {type == 'simple' ? true : false}
@@ -41,9 +47,9 @@
         ; Scrolled content.
         (scroll :class {scroll_class}
                 :visible {type == 'scroll' ? true : false}
-                :vscroll {scroll_v}
-                :hscroll {scroll_h}
-                :height {scroll_height}
+                :vscroll {scroll_v != '' ? scroll_v : false}
+                :hscroll {scroll_h != '' ? scroll_h : false}
+                :height {scroll_height != '' ? scroll_height : 0}
           (label :class {window_class}
                  :text {window_content}))
 
