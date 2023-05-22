@@ -76,7 +76,7 @@ case $1 in
     ;;
   *)
     # onpoll: check and return status if auto-up is true (int).
-    : "$(eww get auto-up)"
+    : "$(eww get auto_up)"
     if [[ $_ != "false" ]]; then  
       check_updates
       : "$(get_updates)"
