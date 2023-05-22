@@ -13,10 +13,10 @@
                   :exclusive true
                   :focusable false
   (centerbox
-    (workspaces :halign "start"
-                :action {workspaces_manager})
-    (monitoring :halign "center")
-    (tasks :halign "end")
+    (workbar :halign "start"
+             :action {workspaces_manager})
+    (mainbar :halign "center")
+    (taskbar :halign "end")
   )
 )
 

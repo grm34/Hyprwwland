@@ -2,7 +2,7 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwidget monitoring []
+(defwidget mainbar []
   (box :class "monitoring"
        :space-evenly false
        :halign "center"

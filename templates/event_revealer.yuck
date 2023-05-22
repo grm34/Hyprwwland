@@ -2,16 +2,17 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwidget ev_revealer [type main_class ?ev_class ?ev_cursor ?ev_tooltip
-                        ?ev_timeout ?ev_onhover ?ev_onhoverlost
-                        ?ev_onclick ?ev_onmiddleclick ?ev_onrightclick
-                        ?ev_reveal ?ev_duration
+(defwidget ev_revealer [type main_class ?ev_class ?ev_cursor 
+                        ?ev_tooltip ?ev_timeout ?ev_onhover
+                        ?ev_onhoverlost ?ev_onclick ?ev_onmiddleclick
+                        ?ev_onrightclick ?ev_reveal ?ev_duration
                         ?ev_on_transition ?ev_on_class ?ev_on_content
                         ?ev_on_icon_class ?ev_on_icon_content
                         ?ev_on_text_class ?ev_on_text_content
                         ?ev_on_value_class ?ev_on_value_content
-                        ?ev_off_transition ?ev_off_class ?ev_off_content
-                        ?ev_off_value_class ?ev_off_value_content]
+                        ?ev_off_transition ?ev_off_class
+                        ?ev_off_content ?ev_off_value_class
+                        ?ev_off_value_content]
                   
   (box :class {main_class}
     (eventbox :class {ev_class}
