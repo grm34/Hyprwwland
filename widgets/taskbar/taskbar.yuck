@@ -2,7 +2,7 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwidget tasks []
+(defwidget taskbar []
 
   (box :class "taskbar"
        :orientation "h"
@@ -109,24 +109,24 @@
 
     ; Datetime revealer.
     (ev_revealer :type "simple"
-               :main_class "datetime-button"
-               :ev_class "taskbar-ev"
-               :ev_cursor "pointer"
-               :ev_timeout "250ms"
-               :ev_onhover "eww update date_visible=true"
-               :ev_onhoverlost "eww update date_visible=false"
-               :ev_onclick "eww open calendar_popup;\
-                            eww update calendar_focused=true"
-               :ev_onrightclick "eww close calendar_popup;\
-                                 eww update calendar_focused=true"
-               :ev_reveal {date_visible}
-               :ev_duration "250ms"
-               :ev_on_class "datetime-button-time"
-               :ev_on_transition "slideleft"
-               :ev_on_content {datetime.time}
-               :ev_off_class "datetime-button-date"
-               :ev_off_transition "slideright"
-               :ev_off_content {datetime.date}
+                 :main_class "datetime-button"
+                 :ev_class "taskbar-ev"
+                 :ev_cursor "pointer"
+                 :ev_timeout "250ms"
+                 :ev_onhover "eww update date_visible=true"
+                 :ev_onhoverlost "eww update date_visible=false"
+                 :ev_onclick "eww open calendar_popup;\
+                              eww update calendar_focused=true"
+                 :ev_onrightclick "eww close calendar_popup;\
+                                   eww update calendar_focused=true"
+                 :ev_reveal {date_visible}
+                 :ev_duration "250ms"
+                 :ev_on_class "datetime-button-time"
+                 :ev_on_transition "slideleft"
+                 :ev_on_content {datetime.time}
+                 :ev_off_class "datetime-button-date"
+                 :ev_off_transition "slideright"
+                 :ev_off_content {datetime.date}
     )    
 
     ; Battery button.

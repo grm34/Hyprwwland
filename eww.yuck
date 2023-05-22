@@ -8,32 +8,34 @@
 (include "variables/polling.yuck")
 (include "variables/symbols.yuck")
 
-; Import layouts.
-(include "layouts/event_button.yuck")
-(include "layouts/event_revealer.yuck")
-(include "layouts/window.yuck")
+; Import templates.
+(include "templates/event_button.yuck")
+(include "templates/event_revealer.yuck")
+(include "templates/window.yuck")
 
-; Import popups.
-(include "widgets/popups/launcher/launcher.yuck")
-(include "widgets/popups/monitoring/cpu.yuck")
-(include "widgets/popups/monitoring/disk.yuck")
-(include "widgets/popups/monitoring/ram.yuck")
-(include "widgets/popups/monitoring/temp.yuck")
-(include "widgets/popups/monitoring/sysinfo.yuck")
-(include "widgets/popups/monitoring/weather.yuck")
-(include "widgets/popups/tasks/updates.yuck")
-(include "widgets/popups/tasks/brightness.yuck")
-(include "widgets/popups/tasks/sound.yuck")
-(include "widgets/popups/tasks/network.yuck")
-(include "widgets/popups/tasks/calendar.yuck")
-(include "widgets/popups/powermenu/powermenu.yuck")
+; Import workbar.
+(include "widgets/workbar/workbar.yuck")
 
-; Import dock.
-(include "widgets/dock/dock.yuck")
+; Import mainbar.
+(include "widgets/mainbar/launcher.yuck")
+(include "widgets/mainbar/cpu.yuck")
+(include "widgets/mainbar/ram.yuck")
+(include "widgets/mainbar/disk.yuck")
+(include "widgets/mainbar/temp.yuck")
+(include "widgets/mainbar/sysinfo.yuck")
+(include "widgets/mainbar/weather.yuck")
+(include "widgets/mainbar/mainbar.yuck")
 
-; Import topbar.
-(include "widgets/topbar/workspaces.yuck")
-(include "widgets/topbar/monitoring.yuck")
-(include "widgets/topbar/tasks.yuck")
-(include "widgets/topbar/topbar.yuck")
+; Import taskbar.
+(include "widgets/taskbar/updates.yuck")
+(include "widgets/taskbar/brightness.yuck")
+(include "widgets/taskbar/sound.yuck")
+(include "widgets/taskbar/network.yuck")
+(include "widgets/taskbar/calendar.yuck")
+(include "widgets/taskbar/powermenu.yuck")
+(include "widgets/taskbar/taskbar.yuck")
+
+; Import widgets.
+(include "widgets/dock.yuck")
+(include "widgets/topbar.yuck")
 
