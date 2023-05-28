@@ -4,38 +4,45 @@
 # https://github.com/grm34/Hyprwwland
 
 
-function update_eww() {
+function eww_update() {
   : "$(eww get ws)"
-  # shellcheck disable=SC2016
-  : "$(printf '%s' "$_" | jaq -c --arg id "$1" --arg key "$2" \
-       '[(.[] | select(.index == $id).class |= $key)]')"
+  : "$(printf '%s' "$_" | jaq -c --arg value "$1" "$2")"
   eww update ws="$_"
 }
+
 
 function update_occupied_workspaces() {
   local occupied id
   readarray -t occupied < <(hyprctl workspaces -j | jaq '.[]?.id?')
   for id in "${occupied[@]}"; do
-    [[ $id != "$1" ]] && update_eww "$id" "ws-occupied"
+    if [[ $id != "$1" ]]; then
+      id=$((id-1))
+      eww_update "ws-occupied" "(.[$id].class|=\$value)"
+    fi
   done
 }
+
 
 function handle() {
   case $1 in
     workspace*|createworkspace*)
-      update_eww "${1##*>>}" "ws-active"
+      id=$((${1##*>>}-1))
+      eww_update "ws-active" "(.[$id].class|=\$value)"
       update_occupied_workspaces "${1##*>>}"
       ;;
     destroyworkspace*)
-      update_eww "${1##*>>}" "ws-inactive"
+      id=$((${1##*>>}-1))
+      eww_update "ws-inactive" "(.[$id].class|=\$value)"
   esac
-
 }
+
 
 # On start: update workspaces status.
 active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
-update_eww "$active" "ws-active"
+id=$((active-1))
+eww_update "ws-active" "(.[$id].class|=\$value)"
 update_occupied_workspaces "$active"
+
 
 # Listen UNIX Socket for events (IPC).
 socat -U\
