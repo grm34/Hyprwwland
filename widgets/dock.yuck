@@ -2,6 +2,12 @@
 ; https://github.com/grm34/Hyprwwland
 
 
+(defvar dock_visible false)
+(defpoll dock_manager :interval "5m"
+                      :initial "[]"
+  "scripts/dock_manager")
+
+
 (defwindow dock :monitor 0
                 :geometry (
                   geometry :x "0%"
@@ -16,7 +22,7 @@
   (eventbox :class "dock"
             :valign "center"
             :timeout "200ms"
-            :onhover "scripts/activewindow dock"
+            :onhover "scripts/win_manager dock"
             :onhoverlost "eww update dock_visible=false"
     (box :space-evenly false
 
@@ -30,14 +36,22 @@
                   :tooltip "dock"
                   :onclick "eww update dock_visible=true"
           (image :path "assets/images/dock.png"
-                 :image-width 6)))
+                 :image-width 6)
+      ))
 
       ; Dock content.
       (revealer :reveal {dock_visible}
                 :transition "slideleft"
                 :duration "250ms"
         (box :class "dock-applications"
-          (literal :content {dock_manager})))
-
+             :orientation "v"
+          (for app in dock_manager
+            (eventbox :class "dock-app"
+                      :tooltip {app.name}
+                      :onclick {app.cmd}
+                      :cursor "pointer"
+              (image :path {app.icon}
+                     :image-width {app.size})
+      ))))
 )))
 

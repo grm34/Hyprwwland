@@ -2,40 +2,35 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-; Import variables.
-(include "variables/basic.yuck")
-(include "variables/listening.yuck")
-(include "variables/polling.yuck")
-(include "variables/symbols.yuck")
+; Import user config.
+(defpoll hww :interval "2h"
+             :initial "{}"
+  "cat config.json")
 
-; Import templates.
-(include "templates/event_button.yuck")
-(include "templates/event_revealer.yuck")
-(include "templates/window.yuck")
-
-; Import workbar.
-(include "widgets/workbar/workbar.yuck")
-
-; Import mainbar.
-(include "widgets/mainbar/launcher.yuck")
-(include "widgets/mainbar/cpu.yuck")
-(include "widgets/mainbar/ram.yuck")
-(include "widgets/mainbar/disk.yuck")
-(include "widgets/mainbar/temp.yuck")
-(include "widgets/mainbar/sysinfo.yuck")
-(include "widgets/mainbar/weather.yuck")
-(include "widgets/mainbar/mainbar.yuck")
-
-; Import taskbar.
-(include "widgets/taskbar/updates.yuck")
-(include "widgets/taskbar/brightness.yuck")
-(include "widgets/taskbar/sound.yuck")
-(include "widgets/taskbar/network.yuck")
-(include "widgets/taskbar/calendar.yuck")
-(include "widgets/taskbar/powermenu.yuck")
-(include "widgets/taskbar/taskbar.yuck")
 
 ; Import widgets.
 (include "widgets/dock.yuck")
-(include "widgets/topbar.yuck")
+(include "widgets/workbar.yuck")
+(include "widgets/menubar.yuck")
+(include "widgets/taskbar.yuck")
+
+
+; Create main bar.
+(defwindow bar :monitor 0
+               :geometry (
+                 geometry :x "0%"
+                          :y "0%"
+                          :width "100%"
+                          :height "1%"
+                          :anchor "top center")
+               :stacking "fg"
+               :exclusive true
+               :focusable false
+  (centerbox
+    (workbar :halign "start"
+             :manager {ws_manager})
+    (menubar :halign "center")
+    (taskbar :halign "end")
+  )
+)
 

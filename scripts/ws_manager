@@ -1,32 +1,40 @@
 #!/usr/bin/env bash
+
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# export RUST_BACKTRACE=full
 
+function update_eww() {
+  : "$(eww get ws)"
+  # shellcheck disable=SC2016
+  : "$(printf '%s' "$_" | jaq -c --arg id "$1" --arg key "$2" \
+       '[(.[] | select(.index == $id).class |= $key)]')"
+  eww update ws="$_"
+}
 
 function update_occupied_workspaces() {
-  readarray -t workspaces < <(hyprctl workspaces -j | jaq '.[]?.id?')
-  for id in "${workspaces[@]}"; do
-    [[ $id != "$1" ]] && eww update ws"$id"=ws-occupied
+  local occupied id
+  readarray -t occupied < <(hyprctl workspaces -j | jaq '.[]?.id?')
+  for id in "${occupied[@]}"; do
+    [[ $id != "$1" ]] && update_eww "$id" "ws-occupied"
   done
 }
 
 function handle() {
   case $1 in
     workspace*|createworkspace*)
-      eww update ws"${1##*>>}"=ws-active
+      update_eww "${1##*>>}" "ws-active"
       update_occupied_workspaces "${1##*>>}"
       ;;
     destroyworkspace*)
-      eww update ws"${1##*>>}"=ws-inactive
+      update_eww "${1##*>>}" "ws-inactive"
   esac
 
 }
 
-# On start: get workspaces status.
+# On start: update workspaces status.
 active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
-eww update ws"$active"=ws-active
+update_eww "$active" "ws-active"
 update_occupied_workspaces "$active"
 
 # Listen UNIX Socket for events (IPC).

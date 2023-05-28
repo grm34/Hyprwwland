@@ -1,0 +1,40 @@
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
+
+
+(defvar tasks '[
+ {"class": "updates", "tooltip": "", "icon": " ", "text": ""},
+ {"class": "standby", "tooltip": "", "icon": " ", "text": ""},
+ {"class": "brightness", "tooltip": "", "icon": "󰃠 ", "text": ""},
+ {"class": "volume", "tooltip": "", "icon": " ", "text": ""},
+ {"class": "network", "tooltip": "", "icon": "󰱓 ", "text": ""},
+ {"class": "datetime", "tooltip": "", "icon": "", "text": ""},
+ {"class": "battery", "tooltip": "", "icon": "󰁹 ", "text": ""},
+ {"class": "power", "tooltip": "", "icon": " ", "text": ""}
+]')
+
+
+(defwidget taskbar []
+
+  (box :class "taskbar"
+       :orientation "h"
+       :halign "end"
+       :space-evenly false
+
+    (for entry in tasks
+      (eventbox :class {entry.class}
+                :tooltip {entry.tooltip}
+                :cursor "pointer"
+                :timeout {entry.timeout}
+                ; :onclick "eww open taskmenu"
+                ; :onrightclick "eww close taskmenu"
+        (box
+          (label :class "${entry.class}-icon"
+                 :visible {entry.icon != '' ? true : false}
+                 :text {entry.icon})
+          (label :class "${entry.class}-text"
+                 :visible {entry.text != '' ? true : false}
+                 :text {entry.text})
+    )))
+))
+

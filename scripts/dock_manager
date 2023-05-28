@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
+
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
-
-# export RUST_BACKTRACE=full
 
 
 # Get required settings from config.json.
@@ -12,7 +11,7 @@ readarray -t config <\
          .dock_app_icon_size,
          .terminal_cmd' "$PWD/config.json")
 
-# Remove double quotes.
+# Define without double quotes.
 app_path="${config[0]//\"}"
 icon_path="${config[1]//\"}"
 icon_size="${config[2]//\"}"
@@ -35,38 +34,42 @@ for app in "${apps[@]}"; do
   userapps+=("$app")
 done
 
-# Create a widget for each app.
-index=0 && box=
+# Create an array containing the required data of each app as json.
+index=0 && app_data=()
 for app in "${userapps[@]}"; do
-  ((index > 14)) && break # Max 15 apps.
+  ((index > 14)) && break # max 15 apps.
+
+  # get app name.
+  : "$(grep -m 1 ^Name= "$app")"
+  name="${_//Name=}"
 
   # get app icon.
   : "$(grep -m 1 "^Icon=" "$app")"
   icon="$icon_path/${_//Icon=}.svg"
 
-  # get app real name.
-  : "$(grep -m 1 ^Name= "$app")"
-  name="${_//Name=}"
-
-  # define the opening cmd (terminal or standalone).
+  # get opening cmd.
   : "$(grep -m 1 ^Exec "$app")"
   : "${_//Exec=}" && : "${_//\"}" && : "${_%% *}"
   cmd="$(which "$_") &"
-  [[ $cmd == *"mpv &"* ]] && # fix mpv exec command.
+  [[ $cmd == *"mpv &"* ]] && # fix mpv exec.
     cmd="${cmd//mpv/mpv --player-operation-mode=pseudo-gui}"
+
+  # define opening cmd (terminal or standalone).
   grep -qm 1 "Terminal=true" "$app" &&
     cmd="$terminal_cmd $cmd"
-  [[ ${cmd// &} == *alacritty ]] && # open terminal from $HOME.
+  [[ ${cmd// &} == *alacritty ]] && # open $TERM from $HOME.
     cmd="${cmd// &} --working-directory $HOME &"
 
-  # create the widget.
-  box="$box
-  (eventbox :class \"dock-app\" :tooltip \"$name\"
-            :onclick \"$cmd\" :cursor \"pointer\"
-    (image :path \"$icon\" :image-width \"$icon_size\"))"
+  # increment the array.
+  printf -v data '{"name": "%s", "icon": "%s", "size": "%s", "cmd": "%s"},' \
+    "$name" "$icon" "$icon_size" "$cmd"
+  app_data+=("$data")
+
+  # increment the index.
   index=$((index + 1))
 done
 
-printf '%s'\
-  "(box :orientation \"v\" ${box})" # Hmm, anything else?
+# Return as json.
+: "${app_data[*]}"
+printf '%s' "[${_::-1}]" # Hmm, anything else?
 
