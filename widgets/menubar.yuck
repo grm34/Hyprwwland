@@ -35,7 +35,7 @@
               (label :class "${_class}-box-icon"
                      :text {_icon})
               (label :class "${_class}-box-text"
-                     :text "${_content}%"))
+                     :text {_class != 'temp' ? "${_content}%" : "${_content}°C"}))
             (progress :halign "center"
                       :valign "start"
                       :value {_content}
