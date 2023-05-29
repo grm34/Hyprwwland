@@ -3,15 +3,15 @@
 
 
 (defvar ws '[
- {"index": "1", "class": "ws-inactive", "icon": " ₁"},
- {"index": "2", "class": "ws-inactive", "icon": " ₂"},
- {"index": "3", "class": "ws-inactive", "icon": " ₃"},
- {"index": "4", "class": "ws-inactive", "icon": "󱐏 ₄"},
- {"index": "5", "class": "ws-inactive", "icon": " ₅"},
- {"index": "6", "class": "ws-inactive", "icon": "󰈙 ₆"},
- {"index": "7", "class": "ws-inactive", "icon": "󰓃 ₇"},
- {"index": "8", "class": "ws-inactive", "icon": "󱛻 ₈"},
- {"index": "9", "class": "ws-inactive", "icon": "󰎔 ₉"}
+ {"index": "1", "class": "ws-inactive", "icon": " ₁ "},
+ {"index": "2", "class": "ws-inactive", "icon": " ₂ "},
+ {"index": "3", "class": "ws-inactive", "icon": " ₃ "},
+ {"index": "4", "class": "ws-inactive", "icon": "󱐏 ₄ "},
+ {"index": "5", "class": "ws-inactive", "icon": " ₅ "},
+ {"index": "6", "class": "ws-inactive", "icon": "󰈙 ₆ "},
+ {"index": "7", "class": "ws-inactive", "icon": "󰓃 ₇ "},
+ {"index": "8", "class": "ws-inactive", "icon": "󱛻 ₈ "},
+ {"index": "9", "class": "ws-inactive", "icon": "󰎔 ₉ "}
 ]')
 
 (deflisten ws_manager "scripts/ws_manager")

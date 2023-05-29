@@ -7,10 +7,10 @@
 (defvar disk_graph false)
 (defvar temp_graph false)
 (defvar monit '{
- "cpu": {"class": "cpu", "icon": "󰻠"},
- "ram": {"class": "ram", "icon": "󰍛"},
- "disk": {"class": "disk", "icon": "󰋊"},
- "temp": {"class": "temp", "icon": "󱠇"}
+ "cpu": {"class": "cpu", "icon": "󰻠 "},
+ "ram": {"class": "ram", "icon": "󰍛 "},
+ "disk": {"class": "disk", "icon": "󰋊 "},
+ "temp": {"class": "temp", "icon": "󱠇 "}
 }')
 
 
