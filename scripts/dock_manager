@@ -27,7 +27,7 @@ app_data=()
 for app in "${apps[@]}"; do
   ((index > 14)) && break # max 15 apps.
 
-  # Skip nodisplay/Qt and icon less apps.
+  # skip "nodisplay"/"Qt"/"icon less" apps.
   grep -qm 1 "NoDisplay=true\|Categories=Qt" "$app" && continue
   : "$(grep -m 1 "^Icon=" "$app")"
   : "$icon_path/${_//Icon=}.svg"
