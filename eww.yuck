@@ -2,7 +2,7 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-; Import hww config.
+; Import config.
 (defpoll hww :interval "60m"
              :initial "{}"
   "cat config.json")
@@ -21,7 +21,7 @@
 (include "widgets/taskbar.yuck")
 
 
-; Create main bar.
+; Main bar.
 (defwindow bar :monitor 0
                :geometry (
                  geometry :x "0%"
