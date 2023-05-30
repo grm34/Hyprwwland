@@ -1,6 +1,7 @@
 ; Hyprwwland Copyright (c) 2023 darkmaster grm34.
 ; https://github.com/grm34/Hyprwwland
 
+
 (defvar auto_up true)
 (defvar date_visible false)
 
@@ -32,7 +33,6 @@
 
 (defwidget task_button [_class ?_icon ?_text ?_tooltip _cursor ?_timeout
                         ?_onclick ?_onrightclick ?_onmiddleclick]
-
   (eventbox :class {_class}
             :tooltip {_tooltip}
             :cursor {_cursor}
@@ -48,8 +48,7 @@
       (label :class "${_class}-text"
              :visible {_text != '' ? true : false}
              :text {_text})
-    )
-))
+)))
 
 
 (defwidget taskbar []
@@ -124,25 +123,20 @@
               ; :onclick "${EWW_CMD} open taskmenu"
               ; :onrightclick "${EWW_CMD} close taskmenu"
       (box :space-evenly false
-           :orientation "h"
 
-        ; time (visible).
+        ; Time (visible).
         (revealer :reveal {!date_visible}
                   :transition "slideleft"
                   :duration "250ms"
-          (box
-            (label :class "datetime-revealer-time"
-                   :text {datetime.time})
-        ))
+          (label :class "datetime-revealer-time"
+                 :text {datetime.time}))
 
-        ; date (onhover).
+        ; Date (onhover).
         (revealer :reveal {date_visible}
                   :transition "slideright"
                   :duration "250ms"
-          (box
-            (label :class "datetime-revealer-date"
-                   :text {datetime.date})
-        ))
+          (label :class "datetime-revealer-date"
+                 :text {datetime.date}))
     ))
 
     ; Battery button.
