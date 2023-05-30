@@ -15,28 +15,23 @@ icon_size="${config[2]//\"}"
 terminal_cmd="${config[3]//\"}"
 
 
-# Get user apps.
+# Get user applications.
 readarray -t apps < <(
   fd . "$app_path" --min-depth 0 --max-depth 2 \
                    --type file --extension desktop)
 
 
-# Skip nodisplay/Qt and icon less apps.
-userapps=()
+# Create an array containing the required data of each app as json.
+index=0 && app_data=()
 for app in "${apps[@]}"; do
+  ((index > 14)) && break # max 15 apps.
+
+  # Skip nodisplay/Qt and icon less apps.
   grep -qm 1 "NoDisplay=true\|Categories=Qt" "$app" &&
     continue
   : "$(grep -m 1 "^Icon=" "$app")"
   : "$icon_path/${_//Icon=}.svg"
   ! [[ -f $_ ]] && continue
-  userapps+=("$app")
-done
-
-
-# Create an array containing the required data of each app as json.
-index=0 && app_data=()
-for app in "${userapps[@]}"; do
-  ((index > 14)) && break # max 15 apps.
 
   # get app name.
   : "$(grep -m 1 ^Name= "$app")"
