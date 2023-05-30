@@ -3,15 +3,8 @@
 # https://github.com/grm34/Hyprwwland
 
 
+# Handle requests.
 case $1 in
-  updates)
-    : "2"
-    printf '%s' "$_"
-    ;;
-  standby)
-    : "false"
-    printf '%s' "$_"
-    ;;
   brightness)
     : "$(light -G | cut -d'.' -f1)"
     printf '%s' "$_"
@@ -22,12 +15,17 @@ case $1 in
     ;;
   network)
     : "$(nmcli networking connectivity)"
-    printf '%s' "$_"
+    if [[ $_ == "none" ]]; then
+      printf '%s' "false"
+    else
+      printf '%s' "true"
+    fi
     ;;
   datetime)
     readarray -td/ date < <(date '+%d/%m/%Y/%H:%M/')
     printf '{"date":"%s","time":"%s","day":"%s","month":"%s","year":"%s"}' \
       "${date[0]}/${date[1]}/${date[2]}" "${date[3]}" \
       "${date[0]}" "${date[1]}" "${date[2]}"
+    ;;
 esac
 

@@ -12,7 +12,8 @@ readarray -t config < \
 
 # Run swayidle with hyprctl.
 function activate_standby_mode() {
-  if ! pidof swayidle &>/dev/null; then
+  : "$(pidof swayidle)"
+  if [[ -z $_ ]]; then
 	  : "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
 	  swayidle timeout "${config[0]//\"}" "$_"\
 	           timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
@@ -20,20 +21,24 @@ function activate_standby_mode() {
   fi
 }
 
+# Handle requests.
 case $1 in
   on)
-    # onclick: activate.
-    eww update standby_status=true
+    eww update standby=true
     activate_standby_mode
     ;;
 	off)
-    # onclick: deactivate.
-    eww update standby_status=false
+    eww update standby=false
     pkill -f -9 swayidle
     ;;
   *)
-    # onpoll: activate if required.
     : "$(eww get standby)"
-    [[ $_ == "true" ]] && activate_standby_mode
+    if [[ $_ == "true" ]]; then
+      activate_standby_mode
+      printf '%s' "true"
+    else
+      printf '%s' "false"
+    fi
+    ;;
 esac
 

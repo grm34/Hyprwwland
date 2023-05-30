@@ -10,5 +10,6 @@ case $1 in
   dock)
     # open the dock onhover if the current window is free.
     [[ $_ != "true" ]] && eww update dock_visible=true
+    ;;
 esac
 

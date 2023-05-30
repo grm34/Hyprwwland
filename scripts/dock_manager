@@ -9,18 +9,18 @@ readarray -t config <\
          .dock_app_icon_path,
          .dock_app_icon_size,
          .terminal_cmd' "$PWD/config.json")
-
-# Define without double quotes.
 app_path="${config[0]//\"}"
 icon_path="${config[1]//\"}"
 icon_size="${config[2]//\"}"
 terminal_cmd="${config[3]//\"}"
+
 
 # Get user apps.
 readarray -t apps\
   < <(fd . "$app_path"\
            --min-depth 0 --max-depth 2\
            --type file --extension desktop)
+
 
 # Skip nodisplay/Qt and icon less apps.
 userapps=()
@@ -32,6 +32,7 @@ for app in "${apps[@]}"; do
   ! [[ -f $_ ]] && continue
   userapps+=("$app")
 done
+
 
 # Create an array containing the required data of each app as json.
 index=0 && app_data=()
@@ -67,6 +68,7 @@ for app in "${userapps[@]}"; do
   # increment the index.
   index=$((index + 1))
 done
+
 
 # Return as json.
 : "${app_data[*]}"

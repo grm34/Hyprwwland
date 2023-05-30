@@ -4,9 +4,9 @@
 
 
 function eww_update() {
-  : "$(eww get ws)"
+  : "$(eww get workspaces)"
   : "$(printf '%s' "$_" | jaq -c --arg value "$1" "$2")"
-  eww update ws="$_"
+  eww update workspaces="$_"
 }
 
 
@@ -32,6 +32,7 @@ function handle() {
     destroyworkspace*)
       id=$((${1##*>>}-1))
       eww_update "ws-inactive" "(.[$id].class|=\$value)"
+      ;;
   esac
 }
 

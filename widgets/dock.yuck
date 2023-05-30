@@ -22,7 +22,7 @@
   (eventbox :class "dock"
             :valign "center"
             :timeout "200ms"
-            :onhover "scripts/win_manager dock"
+            :onhover "scripts/window_manager dock"
             :onhoverlost "eww update dock_visible=false"
     (box :space-evenly false
 

@@ -4,29 +4,30 @@
 (defvar auto_up true)
 (defvar date_visible false)
 
-(defpoll updates :interval "5m"
-                 :initial "0"
-  "scripts/task_manager updates")
-
-(defpoll standby :interval "5m"
-                 :initial true
-  "scripts/standby_manager standby")
-
-(defpoll brightness :interval "1s"
+(defpoll brightness :interval "2s"
                     :initial "90"
   "scripts/task_manager brightness")
 
-(defpoll volume :interval "1s"
+(defpoll volume :interval "2s"
                 :initial "90"
   "scripts/task_manager volume")
 
-(defpoll network :interval "2s"
-                 :initial "none"
+(defpoll network :interval "5s"
+                 :initial false
   "scripts/task_manager network")
 
-(defpoll datetime :interval "1s"
+(defpoll datetime :interval "10s"
                   :initial "{}"
   "scripts/task_manager datetime")
+
+(defpoll updates :interval "30m"
+                 :initial "0"
+                 :run-while network
+  "scripts/updates_manager")
+
+(defpoll standby :interval "20m"
+                 :initial true
+  "scripts/standby_manager")
 
 
 (defwidget task_button [_class ?_icon ?_text ?_tooltip _cursor ?_timeout
@@ -58,19 +59,16 @@
        :space-evenly false
 
     ; Updates button.
-    (task_button :_class {updates == "0" && network != "none"
+    (task_button :_class {updates == "0" && network == true
                           ? "updates-button-false" : "updates-button-true"}
                  :_tooltip "Pending updates ${icon.arrow} ${updates}"
                  :_cursor "pointer"
                  :_timeout "10s"
                  ; :_onclick "${EWW_CMD} open taskmenu"
                  ; :_onrightclick "${EWW_CMD} close taskmenu"
-                 :_icon {auto_up == false || updates == "off"
-                                          || network == "none"
+                 :_icon {auto_up == false || network == false
                          ? icon.updates-off : icon.updates-on}
-                 :_text {auto_up == false || updates == "off"
-                                          || network == "none"
-                                          || updates == "0"
+                 :_text {auto_up == false || network == false || updates == "0"
                          ? "" : updates}
     )
 
@@ -111,11 +109,11 @@
 
     ; Network button.
     (task_button :_class "network-button"
-                 :_tooltip {network == "none" ? "Network is down..." : ""}
+                 :_tooltip {network == false ? "Network is down..." : ""}
                  :_cursor "pointer"
                  ; :_onclick "${EWW_CMD} open taskmenu"
                  :_onrightclick "${hww.terminal_cmd} nmtui &"
-                 :_icon {network == "none" ? icon.net-off : icon.net-on}
+                 :_icon {network == false ? icon.net-off : icon.net-on}
     )
 
     ; Datetime revealer.

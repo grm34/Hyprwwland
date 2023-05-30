@@ -2,14 +2,14 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-; Import user config.
-(defpoll hww :interval "2h"
+; Import hww config.
+(defpoll hww :interval "60m"
              :initial "{}"
   "cat config.json")
 
 
 ; Import icons.
-(defpoll icon :interval "2h"
+(defpoll icon :interval "65m"
               :initial "{}"
   "cat style/symbols.json")
 
@@ -34,7 +34,7 @@
                :focusable false
   (centerbox
     (workbar :halign "start"
-             :manager {ws_manager})
+             :manager {workspaces_manager})
     (menubar :halign "center")
     (taskbar :halign "end")
   )

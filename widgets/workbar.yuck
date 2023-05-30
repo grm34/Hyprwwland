@@ -2,7 +2,7 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defvar ws '[
+(defvar workspaces '[
  {"index": "1", "class": "ws-inactive", "icon": " ₁ "},
  {"index": "2", "class": "ws-inactive", "icon": " ₂ "},
  {"index": "3", "class": "ws-inactive", "icon": " ₃ "},
@@ -14,7 +14,7 @@
  {"index": "9", "class": "ws-inactive", "icon": "󰎔 ₉ "}
 ]')
 
-(deflisten ws_manager "scripts/ws_manager")
+(deflisten workspaces_manager "scripts/workspaces_manager")
 
 
 (defwidget workbar [manager]
@@ -23,9 +23,9 @@
        :halign "start"
        :space-evenly false
 
-    (for entry in ws
-      (button :class {entry.class}
-              :onclick "hyprctl dispatch workspace ${entry.index}"
-        (label :text {entry.icon})))
+    (for ws in workspaces
+      (button :class {ws.class}
+              :onclick "hyprctl dispatch workspace ${ws.index}"
+        (label :text {ws.icon})))
 ))
 

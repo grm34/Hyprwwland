@@ -6,12 +6,6 @@
 (defvar ram_graph false)
 (defvar disk_graph false)
 (defvar temp_graph false)
-(defvar monit '{
- "cpu": {"class": "cpu", "icon": "󰻠 "},
- "ram": {"class": "ram", "icon": "󰍛 "},
- "disk": {"class": "disk", "icon": "󰋊 "},
- "temp": {"class": "temp", "icon": "󱠇 "}
-}')
 
 
 (defwidget progress_reveal [_class _visible _icon _content]
@@ -72,27 +66,27 @@
                :image-width 20)))
 
     ; CPU usage.
-    (progress_reveal :_class {monit.cpu.class}
+    (progress_reveal :_class "cpu"
                      :_visible {cpu_graph}
-                     :_icon {monit.cpu.icon}
+                     :_icon {icon.cpu}
                      :_content {EWW_CPU.avg})
 
     ; RAM usage.
-    (progress_reveal :_class {monit.ram.class}
+    (progress_reveal :_class "ram"
                      :_visible {ram_graph}
-                     :_icon {monit.ram.icon}
+                     :_icon {icon.ram}
                      :_content {EWW_RAM.used_mem_perc})
 
     ; DISK usage.
-    (progress_reveal :_class {monit.disk.class}
+    (progress_reveal :_class "disk"
                      :_visible {disk_graph}
-                     :_icon {monit.disk.icon}
+                     :_icon {icon.disk}
                      :_content {EWW_DISK["/"].used_perc})
 
     ; CPU temp.
-    (progress_reveal :_class {monit.temp.class}
+    (progress_reveal :_class "temp"
                      :_visible {temp_graph}
-                     :_icon {monit.temp.icon}
+                     :_icon {icon.temp}
                      :_content {EWW_TEMPS.CORETEMP_CORE_0})
 ))
 

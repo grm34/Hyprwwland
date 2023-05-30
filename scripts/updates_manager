@@ -3,28 +3,15 @@
 # https://github.com/grm34/Hyprwwland
 
 
-# Get required settings from config.json.
-readarray -t config < \
-  <(jaq '.aur_helper,
-         .terminal_cmd' "$PWD/config.json")
-
-# Define without double quotes.
-aur_helper="${config[0]//\"}"
-terminal_cmd="${config[1]//\"}"
-
-# Run paru once to update the cache.
-function check_updates() {
-  printf '%s' "n" | sudo "$aur_helper" &>/dev/null
+function aur_helper() {
+  local up
+  : "$(pidof "$aur_helper")"
+  [[ -z $_ && $1 ]] && : "$(echo "n" | sudo "$aur_helper")"
+  up="$(sudo "$aur_helper" -Qu | wc -l)"
+  [[ $up =~ ^[0-9]+$ ]] && (:;:) || up=0
+  printf '%s' "$up"
 }
 
-# Get number of pending updates (status).
-function get_updates() {
-  : "$(sudo "$aur_helper" -Qu | wc -l)"
-  ! [[ $_ =~ ^[0-9]+$ ]] && : 0
-  printf '%s' "$_"
-}
-
-# Notify according to request.
 function notify_user() {
   case $1 in
     check) : "Checking for new updates..." ;;
@@ -35,41 +22,36 @@ function notify_user() {
   dunstify -i "pacman" "$_"
 }
 
-# Exit if network is down.
-: "$(eww get network_status)"
-if [[ $_ == "none" ]]; then
-  [[ $1 ]] && notify_user "down"
-  printf '%s' "off"
-  exit
-fi
 
+# Get required settings from config.json.
+readarray -t config < <(
+  jaq '.aur_helper, .terminal_cmd' "$PWD/config.json")
+aur_helper="${config[0]//\"}"
+terminal_cmd="${config[1]//\"}"
+
+# Handle requests.
 case $1 in
   update)
-    # onclick: check, run terminal, check again, update status.
-    : "$(get_updates)"
-    (( _ == 0 )) && { notify_user "up" && exit ;}
-    (( _ > 0 )) &&
-      eval "$terminal_cmd" sudo "$aur_helper" & wait $!
-    : "$(get_updates)"
-    eww update pending_updates="$_"
+    : "$(aur_helper)"
+    if (( _ == 0 )); then
+      notify_user "up"
+    else
+      eval "$terminal_cmd" sudo "$aur_helper" &
+      : "$(aur_helper)"
+    fi
+    printf '%s' "$_"
     ;;
   check)
-    # onclick: check, notify pending updates, update status.
     notify_user "check"
-    check_updates
-    nb="$(get_updates)"
-    [[ $nb =~ ^[0-9]+$ ]] && canberra-gtk-play -i "window-question"
-    : "nb" && [[ $nb == 0 ]] && : "up"
-    notify_user "$_" "$nb"
-    eww update pending_updates="$nb"
+    : "$(aur_helper full)"
+    [[ $_ == 0 ]] && : "up"
+    notify_user "nb" "$_"
+    printf '%s' "$_"
+    canberra-gtk-play -i "window-question"
     ;;
   *)
-    # onpoll: check and update status (if auto-up is true).
-    : "$(eww get auto_up)"
-    if [[ $_ != "false" ]]; then  
-      check_updates
-      : "$(get_updates)"
-      eww update pending_updates="$_"
-    fi
+    : "$(aur_helper full)"
+    printf '%s' "$_"
+    ;;
 esac
 

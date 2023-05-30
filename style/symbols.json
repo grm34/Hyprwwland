@@ -1,8 +1,8 @@
 {
-  "cpu": "󰻠",
-  "ram": "󰍛",
-  "disk": "󰋊",
-  "temp": "󱠇",
+  "cpu": "󰻠 ",
+  "ram": "󰍛 ",
+  "disk": "󰋊 ",
+  "temp": "󱠇 ",
   "updates-on": " ",
   "updates-off": " ",
   "standby-on": " ",
