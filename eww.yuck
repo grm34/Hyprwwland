@@ -8,6 +8,12 @@
   "cat config.json")
 
 
+; Import icons.
+(defpoll icon :interval "2h"
+              :initial "{}"
+  "cat style/symbols.json")
+
+
 ; Import widgets.
 (include "widgets/dock.yuck")
 (include "widgets/workbar.yuck")
