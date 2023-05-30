@@ -31,23 +31,23 @@
   "scripts/standby_manager")
 
 
-(defwidget task_button [_class ?_icon ?_text ?_tooltip _cursor ?_timeout
-                        ?_onclick ?_onrightclick ?_onmiddleclick]
-  (eventbox :class {_class}
-            :tooltip {_tooltip}
-            :cursor {_cursor}
-            :timeout {_timeout}
-            :onclick {_onclick}
-            :onrightclick {_onrightclick}
-            :onmiddleclick {_onmiddleclick}
+(defwidget task_button [class ?icon ?text ?tooltip cursor ?timeout
+                        ?onclick ?onrightclick ?onmiddleclick]
+  (eventbox :class {class}
+            :tooltip {tooltip}
+            :cursor {cursor}
+            :timeout {timeout}
+            :onclick {onclick}
+            :onrightclick {onrightclick}
+            :onmiddleclick {onmiddleclick}
     (box
-      (label :class {_icon =~ '-off' ? "${_class}-icon-off" : "${_class}-icon"}
-             :visible {_icon != '' ? true : false}
-             :text {_icon})
+      (label :class {icon =~ '-off' ? "${class}-icon-off" : "${class}-icon"}
+             :visible {icon != '' ? true : false}
+             :text {icon})
              
-      (label :class "${_class}-text"
-             :visible {_text != '' ? true : false}
-             :text {_text})
+      (label :class "${class}-text"
+             :visible {text != '' ? true : false}
+             :text {text})
 )))
 
 
@@ -58,61 +58,61 @@
        :space-evenly false
 
     ; Updates button.
-    (task_button :_class {updates == "0" && network == true
-                          ? "updates-button-false" : "updates-button-true"}
-                 :_tooltip "Pending updates ${icon.arrow} ${updates}"
-                 :_cursor "pointer"
-                 :_timeout "10s"
-                 ; :_onclick "${EWW_CMD} open taskmenu"
-                 ; :_onrightclick "${EWW_CMD} close taskmenu"
-                 :_icon {auto_up == false || network == false
-                         ? icon.updates-off : icon.updates-on}
-                 :_text {auto_up == false || network == false || updates == "0"
-                         ? "" : updates}
+    (task_button :class {updates == "0" && network == true
+                         ? "updates-button-false" : "updates-button-true"}
+                 :tooltip "Pending updates ${icon.arrow} ${updates}"
+                 :cursor "pointer"
+                 :timeout "10s"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :icon {auto_up == false || network == false
+                        ? icon.updates-off : icon.updates-on}
+                 :text {auto_up == false || network == false || updates == "0"
+                        ? "" : updates}
     )
 
     ; Standby button.
-    (task_button :_class {standby == true ? "standby-on" : "standby-off"}
-                 :_tooltip {standby == true
-                            ? "Swayidle is ON" : "Swayidle is OFF"}
-                 :_cursor "pointer"
-                 :_timeout "5s"
-                 :_onclick {standby != true
-                            ? "scripts/standby_manager on"
-                            : "scripts/standby_manager off"}
-                 :_icon {standby == true
-                         ? icon.standby-on : icon.standby-off}
+    (task_button :class {standby == true ? "standby-on" : "standby-off"}
+                 :tooltip {standby == true
+                           ? "Swayidle is ON" : "Swayidle is OFF"}
+                 :cursor "pointer"
+                 :timeout "5s"
+                 :onclick {standby != true
+                           ? "scripts/standby_manager on"
+                           : "scripts/standby_manager off"}
+                 :icon {standby == true
+                        ? icon.standby-on : icon.standby-off}
     ) 
     
     ; Brightness button.
-    (task_button :_class "brightness-button"
-                 :_tooltip "Brightness ${icon.arrow} ${brightness}%"
-                 :_cursor "pointer"
-                 ; :_onclick "${EWW_CMD} open taskmenu"
-                 :_onmiddleclick "light -S 100"
-                 ; :_onrightclick "${EWW_CMD} close taskmenu"
-                 :_icon {icon.brightness}
-                 :_text "${brightness}%"
+    (task_button :class "brightness-button"
+                 :tooltip "Brightness ${icon.arrow} ${brightness}%"
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 :onmiddleclick "light -S 100"
+                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :icon {icon.brightness}
+                 :text "${brightness}%"
     )
 
     ; Volume button.
-    (task_button :_class "sound-button"
-                 :_tooltip "Volume ${icon.arrow} ${volume}%"
-                 :_cursor "pointer"
-                 ; :_onclick "${EWW_CMD} open taskmenu"
-                 :_onmiddleclick "pulsemixer --set-volume 0"
-                 :_onrightclick "myxer &"
-                 :_icon {volume != '0' ? icon.sound-on : icon.sound-off}
-                 :_text {volume != '0' ? "${volume}%" : "0%"}
+    (task_button :class "sound-button"
+                 :tooltip "Volume ${icon.arrow} ${volume}%"
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 :onmiddleclick "pulsemixer --set-volume 0"
+                 :onrightclick "myxer &"
+                 :icon {volume != '0' ? icon.sound-on : icon.sound-off}
+                 :text {volume != '0' ? "${volume}%" : "0%"}
     ) 
 
     ; Network button.
-    (task_button :_class "network-button"
-                 :_tooltip {network == false ? "Network is down..." : ""}
-                 :_cursor "pointer"
-                 ; :_onclick "${EWW_CMD} open taskmenu"
-                 :_onrightclick "${hww.terminal_cmd} nmtui &"
-                 :_icon {network == false ? icon.net-off : icon.net-on}
+    (task_button :class "network-button"
+                 :tooltip {network == false ? "Network is down..." : ""}
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 :onrightclick "${hww.terminal_cmd} nmtui &"
+                 :icon {network == false ? icon.net-off : icon.net-on}
     )
 
     ; Datetime revealer.
@@ -140,10 +140,10 @@
     ))
 
     ; Battery button.
-    (task_button :_class "battery-button"
-                 :_tooltip "Battery ${icon.arrow} ${EWW_BATTERY.BAT0.status}"
-                 :_cursor "progress"
-                 :_icon {EWW_BATTERY.BAT0.capacity > 95
+    (task_button :class "battery-button"
+                 :tooltip "Battery ${icon.arrow} ${EWW_BATTERY.BAT0.status}"
+                 :cursor "progress"
+                 :icon {EWW_BATTERY.BAT0.capacity > 95
                          ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
                            ? icon.batC100 : icon.batN100
                          : EWW_BATTERY.BAT0.capacity > 85
@@ -172,16 +172,16 @@
                            ? icon.batC10 : icon.batN10
                          : EWW_BATTERY.BAT0.status =~ "Full|Charging"
                            ? icon.batC00 : icon.batN00}
-                 :_text "${EWW_BATTERY.BAT0.capacity}%"
+                 :text "${EWW_BATTERY.BAT0.capacity}%"
     )
 
     ; Powermenu button.
-    (task_button :_class "powermenu-button"
-                 :_tooltip "powermenu"
-                 :_cursor "pointer"
-                 ; :_onclick "${EWW_CMD} open taskmenu"
-                 ; :_onrightclick "${EWW_CMD} close taskmenu"
-                 :_icon {icon.power}
+    (task_button :class "powermenu-button"
+                 :tooltip "powermenu"
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :icon {icon.power}
     )
 ))
 

@@ -8,17 +8,17 @@
 (defvar temp_graph false)
 
 
-(defwidget progress_reveal [_class _visible _icon _content]
-  (box :class "${_class}-box"
+(defwidget progress_reveal [class visible icon content]
+  (box :class "${class}-box"
     (eventbox :timeout "200ms"
               :cursor "progress"
-              :onhover "eww update ${_class}_graph=true"
-              :onhoverlost "eww update ${_class}_graph=false"
+              :onhover "eww update ${class}_graph=true"
+              :onhoverlost "eww update ${class}_graph=false"
       (box :space-evenly false
            :orientation "v"
 
         ; progress (visible).
-        (revealer :reveal {!_visible}
+        (revealer :reveal {!visible}
                   :transition "slideup"
                   :duration "250ms"
           (box :orientation "v"
@@ -26,23 +26,23 @@
                  :halign "center"
                  :valign "end"
                  :space-evenly false
-              (label :class "${_class}-box-icon"
-                     :text {_icon})
-              (label :class "${_class}-box-text"
-                     :text {_class != 'temp' ? "${_content}%" : "${_content}°C"}))
+              (label :class "${class}-box-icon"
+                     :text {icon})
+              (label :class "${class}-box-text"
+                     :text {class != 'temp' ? "${content}%" : "${content}°C"}))
             (progress :halign "center"
                       :valign "start"
-                      :value {_content}
+                      :value {content}
                       :orientation "h")))
 
         ; graph (onhover).
-        (revealer :reveal {_visible}
+        (revealer :reveal {visible}
                   :transition "slidedown"
                   :duration "250ms"
-          (box :class "${_class}-box-graph"
+          (box :class "${class}-box-graph"
                :orientation "v"
             (graph :thickness 4
-                   :value {_content}
+                   :value {content}
                    :time-range "10s"
                    :dynamic true
                    :line-style "round")))
@@ -66,27 +66,27 @@
                :image-width 20)))
 
     ; CPU usage.
-    (progress_reveal :_class "cpu"
-                     :_visible {cpu_graph}
-                     :_icon {icon.cpu}
-                     :_content {EWW_CPU.avg})
+    (progress_reveal :class "cpu"
+                     :visible {cpu_graph}
+                     :icon {icon.cpu}
+                     :content {EWW_CPU.avg})
 
     ; RAM usage.
-    (progress_reveal :_class "ram"
-                     :_visible {ram_graph}
-                     :_icon {icon.ram}
-                     :_content {EWW_RAM.used_mem_perc})
+    (progress_reveal :class "ram"
+                     :visible {ram_graph}
+                     :icon {icon.ram}
+                     :content {EWW_RAM.used_mem_perc})
 
     ; DISK usage.
-    (progress_reveal :_class "disk"
-                     :_visible {disk_graph}
-                     :_icon {icon.disk}
-                     :_content {EWW_DISK["/"].used_perc})
+    (progress_reveal :class "disk"
+                     :visible {disk_graph}
+                     :icon {icon.disk}
+                     :content {EWW_DISK["/"].used_perc})
 
     ; CPU temp.
-    (progress_reveal :_class "temp"
-                     :_visible {temp_graph}
-                     :_icon {icon.temp}
-                     :_content {EWW_TEMPS.CORETEMP_CORE_0})
+    (progress_reveal :class "temp"
+                     :visible {temp_graph}
+                     :icon {icon.temp}
+                     :content {EWW_TEMPS.CORETEMP_CORE_0})
 ))
 

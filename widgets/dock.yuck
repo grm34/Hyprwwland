@@ -3,22 +3,13 @@
 
 
 (defvar dock_visible false)
+
 (defpoll dock_manager :interval "5m"
                       :initial "[]"
   "scripts/dock_manager")
 
 
-(defwindow dock :monitor 0
-                :geometry (
-                  geometry :x "0%"
-                           :y "0%"
-                           :width "0%"
-                           :height "0%"
-                           :anchor "left center")
-                :stacking "fg"
-                :exclusive true
-                :focusable false
-
+(defwidget dock []
   (eventbox :class "dock"
             :valign "center"
             :timeout "200ms"
@@ -45,6 +36,7 @@
                 :duration "250ms"
         (box :class "dock-applications"
              :orientation "v"
+
           (for app in dock_manager
             (eventbox :class "dock-app"
                       :tooltip {app.name}
