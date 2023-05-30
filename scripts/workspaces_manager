@@ -5,8 +5,7 @@
 
 function eww_update() {
   : "$(eww get workspaces)"
-  : "$(printf '%s' "$_" | jaq -c --arg value "$1" "$2")"
-  eww update workspaces="$_"
+  printf '%s' "$_" | jaq -c --arg value "$1" "$2"
 }
 
 

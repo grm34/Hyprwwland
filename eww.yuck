@@ -30,8 +30,7 @@
                :exclusive true
                :focusable false
   (centerbox
-    (workbar :halign "start"
-             :manager {workspaces_manager})
+    (workbar :halign "start")
     (menubar :halign "center")
     (taskbar :halign "end")
   )
