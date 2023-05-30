@@ -4,19 +4,19 @@
 
 
 # Get required settings from config.json.
-readarray -t config < \
-  <(jaq '.suspend_timeout,
-         .sleep_timeout,
-         .lock_effects,
-         .standby_wallpaper' "$PWD/config.json")
+readarray -t config < <(
+  jaq '.suspend_timeout,
+       .sleep_timeout,
+       .lock_effects,
+       .standby_wallpaper' "$PWD/config.json")
 
 # Run swayidle with hyprctl.
 function activate_standby_mode() {
   : "$(pidof swayidle)"
   if [[ -z $_ ]]; then
 	  : "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
-	  swayidle timeout "${config[0]//\"}" "$_"\
-	           timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
+	  swayidle timeout "${config[0]//\"}" "$_" \
+	           timeout "${config[1]//\"}" "hyprctl dispatch dpms off" \
 	           resume "hyprctl dispatch dpms on" &
   fi
 }

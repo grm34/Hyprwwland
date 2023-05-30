@@ -4,11 +4,11 @@
 
 
 # Get required settings from config.json.
-readarray -t config <\
-  <(jaq '.dock_app_path,
-         .dock_app_icon_path,
-         .dock_app_icon_size,
-         .terminal_cmd' "$PWD/config.json")
+readarray -t config < <(
+  jaq '.dock_app_path,
+       .dock_app_icon_path,
+       .dock_app_icon_size,
+       .terminal_cmd' "$PWD/config.json")
 app_path="${config[0]//\"}"
 icon_path="${config[1]//\"}"
 icon_size="${config[2]//\"}"
@@ -16,10 +16,9 @@ terminal_cmd="${config[3]//\"}"
 
 
 # Get user apps.
-readarray -t apps\
-  < <(fd . "$app_path"\
-           --min-depth 0 --max-depth 2\
-           --type file --extension desktop)
+readarray -t apps < <(
+  fd . "$app_path" --min-depth 0 --max-depth 2 \
+                   --type file --extension desktop)
 
 
 # Skip nodisplay/Qt and icon less apps.
@@ -61,7 +60,8 @@ for app in "${userapps[@]}"; do
     cmd="${cmd// &} --working-directory $HOME &"
 
   # increment the array.
-  printf -v data '{"name": "%s", "icon": "%s", "size": "%s", "cmd": "%s"},' \
+  printf -v data \
+    '{"name": "%s", "icon": "%s", "size": "%s", "cmd": "%s"},' \
     "$name" "$icon" "$icon_size" "$cmd"
   app_data+=("$data")
 
