@@ -4,7 +4,7 @@
 
 
 # Get required settings from config.json.
-readarray -t config <\
+readarray -t config < \
   <(jaq '.suspend_timeout,
          .sleep_timeout,
          .lock_effects,
@@ -23,12 +23,12 @@ function activate_standby_mode() {
 case $1 in
   on)
     # onclick: activate.
-    eww update standby=true
+    eww update standby_status=true
     activate_standby_mode
     ;;
 	off)
     # onclick: deactivate.
-    eww update standby=false
+    eww update standby_status=false
     pkill -f -9 swayidle
     ;;
   *)

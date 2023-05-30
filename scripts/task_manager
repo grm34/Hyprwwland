@@ -4,6 +4,14 @@
 
 
 case $1 in
+  updates)
+    : "2"
+    printf '%s' "$_"
+    ;;
+  standby)
+    : "false"
+    printf '%s' "$_"
+    ;;
   brightness)
     : "$(light -G | cut -d'.' -f1)"
     printf '%s' "$_"

@@ -4,7 +4,7 @@
 
 
 # Get required settings from config.json.
-readarray -t config <\
+readarray -t config < \
   <(jaq '.aur_helper,
          .terminal_cmd' "$PWD/config.json")
 
@@ -51,7 +51,7 @@ case $1 in
     (( _ > 0 )) &&
       eval "$terminal_cmd" sudo "$aur_helper" & wait $!
     : "$(get_updates)"
-    printf '%s' "$_"
+    eww update pending_updates="$_"
     ;;
   check)
     # onclick: check, notify pending updates, update status.
@@ -61,15 +61,15 @@ case $1 in
     [[ $nb =~ ^[0-9]+$ ]] && canberra-gtk-play -i "window-question"
     : "nb" && [[ $nb == 0 ]] && : "up"
     notify_user "$_" "$nb"
-    printf '%s' "$nb"
+    eww update pending_updates="$nb"
     ;;
   *)
-    # onpoll: check and return status if auto-up is true (int).
+    # onpoll: check and update status (if auto-up is true).
     : "$(eww get auto_up)"
     if [[ $_ != "false" ]]; then  
       check_updates
       : "$(get_updates)"
-      printf '%s' "$_"
+      eww update pending_updates="$_"
     fi
 esac
 
