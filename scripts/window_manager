@@ -6,6 +6,8 @@
 # Get current window state.
 : "$(hyprctl activewindow -j | jaq '.mapped')"
 
+
+# Handle requests.
 case $1 in
   dock)
     # open the dock onhover if the current window is free.

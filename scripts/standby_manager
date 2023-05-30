@@ -10,6 +10,7 @@ readarray -t config < <(
        .lock_effects,
        .standby_wallpaper' "$PWD/config.json")
 
+
 # Run swayidle with hyprctl.
 function activate_standby_mode() {
   : "$(pidof swayidle)"
@@ -20,6 +21,7 @@ function activate_standby_mode() {
 	           resume "hyprctl dispatch dpms on" &
   fi
 }
+
 
 # Handle requests.
 case $1 in

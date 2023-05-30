@@ -29,6 +29,7 @@ readarray -t config < <(
 aur_helper="${config[0]//\"}"
 terminal_cmd="${config[1]//\"}"
 
+
 # Handle requests.
 case $1 in
   update)

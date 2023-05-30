@@ -8,7 +8,6 @@ function eww_update() {
   printf '%s' "$_" | jaq -c --arg value "$1" "$2"
 }
 
-
 function update_occupied_workspaces() {
   local occupied id
   readarray -t occupied < <(hyprctl workspaces -j | jaq '.[]?.id?')
@@ -19,7 +18,6 @@ function update_occupied_workspaces() {
     fi
   done
 }
-
 
 function handle() {
   case $1 in
