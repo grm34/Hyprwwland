@@ -10,34 +10,30 @@ readarray -t config <\
          .lock_effects,
          .standby_wallpaper' "$PWD/config.json")
 
-# Run swayidle and hyprctl.
-function standby_mode() {
-  pkill -f -9 swayidle
-	: "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
-	swayidle timeout "${config[0]//\"}" "$_"\
-	         timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
-	         resume "hyprctl dispatch dpms on" &
+# Run swayidle with hyprctl.
+function activate_standby_mode() {
+  if ! pidof swayidle &>/dev/null; then
+	  : "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
+	  swayidle timeout "${config[0]//\"}" "$_"\
+	           timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
+	           resume "hyprctl dispatch dpms on" &
+  fi
 }
 
 case $1 in
   on)
     # onclick: activate.
-    eww update standby_status=true
-    standby_mode
+    eww update standby=true
+    activate_standby_mode
     ;;
 	off)
     # onclick: deactivate.
-    eww update standby_status=false
+    eww update standby=false
     pkill -f -9 swayidle
     ;;
   *)
-    # onpoll: activate if required and return state (bool).
+    # onpoll: activate if required.
     : "$(eww get standby)"
-    [[ $_ == "true" ]] && standby_mode
-    if [[ $_ ]]; then
-      printf '%s' "$_"
-    else
-      printf '%s' "true"
-    fi
+    [[ $_ == "true" ]] && activate_standby_mode
 esac
 

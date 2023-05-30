@@ -2,11 +2,10 @@
 ; https://github.com/grm34/Hyprwwland
 
 (defvar auto_up true)
-(defvar pending_updates "0")
-(defvar standby_status true)
 (defvar date_visible false)
 
-(defpoll updates_manager :interval "30m"
+(defpoll updates :interval "30m"
+                 :initial "0"
   "scripts/updates_manager")
 
 (defpoll standby :interval "2h"
@@ -59,34 +58,34 @@
        :space-evenly false
 
     ; Updates button.
-    (task_button :_class {pending_updates == "0" && network_status != "none"
+    (task_button :_class {updates == "0" && network_status != "none"
                           ? "updates-button-false" : "updates-button-true"}
-                 :_tooltip "Pending updates ${icon.arrow} ${pending_updates}"
+                 :_tooltip "Pending updates ${icon.arrow} ${updates}"
                  :_cursor "pointer"
                  :_timeout "10s"
                  ; :_onclick "${EWW_CMD} open taskmenu"
                  ; :_onrightclick "${EWW_CMD} close taskmenu"
-                 :_icon {auto_up == false || pending_updates == "off"
+                 :_icon {auto_up == false || updates == "off"
                                           || network_status == "none"
                          ? icon.updates-off : icon.updates-on}
-                 :_text {auto_up == false || pending_updates == "off"
+                 :_text {auto_up == false || updates == "off"
                                           || network_status == "none"
-                                          || pending_updates == "0"
-                         ? "" : pending_updates}
+                                          || updates == "0"
+                         ? "" : updates}
     )
 
     ; Standby button.
-    (task_button :_class {standby_status == true
+    (task_button :_class {standby == true
                           ? "standby-button-on"
                           : "standby-button-off"}
-                 :_tooltip {standby_status == true
+                 :_tooltip {standby == true
                             ? "Swayidle is ON" : "Swayidle is OFF"}
                  :_cursor "pointer"
                  :_timeout "5s"
-                 :_onclick {standby_status != true
+                 :_onclick {standby != true
                             ? "scripts/standby_manager on"
                             : "scripts/standby_manager off"}
-                 :_icon {standby_status == true
+                 :_icon {standby == true
                          ? icon.standby-on : icon.standby-off}
     ) 
     
