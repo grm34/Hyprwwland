@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Hyprwwland Copyright (c) 2023 darkmaster grm34.
+# https://github.com/grm34/Hyprwwland
+
+
+# Handle requests.
+case $1 in
+  brightness)
+    : "$(light -G | cut -d'.' -f1)"
+    printf '%s' "$_"
+    ;;
+  volume)
+    : "$(pulsemixer --get-volume | cut -d' ' -f1)"
+    printf '%s' "$_"
+    ;;
+  network)
+    : "$(nmcli networking connectivity)"
+    if [[ $_ == "none" ]]; then
+      printf '%s' "false"
+    else
+      printf '%s' "true"
+    fi
+    ;;
+  datetime)
+    readarray -td/ date < <(date '+%d/%m/%Y/%H:%M/')
+    printf '{"date":"%s","time":"%s","day":"%s","month":"%s","year":"%s"}' \
+      "${date[0]}/${date[1]}/${date[2]}" "${date[3]}" \
+      "${date[0]}" "${date[1]}" "${date[2]}"
+    ;;
+esac
+

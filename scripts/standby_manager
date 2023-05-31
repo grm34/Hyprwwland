@@ -2,44 +2,45 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# export RUST_BACKTRACE=full
-
 
 # Get required settings from config.json.
-readarray -t config <\
-  <(jaq '.suspend_timeout,
-         .sleep_timeout,
-         .lock_effects,
-         .standby_wallpaper' "$PWD/config.json")
+readarray -t config < <(
+  jaq '.suspend_timeout,
+       .sleep_timeout,
+       .lock_effects,
+       .standby_wallpaper' "$PWD/config.json")
 
-# Run swayidle and hyprctl.
-function standby_mode() {
-  pkill -f -9 swayidle
-	: "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
-	swayidle timeout "${config[0]//\"}" "$_"\
-	         timeout "${config[1]//\"}" "hyprctl dispatch dpms off"\
-	         resume "hyprctl dispatch dpms on" &
+
+# Run swayidle with hyprctl.
+function activate_standby_mode() {
+  : "$(pidof swayidle)"
+  if [[ -z $_ ]]; then
+	  : "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
+	  swayidle timeout "${config[0]//\"}" "$_" \
+	           timeout "${config[1]//\"}" "hyprctl dispatch dpms off" \
+	           resume "hyprctl dispatch dpms on" &
+  fi
 }
 
+
+# Handle requests.
 case $1 in
   on)
-    # onclick: activate.
-    eww update standby_status=true
-    standby_mode
+    eww update standby=true
+    activate_standby_mode
     ;;
 	off)
-    # onclick: deactivate.
-    eww update standby_status=false
+    eww update standby=false
     pkill -f -9 swayidle
     ;;
   *)
-    # onpoll: activate if required and return state (bool).
     : "$(eww get standby)"
-    [[ $_ == "true" ]] && standby_mode
-    if [[ $_ ]]; then
-      printf '%s' "$_"
-    else
+    if [[ $_ == "true" ]]; then
+      activate_standby_mode
       printf '%s' "true"
+    else
+      printf '%s' "false"
     fi
+    ;;
 esac
 

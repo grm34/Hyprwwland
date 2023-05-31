@@ -2,15 +2,6 @@
 
 A simple sharing of my [eww](https://github.com/elkowar/eww) setup on Hyprland to serve as an example or basis for learning how to create your own desktop environment. Many thanks to [@ElKowar](https://github.com/elkowar) for this awesome standalone widget system made in Rust. To be used without moderation.
 
-<a href="https://raw.githubusercontent.com/grm34/Hyprwwland/main/assets/screenshots/screen1.png">
-  <img align="center" width="49%" src="assets/screenshots/screen1.png"/>
-</a>
-<a href="https://raw.githubusercontent.com/grm34/Hyprwwland/main/assets/screenshots/screen2.png">
-  <img align="center" width="49%" src="assets/screenshots/screen2.png"/>
-</a>
-
-https://github.com/grm34/Hyprwwland/assets/6394023/c0e354b1-1dce-44f7-9534-fda2981d512b
-
 In order to keep this clean, and being only an eww configuration, my dotfiles are on a separate repository [Hyprwwland-dotfiles](https://github.com/grm34/Hyprwwland-dotfiles).
 
 ## What I use
@@ -67,16 +58,16 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 - Install eww and Hyprland with the minimum requirements :
 
 ```bash
-paru --needed -S hyprland eww-wayland dunst libnotify libcanberra\
-                 hyprpaper swayidle swaylock-effects-git neofetch duf\
-                 wl-clipboard cliphist pulsemixer myxer-bin light jaq\
+paru --needed -S hyprland eww-wayland dunst libnotify libcanberra \
+                 hyprpaper swayidle swaylock-effects-git neofetch duf \
+                 wl-clipboard cliphist pulsemixer myxer-bin light jaq \
                  networkmanager sound-theme-freedesktop socat fd
 ```
 
 - Install required fonts :
 
 ```bash
-paru --needed -S ttf-anonymouspro-nerd ttf-jetbrains-mono-nerd\
+paru --needed -S ttf-anonymouspro-nerd ttf-jetbrains-mono-nerd \
                  ttf-ubuntu-nerd ttf-meslo-nerd papirus-icon-theme
 ```
 
@@ -114,7 +105,7 @@ exec-once = wl-paste --type text --watch cliphist store
 exec-once = wl-paste --type image --watch cliphist store
 exec-once = dunst
 exec-once = hyprpaper
-exec-once = eww open-many topbar dock
+exec-once = eww open-many bar dock
 ```
 
 - Create `~/.config/hypr/hyprpaper.conf` :
@@ -124,16 +115,4 @@ preload = ~/.config/eww/assets/wallpapers/od_neon.png
 preload = ~/.config/eww/assets/wallpapers/od_tokyo.jpg
 wallpaper = ~/.config/eww/assets/wallpapers/od_neon.png
 ```
-
-## What else
-
-- Workspace manager that makes it easy to see the status of occupied spaces.
-- Real-time monitoring of processor, memory, sensors and disk usage.
-- Application launcher + dock which can be used for favorite applications.
-- Display of pending updates with the possibility to update in one click.
-- Quick access to volume and screen brightness controls.
-- Display of the local weather in terminal mode.
-- Power menu, network devices, sleep control and much more to come.
-- Easily customizable with simple CSS/SCSS.
-- Pick up everything you need, it's free.
 

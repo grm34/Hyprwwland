@@ -2,15 +2,16 @@
 # Hyprwwland Copyright (c) 2023 darkmaster grm34.
 # https://github.com/grm34/Hyprwwland
 
-# export RUST_BACKTRACE=full
-
 
 # Get current window state.
 : "$(hyprctl activewindow -j | jaq '.mapped')"
 
+
+# Handle requests.
 case $1 in
   dock)
-    # open the dock onhover if current window is free.
+    # open the dock onhover if the current window is free.
     [[ $_ != "true" ]] && eww update dock_visible=true
+    ;;
 esac
 

@@ -1,0 +1,187 @@
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
+
+
+(defvar auto_up true)
+(defvar date_visible false)
+
+(defpoll brightness :interval "2s"
+                    :initial "90"
+  "scripts/task_manager brightness")
+
+(defpoll volume :interval "2s"
+                :initial "90"
+  "scripts/task_manager volume")
+
+(defpoll network :interval "5s"
+                 :initial false
+  "scripts/task_manager network")
+
+(defpoll datetime :interval "10s"
+                  :initial "{}"
+  "scripts/task_manager datetime")
+
+(defpoll updates :interval "30m"
+                 :initial "0"
+                 :run-while network
+  "scripts/updates_manager")
+
+(defpoll standby :interval "20m"
+                 :initial true
+  "scripts/standby_manager")
+
+
+(defwidget task_button [class ?icon ?text ?tooltip cursor ?timeout
+                        ?onclick ?onrightclick ?onmiddleclick]
+  (eventbox :class {class}
+            :tooltip {tooltip}
+            :cursor {cursor}
+            :timeout {timeout}
+            :onclick {onclick}
+            :onrightclick {onrightclick}
+            :onmiddleclick {onmiddleclick}
+    (box
+      (label :class {icon =~ '-off' ? "${class}-icon-off" : "${class}-icon"}
+             :visible {icon != '' ? true : false}
+             :text {icon})
+             
+      (label :class "${class}-text"
+             :visible {text != '' ? true : false}
+             :text {text})
+)))
+
+
+(defwidget taskbar []
+  (box :class "taskbar"
+       :orientation "h"
+       :halign "end"
+       :space-evenly false
+
+    ; Updates button.
+    (task_button :class {updates == "0" && network == true
+                         ? "updates-button-false" : "updates-button-true"}
+                 :tooltip "Pending updates ${icon.arrow} ${updates}"
+                 :cursor "pointer"
+                 :timeout "10s"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :icon {auto_up == false || network == false
+                        ? icon.updates-off : icon.updates-on}
+                 :text {auto_up == false || network == false || updates == "0"
+                        ? "" : updates}
+    )
+
+    ; Standby button.
+    (task_button :class {standby == true ? "standby-on" : "standby-off"}
+                 :tooltip {standby == true
+                           ? "Swayidle is ON" : "Swayidle is OFF"}
+                 :cursor "pointer"
+                 :timeout "5s"
+                 :onclick {standby != true
+                           ? "scripts/standby_manager on"
+                           : "scripts/standby_manager off"}
+                 :icon {standby == true
+                        ? icon.standby-on : icon.standby-off}
+    ) 
+    
+    ; Brightness button.
+    (task_button :class "brightness-button"
+                 :tooltip "Brightness ${icon.arrow} ${brightness}%"
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 :onmiddleclick "light -S 100"
+                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :icon {icon.brightness}
+                 :text "${brightness}%"
+    )
+
+    ; Volume button.
+    (task_button :class "sound-button"
+                 :tooltip "Volume ${icon.arrow} ${volume}%"
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 :onmiddleclick "pulsemixer --set-volume 0"
+                 :onrightclick "myxer &"
+                 :icon {volume != '0' ? icon.sound-on : icon.sound-off}
+                 :text {volume != '0' ? "${volume}%" : "0%"}
+    ) 
+
+    ; Network button.
+    (task_button :class "network-button"
+                 :tooltip {network == false ? "Network is down..." : ""}
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 :onrightclick "${hww.terminal_cmd} nmtui &"
+                 :icon {network == false ? icon.net-off : icon.net-on}
+    )
+
+    ; Datetime revealer.
+    (eventbox :class "datetime-revealer"
+              :cursor "pointer"
+              :onhover "${EWW_CMD} update date_visible=true"
+              :onhoverlost "${EWW_CMD} update date_visible=false"
+              ; :onclick "${EWW_CMD} open taskmenu"
+              ; :onrightclick "${EWW_CMD} close taskmenu"
+      (box :space-evenly false
+
+        ; Time (visible).
+        (revealer :reveal {!date_visible}
+                  :transition "slideleft"
+                  :duration "250ms"
+          (label :class "datetime-revealer-time"
+                 :text {datetime.time}))
+
+        ; Date (onhover).
+        (revealer :reveal {date_visible}
+                  :transition "slideright"
+                  :duration "250ms"
+          (label :class "datetime-revealer-date"
+                 :text {datetime.date}))
+    ))
+
+    ; Battery button.
+    (task_button :class "battery-button"
+                 :tooltip "Battery ${icon.arrow} ${EWW_BATTERY.BAT0.status}"
+                 :cursor "progress"
+                 :icon {EWW_BATTERY.BAT0.capacity > 95
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC100 : icon.batN100
+                         : EWW_BATTERY.BAT0.capacity > 85
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC90 : icon.batN90
+                         : EWW_BATTERY.BAT0.capacity > 75
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC80 : icon.batN80
+                         : EWW_BATTERY.BAT0.capacity > 65
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC70 : icon.batN70
+                         : EWW_BATTERY.BAT0.capacity > 55
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC60 : icon.batN60
+                         : EWW_BATTERY.BAT0.capacity > 45
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC50 : icon.batN50
+                         : EWW_BATTERY.BAT0.capacity > 25
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC40 : icon.batN40
+                         : EWW_BATTERY.BAT0.capacity > 15
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC20 : icon.batN30
+                         : EWW_BATTERY.BAT0.capacity > 5
+                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC10 : icon.batN10
+                         : EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                           ? icon.batC00 : icon.batN00}
+                 :text "${EWW_BATTERY.BAT0.capacity}%"
+    )
+
+    ; Powermenu button.
+    (task_button :class "powermenu-button"
+                 :tooltip "powermenu"
+                 :cursor "pointer"
+                 ; :onclick "${EWW_CMD} open taskmenu"
+                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :icon {icon.power}
+    )
+))
+

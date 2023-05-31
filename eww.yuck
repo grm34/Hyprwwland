@@ -2,40 +2,50 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-; Import variables.
-(include "variables/basic.yuck")
-(include "variables/listening.yuck")
-(include "variables/polling.yuck")
-(include "variables/symbols.yuck")
+; Config.
+(defpoll hww :interval "60m"
+             :initial "{}"
+  "cat config.json")
 
-; Import templates.
-(include "templates/event_button.yuck")
-(include "templates/event_revealer.yuck")
-(include "templates/window.yuck")
+; Icons.
+(defpoll icon :interval "65m"
+              :initial "{}"
+  "cat style/symbols.json")
 
-; Import workbar.
-(include "widgets/workbar/workbar.yuck")
-
-; Import mainbar.
-(include "widgets/mainbar/launcher.yuck")
-(include "widgets/mainbar/cpu.yuck")
-(include "widgets/mainbar/ram.yuck")
-(include "widgets/mainbar/disk.yuck")
-(include "widgets/mainbar/temp.yuck")
-(include "widgets/mainbar/sysinfo.yuck")
-(include "widgets/mainbar/weather.yuck")
-(include "widgets/mainbar/mainbar.yuck")
-
-; Import taskbar.
-(include "widgets/taskbar/updates.yuck")
-(include "widgets/taskbar/brightness.yuck")
-(include "widgets/taskbar/sound.yuck")
-(include "widgets/taskbar/network.yuck")
-(include "widgets/taskbar/calendar.yuck")
-(include "widgets/taskbar/powermenu.yuck")
-(include "widgets/taskbar/taskbar.yuck")
-
-; Import widgets.
+; Widgets.
 (include "widgets/dock.yuck")
-(include "widgets/topbar.yuck")
+(include "widgets/workbar.yuck")
+(include "widgets/menubar.yuck")
+(include "widgets/taskbar.yuck")
+
+
+; Bar.
+(defwindow bar :monitor 0
+               :geometry (geometry :x "0%"
+                                   :y "0%"
+                                   :width "100%"
+                                   :height "0%"
+                                   :anchor "top center")
+               :stacking "fg"
+               :exclusive true
+               :focusable false
+  (centerbox
+    (workbar :halign "start")
+    (menubar :halign "center")
+    (taskbar :halign "end")
+  )
+)
+
+; Dock.
+(defwindow dock :monitor 0
+                :geometry (geometry :x "0%"
+                                    :y "0%"
+                                    :width "0%"
+                                    :height "0%"
+                                    :anchor "left center")
+                :stacking "fg"
+                :exclusive true
+                :focusable false
+  (dock)
+)
 
