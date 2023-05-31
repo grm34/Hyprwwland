@@ -8,6 +8,7 @@ function eww_update() {
   printf '%s' "$_" | jaq -c --arg value "$1" "$2"
 }
 
+
 function update_occupied_workspaces() {
   local occupied id
   readarray -t occupied < <(hyprctl workspaces -j | jaq '.[]?.id?')
@@ -19,29 +20,33 @@ function update_occupied_workspaces() {
   done
 }
 
+
 function handle() {
   case $1 in
     workspace*|createworkspace*)
-      id=$((${1##*>>}-1))
-      eww_update "ws-active" "(.[$id].class|=\$value)"
+      : $((${1##*>>}-1))
+      eww_update "ws-active" "(.[$_].class|=\$value)"
       update_occupied_workspaces "${1##*>>}"
       ;;
     destroyworkspace*)
-      id=$((${1##*>>}-1))
-      eww_update "ws-inactive" "(.[$id].class|=\$value)"
+      : $((${1##*>>}-1))
+      eww_update "ws-inactive" "(.[$_].class|=\$value)"
       ;;
   esac
 }
 
 
-# On start: update workspaces status.
-active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
-id=$((active-1))
-eww_update "ws-active" "(.[$id].class|=\$value)"
-update_occupied_workspaces "$active"
+function on_start() {
+  local active id
+  active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
+  id=$((active-1))
+  eww_update "ws-active" "(.[$id].class|=\$value)"
+  update_occupied_workspaces "$active"
+}
 
 
-# Listen UNIX Socket for events (IPC).
+on_start
+# Listen socket for events.
 socat -U \
   - UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock \
   | while read -r line; do handle "$line"; done
