@@ -25,6 +25,7 @@
                :halign "center"
                :valign "end"
                :space-evenly false
+               :spacing 8
             (label :class "${class}-box-icon"
                    :text {icon})
             (label :class "${class}-box-text"
