@@ -2,17 +2,7 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwindow taskmenu :monitor 0
-                    :geometry (geometry :x "1%"
-                                        :y "1%"
-                                        :width "0%"
-                                        :height "0%"
-                                        :anchor "top right")
-                    :stacking "fg"
-                    :exclusive false
-                    :focusable false
-
-  (box :class "taskmenu"
-   
-))
+(defwidget taskmenu []
+  (box :class "taskmenu")
+)
 

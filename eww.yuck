@@ -17,6 +17,7 @@
 (include "widgets/workbar.yuck")
 (include "widgets/menubar.yuck")
 (include "widgets/taskbar.yuck")
+(include "widgets/taskmenu.yuck")
 
 
 ; Bar.
@@ -49,3 +50,16 @@
   (dock)
 )
 
+; Taskmenu.
+(defwindow taskmenu :monitor 0
+                    :geometry (geometry :x "1%"
+                                        :y "1%"
+                                        :width "0%"
+                                        :height "0%"
+                                        :anchor "top right")
+                    :stacking "fg"
+                    :exclusive false
+                    :focusable false
+  (taskmenu)
+)
+  
