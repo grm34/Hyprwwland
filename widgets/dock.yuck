@@ -6,7 +6,8 @@
 
 (defpoll dock_manager :interval "5m"
                       :initial "[]"
-  "scripts/dock_manager")
+  "scripts/dock_manager"
+)
 
 
 (defwidget dock []

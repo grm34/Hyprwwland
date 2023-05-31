@@ -12,7 +12,8 @@
   {"index": "7", "class": "ws-inactive", "icon": "󰓃 ₇ "},
   {"index": "8", "class": "ws-inactive", "icon": "󱛻 ₈ "},
   {"index": "9", "class": "ws-inactive", "icon": "󰎔 ₉ "}]'
-  "scripts/workspaces_manager")
+  "scripts/workspaces_manager"
+)
 
 
 (defwidget workbar []

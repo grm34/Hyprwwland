@@ -2,7 +2,32 @@
 ; https://github.com/grm34/Hyprwwland
 
 
-(defwidget taskmenu []
-  (box :class "taskmenu")
+(defvar taskmenu_tabs '[
+  {"class": "tab-off", "onclick": "updates_content", "icon": " "},
+  {"class": "tab-off", "onclick": "standby_content", "icon": "󰈈 "},
+  {"class": "tab-off", "onclick": "brightness_content", "icon": " "},
+  {"class": "tab-off", "onclick": "volume_content", "icon": " "},
+  {"class": "tab-off", "onclick": "network_content", "icon": "󰛳 "},
+  {"class": "tab-off", "onclick": "datetime_content", "icon": " "},
+  {"class": "tab-off", "onclick": "power_content", "icon": "⏻ "}]'
 )
+
+
+(defwidget tabs []
+  (box :class "taskmenu_tabs"
+       :orientation "v"
+       :spacing 10
+
+    (for tab in taskmenu_tabs
+      (button :class {tab.class}
+              ; :onclick "${EWW_CMD} open ${tab.onclick}"
+        (label :text {tab.icon}
+               :style "font-size: 24")))
+))
+
+(defwidget taskmenu []
+  (box :class "taskmenu"
+
+    (tabs)
+))
 

@@ -7,28 +7,34 @@
 
 (defpoll brightness :interval "2s"
                     :initial "90"
-  "scripts/task_manager brightness")
+  "scripts/task_manager brightness"
+)
 
 (defpoll volume :interval "2s"
                 :initial "90"
-  "scripts/task_manager volume")
+  "scripts/task_manager volume"
+)
 
 (defpoll network :interval "5s"
                  :initial false
-  "scripts/task_manager network")
+  "scripts/task_manager network"
+)
 
 (defpoll datetime :interval "10s"
                   :initial "{}"
-  "scripts/task_manager datetime")
+  "scripts/task_manager datetime"
+)
 
 (defpoll updates :interval "30m"
                  :initial "0"
                  :run-while {network == true}
-  "scripts/updates_manager")
+  "scripts/updates_manager"
+)
 
 (defpoll standby :interval "20m"
                  :initial false
-  "scripts/standby_manager")
+  "scripts/standby_manager"
+)
 
 
 (defwidget task_button [class ?icon ?text ?tooltip cursor ?timeout
