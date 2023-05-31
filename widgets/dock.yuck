@@ -37,6 +37,7 @@
                 :duration "250ms"
         (box :class "dock-applications"
              :orientation "v"
+             :style "padding-left: 4px"
 
           (for app in dock_manager
             (eventbox :class "dock-app"

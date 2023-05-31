@@ -3,15 +3,15 @@
 
 
 (deflisten workspaces :initial '[
-  {"index": "1", "class": "ws-inactive", "icon": " ₁ "},
-  {"index": "2", "class": "ws-inactive", "icon": " ₂ "},
-  {"index": "3", "class": "ws-inactive", "icon": " ₃ "},
-  {"index": "4", "class": "ws-inactive", "icon": "󱐏 ₄ "},
-  {"index": "5", "class": "ws-inactive", "icon": " ₅ "},
-  {"index": "6", "class": "ws-inactive", "icon": "󰈙 ₆ "},
-  {"index": "7", "class": "ws-inactive", "icon": "󰓃 ₇ "},
-  {"index": "8", "class": "ws-inactive", "icon": "󱛻 ₈ "},
-  {"index": "9", "class": "ws-inactive", "icon": "󰎔 ₉ "}]'
+  {"index": "1", "class": "ws-inactive", "icon": " ₁"},
+  {"index": "2", "class": "ws-inactive", "icon": " ₂"},
+  {"index": "3", "class": "ws-inactive", "icon": " ₃"},
+  {"index": "4", "class": "ws-inactive", "icon": "󱐏 ₄"},
+  {"index": "5", "class": "ws-inactive", "icon": " ₅"},
+  {"index": "6", "class": "ws-inactive", "icon": "󰈙 ₆"},
+  {"index": "7", "class": "ws-inactive", "icon": "󰓃 ₇"},
+  {"index": "8", "class": "ws-inactive", "icon": "󱛻 ₈"},
+  {"index": "9", "class": "ws-inactive", "icon": "󰎔 ₉"}]'
   "scripts/workspaces_manager"
 )
 
@@ -20,11 +20,12 @@
   (box :class "workbar"
        :orientation "h"
        :halign "start"
-       :space-evenly false
+       :spacing 6
 
     (for ws in workspaces
       (button :class {ws.class}
               :onclick "hyprctl dispatch workspace ${ws.index}"
-        (label :text {ws.icon})))
+        (label :justify "center"
+               :text {ws.icon})))
 ))
 

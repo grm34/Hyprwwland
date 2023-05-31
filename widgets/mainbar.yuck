@@ -10,7 +10,6 @@
 
 (defwidget progress_reveal [class visible icon content]
   (eventbox :class {class}
-            :timeout "200ms"
             :cursor "progress"
             :onhover "eww update ${class}_graph=true"
             :onhoverlost "eww update ${class}_graph=false"
@@ -51,9 +50,10 @@
 
 (defwidget mainbar []
   (box :class "mainbar"
-       :space-evenly false
-       :halign "center"
        :orientation "h"
+       :halign "center"
+       :space-evenly false
+       :spacing 10
 
     ; Menu.
     (eventbox :class "menu"
