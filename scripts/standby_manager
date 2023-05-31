@@ -13,12 +13,11 @@ readarray -t config < <(
 
 # Run swayidle with hyprctl.
 function activate_standby_mode() {
-  : "$(pidof swayidle)"
-  if [[ -z $_ ]]; then
-	  : "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}"
-	  swayidle timeout "${config[0]//\"}" "$_" \
-	           timeout "${config[1]//\"}" "hyprctl dispatch dpms off" \
-	           resume "hyprctl dispatch dpms on" &
+  if ! pidof -sxq swayidle; then
+	  swayidle timeout "${config[0]//\"}" \
+    "swaylock -F -e ${config[2]//\"} -i ${config[3]//\"}" \
+    timeout "${config[1]//\"}" "hyprctl dispatch dpms off" \
+    resume "hyprctl dispatch dpms on" &
   fi
 }
 

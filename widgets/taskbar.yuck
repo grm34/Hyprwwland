@@ -23,11 +23,11 @@
 
 (defpoll updates :interval "30m"
                  :initial "0"
-                 :run-while network
+                 :run-while {network == true}
   "scripts/updates_manager")
 
 (defpoll standby :interval "20m"
-                 :initial true
+                 :initial false
   "scripts/standby_manager")
 
 
