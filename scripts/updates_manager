@@ -4,13 +4,14 @@
 
 
 function aur_helper() {
-  local up
-  : "$(pidof "$aur_helper")"
-  [[ -z $_ && $1 ]] && : "$(echo "n" | sudo "$aur_helper")"
-  up="$(sudo "$aur_helper" -Qu | wc -l)"
-  ! [[ $up =~ ^[0-9]+$ ]] && up=0
-  printf '%s' "$up"
+  ! pidof -sxq "$aur_helper" &&
+    [[ $1 ]] && nohup "$(echo "n" | sudo "$aur_helper")"
+  ! pidof -sxq "$aur_helper" &&
+    : "$(sudo "$aur_helper" -Qu | wc -l)"
+  ! [[ $_ =~ ^[0-9]+$ ]] && : 0
+  printf '%s' "$_"
 }
+
 
 function notify_user() {
   case $1 in
