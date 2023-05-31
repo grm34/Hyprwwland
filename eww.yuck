@@ -15,7 +15,7 @@
 ; Widgets.
 (include "widgets/dock.yuck")
 (include "widgets/workbar.yuck")
-(include "widgets/menubar.yuck")
+(include "widgets/mainbar.yuck")
 (include "widgets/taskbar.yuck")
 (include "widgets/taskmenu.yuck")
 
@@ -32,7 +32,7 @@
                :focusable false
   (centerbox
     (workbar :halign "start")
-    (menubar :halign "center")
+    (mainbar :halign "center")
     (taskbar :halign "end")
   )
 )
