@@ -58,16 +58,16 @@ In order to keep this clean, and being only an eww configuration, my dotfiles ar
 - Install eww and Hyprland with the minimum requirements :
 
 ```bash
-paru --needed -S hyprland eww-wayland dunst libnotify libcanberra\
-                 hyprpaper swayidle swaylock-effects-git neofetch duf\
-                 wl-clipboard cliphist pulsemixer myxer-bin light jaq\
+paru --needed -S hyprland eww-wayland dunst libnotify libcanberra \
+                 hyprpaper swayidle swaylock-effects-git neofetch duf \
+                 wl-clipboard cliphist pulsemixer myxer-bin light jaq \
                  networkmanager sound-theme-freedesktop socat fd
 ```
 
 - Install required fonts :
 
 ```bash
-paru --needed -S ttf-anonymouspro-nerd ttf-jetbrains-mono-nerd\
+paru --needed -S ttf-anonymouspro-nerd ttf-jetbrains-mono-nerd \
                  ttf-ubuntu-nerd ttf-meslo-nerd papirus-icon-theme
 ```
 
