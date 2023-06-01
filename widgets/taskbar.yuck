@@ -5,34 +5,28 @@
 (defvar auto_up true)
 (defvar date_visible false)
 
-(defpoll brightness :interval "2s"
-                    :initial "90"
+(defpoll brightness :interval "2s" :initial "90"
   "scripts/task_manager brightness"
 )
 
-(defpoll volume :interval "2s"
-                :initial "90"
+(defpoll volume :interval "2s" :initial "90"
   "scripts/task_manager volume"
 )
 
-(defpoll network :interval "5s"
-                 :initial false
+(defpoll network :interval "5s" :initial false
   "scripts/task_manager network"
 )
 
-(defpoll datetime :interval "10s"
-                  :initial "{}"
+(defpoll datetime :interval "10s" :initial "{}"
   "scripts/task_manager datetime"
 )
 
-(defpoll updates :interval "30m"
-                 :initial "0"
+(defpoll updates :interval "30m" :initial "0"
                  :run-while {network == true}
   "scripts/updates_manager"
 )
 
-(defpoll standby :interval "20m"
-                 :initial false
+(defpoll standby :interval "20m" :initial false
   "scripts/standby_manager"
 )
 
@@ -65,7 +59,7 @@
        :space-evenly false
        :spacing 6
 
-    ; Network button.
+    ; Network.
     (task_button :class "network-button"
                  :tooltip {network == false ? "Network is down..." : ""}
                  :cursor "pointer"
@@ -74,7 +68,7 @@
                  :icon {network == false ? icon.net-off : icon.net-on}
     )
 
-    ; Updates button.
+    ; Updates.
     (task_button :class {updates == "0" && network == true
                          ? "updates-button-false" : "updates-button-true"}
                  :tooltip "Pending updates ${icon.arrow} ${updates}"
@@ -88,7 +82,7 @@
                         ? "" : updates}
     )
 
-    ; Standby button.
+    ; Standby.
     (task_button :class {standby == true ? "standby-on" : "standby-off"}
                  :tooltip {standby == true
                            ? "Swayidle is ON" : "Swayidle is OFF"}
@@ -101,7 +95,7 @@
                         ? icon.standby-on : icon.standby-off}
     ) 
 
-    ; Brightness button.
+    ; Brightness.
     (task_button :class "brightness-button"
                  :tooltip "Brightness ${icon.arrow} ${brightness}%"
                  :cursor "pointer"
@@ -112,7 +106,7 @@
                  :text "${brightness}%"
     )
 
-    ; Volume button.
+    ; Volume.
     (task_button :class "sound-button"
                  :tooltip "Volume ${icon.arrow} ${volume}%"
                  :cursor "pointer"
@@ -123,7 +117,7 @@
                  :text {volume != '0' ? "${volume}%" : "0%"}
     ) 
 
-    ; Battery button.
+    ; Battery.
     (task_button :class "battery-button"
                  :tooltip "Battery ${icon.arrow} ${EWW_BATTERY.BAT0.status}"
                  :cursor "progress"
@@ -159,7 +153,7 @@
                  :text "${EWW_BATTERY.BAT0.capacity}%"
     )
 
-    ; Datetime revealer.
+    ; Datetime.
     (eventbox :class "datetime-revealer"
               :cursor "pointer"
               :onhover "${EWW_CMD} update date_visible=true"
@@ -183,7 +177,7 @@
                  :text {datetime.date}))
     ))
 
-    ; Powermenu button.
+    ; Powermenu.
     (task_button :class "powermenu-button"
                  :tooltip "powermenu"
                  :cursor "pointer"

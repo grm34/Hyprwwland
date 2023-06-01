@@ -22,14 +22,23 @@
       (button :class {tab.class}
               ; :onclick "${EWW_CMD} open ${tab.onclick}"
         (label :text {tab.icon}
-               :style "font-size: 24")))
+               :style "font-size: 24px")
+    ))
 ))
 
 
 (defwidget content []
   (box :class "taskmenu_content"
-    "allo"
+       :orientation "v"
+       :space-evenly false
+
+    (box
+      (button :halign "start"
+              :onclick "${EWW_CMD} close taskmenu"
+        (label :text "x"))
+      (label :text "allo"))
 ))
+
 
 (defwidget taskmenu []
   (box :class "taskmenu"

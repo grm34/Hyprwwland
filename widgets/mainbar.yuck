@@ -33,7 +33,8 @@
           (progress :halign "center"
                     :valign "start"
                     :value {content}
-                    :orientation "h")))
+                    :orientation "h")
+      ))
 
       ; graph (onhover).
       (revealer :reveal {visible}
@@ -45,7 +46,8 @@
                  :value {content}
                  :time-range "10s"
                  :dynamic true
-                 :line-style "round")))
+                 :line-style "round")
+      ))
 )))
 
 
@@ -65,25 +67,25 @@
       (image :path "assets/images/menu.png"
              :image-width 20))
 
-    ; CPU usage.
+    ; Cpu.
     (progress_reveal :class "cpu"
                      :visible {cpu_graph}
                      :icon {icon.cpu}
                      :content {EWW_CPU.avg})
 
-    ; RAM usage.
+    ; Ram.
     (progress_reveal :class "ram"
                      :visible {ram_graph}
                      :icon {icon.ram}
                      :content {EWW_RAM.used_mem_perc})
 
-    ; DISK usage.
+    ; Disk.
     (progress_reveal :class "disk"
                      :visible {disk_graph}
                      :icon {icon.disk}
                      :content {EWW_DISK["/"].used_perc})
 
-    ; CPU temp.
+    ; Temp.
     (progress_reveal :class "temp"
                      :visible {temp_graph}
                      :icon {icon.temp}
