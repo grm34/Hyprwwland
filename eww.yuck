@@ -3,14 +3,14 @@
 
 
 ; Config.
-(defpoll hww :interval "60m"
-             :initial "{}"
-  "cat config.json")
+(defpoll hww :interval "60m" :initial "{}"
+  "cat config.json"
+)
 
 ; Icons.
-(defpoll icon :interval "65m"
-              :initial "{}"
-  "cat style/symbols.json")
+(defpoll icon :interval "60m" :initial "{}"
+  "cat style/symbols.json"
+)
 
 ; Widgets.
 (include "widgets/dock.yuck")
@@ -22,14 +22,12 @@
 
 ; Bar.
 (defwindow bar :monitor 0
-               :geometry (geometry :x "0%"
-                                   :y "0%"
-                                   :width "99%"
-                                   :height "0%"
-                                   :anchor "top center")
                :stacking "fg"
                :exclusive true
                :focusable false
+               :geometry (geometry :x "0%" :y "0%"
+                                   :width "99%" :height "0%"
+                                   :anchor "top center")
   (centerbox
     (workbar :halign "start")
     (mainbar :halign "center")
@@ -39,27 +37,23 @@
 
 ; Dock.
 (defwindow dock :monitor 0
-                :geometry (geometry :x "0%"
-                                    :y "0%"
-                                    :width "0%"
-                                    :height "0%"
-                                    :anchor "left center")
                 :stacking "fg"
                 :exclusive true
                 :focusable false
+                :geometry (geometry :x "0%" :y "0%"
+                                    :width "0%" :height "0%"
+                                    :anchor "left center")
   (dock)
 )
 
 ; Taskmenu.
 (defwindow taskmenu :monitor 0
-                    :geometry (geometry :x "1%"
-                                        :y "1%"
-                                        :width "0%"
-                                        :height "0%"
-                                        :anchor "top right")
                     :stacking "fg"
                     :exclusive false
                     :focusable false
+                    :geometry (geometry :x "1%" :y "1%"
+                                        :width "0%" :height "0%"
+                                        :anchor "top right")
   (taskmenu)
 )
-  
+
