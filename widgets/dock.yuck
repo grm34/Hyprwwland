@@ -6,7 +6,8 @@
 
 (defpoll dock_manager :interval "5m"
                       :initial "[]"
-  "scripts/dock_manager")
+  "scripts/dock_manager"
+)
 
 
 (defwidget dock []
@@ -36,6 +37,7 @@
                 :duration "250ms"
         (box :class "dock-applications"
              :orientation "v"
+             :style "padding-left: 4px"
 
           (for app in dock_manager
             (eventbox :class "dock-app"

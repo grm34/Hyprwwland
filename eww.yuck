@@ -15,15 +15,16 @@
 ; Widgets.
 (include "widgets/dock.yuck")
 (include "widgets/workbar.yuck")
-(include "widgets/menubar.yuck")
+(include "widgets/mainbar.yuck")
 (include "widgets/taskbar.yuck")
+(include "widgets/taskmenu.yuck")
 
 
 ; Bar.
 (defwindow bar :monitor 0
                :geometry (geometry :x "0%"
                                    :y "0%"
-                                   :width "100%"
+                                   :width "99%"
                                    :height "0%"
                                    :anchor "top center")
                :stacking "fg"
@@ -31,7 +32,7 @@
                :focusable false
   (centerbox
     (workbar :halign "start")
-    (menubar :halign "center")
+    (mainbar :halign "center")
     (taskbar :halign "end")
   )
 )
@@ -49,3 +50,16 @@
   (dock)
 )
 
+; Taskmenu.
+(defwindow taskmenu :monitor 0
+                    :geometry (geometry :x "1%"
+                                        :y "1%"
+                                        :width "0%"
+                                        :height "0%"
+                                        :anchor "top right")
+                    :stacking "fg"
+                    :exclusive false
+                    :focusable false
+  (taskmenu)
+)
+  
