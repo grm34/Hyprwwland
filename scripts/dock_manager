@@ -21,7 +21,7 @@ readarray -t apps < <(
                    --type file --extension desktop)
 
 
-# Create an array containing the required data of each app as json.
+# Create an array containing the required data of each app.
 index=0
 app_data=()
 for app in "${apps[@]}"; do
@@ -52,7 +52,7 @@ for app in "${apps[@]}"; do
 
   # define opening cmd (terminal or standalone).
   grep -qm 1 "Terminal=true" "$app" && cmd="$terminal_cmd $cmd"
-  [[ ${cmd// &} == *alacritty ]] && # open $TERM from $HOME.
+  [[ ${cmd// &} == *alacritty ]] && # open $TERM from $HOME (fix).
     cmd="${cmd// &} --working-directory $HOME &"
 
   # increment the array.
