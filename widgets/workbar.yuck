@@ -25,7 +25,6 @@
     (for ws in workspaces
       (button :class {ws.class}
               :onclick "hyprctl dispatch workspace ${ws.index}"
-        (label :justify "center"
-               :text {ws.icon})))
+        (label :text {ws.icon})))
 ))
 
