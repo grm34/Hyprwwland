@@ -9,6 +9,10 @@ function eww_update() {
   eww update taskmenu_tabs="$_"
 }
 
+# Open taskmenu if not already open.
+if ! eww windows | grep -sqm 1 "\*taskmenu"; then
+  eww open taskmenu
+fi
 
 # Set all tabs visibility to false.
 for id in {0..6}; do

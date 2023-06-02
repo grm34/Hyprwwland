@@ -6,19 +6,19 @@
 (defvar date_visible false)
 
 (defpoll brightness :interval "2s" :initial "90"
-  "scripts/task_manager brightness"
+  "scripts/taskbar_manager brightness"
 )
 
 (defpoll volume :interval "2s" :initial "90"
-  "scripts/task_manager volume"
+  "scripts/taskbar_manager volume"
 )
 
 (defpoll network :interval "5s" :initial false
-  "scripts/task_manager network"
+  "scripts/taskbar_manager network"
 )
 
 (defpoll datetime :interval "10s" :initial "{}"
-  "scripts/task_manager datetime"
+  "scripts/taskbar_manager datetime"
 )
 
 (defpoll updates :interval "30m" :initial "0"
@@ -31,25 +31,22 @@
 )
 
 
-(defwidget task_button [class ?icon ?text ?tooltip cursor ?timeout
-                        ?onclick ?onrightclick ?onmiddleclick]
-  (eventbox :class {class}
+(defwidget task_button [class ?icon ?text ?tooltip ?onclick ?onrightclick]
+  (eventbox :cursor "pointer"
+    (button :class {class}
             :tooltip {tooltip}
-            :cursor {cursor}
-            :timeout {timeout}
-            :onclick {onclick}
-            :onrightclick {onrightclick}
-            :onmiddleclick {onmiddleclick}
-    (box :space-evenly false
-         :spacing {class =~ 'updates' ? 0 : 6}
-      (label :class {icon =~ '-off' ? "${class}-icon-off" : "${class}-icon"}
-             :visible {icon != '' ? true : false}
-             :text {icon})
-             
-      (label :class "${class}-text"
-             :visible {text != '' ? true : false}
-             :text {text})
-)))
+            :timeout "1s"
+            :onclick "scripts/taskmenu_manager ${onclick}"
+            :onrightclick "${EWW_CMD} close taskmenu"
+      (box :space-evenly false
+           :spacing {class =~ 'updates' ? 0 : 6}
+        (label :class {icon =~ '-off' ? "${class}-icon-off" : "${class}-icon"}
+               :visible {icon != '' ? true : false}
+               :text {icon})
+        (label :class "${class}-text"
+               :visible {text != '' ? true : false}
+               :text {text})
+))))
 
 
 (defwidget taskbar []
@@ -62,9 +59,7 @@
     ; Network.
     (task_button :class "network-button"
                  :tooltip {network == false ? "Network is down..." : ""}
-                 :cursor "pointer"
-                 ; :onclick "${EWW_CMD} open taskmenu"
-                 :onrightclick "${hww.terminal_cmd} nmtui &"
+                 :onclick "4"
                  :icon {network == false ? icon.net-off : icon.net-on}
     )
 
@@ -72,10 +67,7 @@
     (task_button :class {updates == "0" && network == true
                          ? "updates-button-false" : "updates-button-true"}
                  :tooltip "Pending updates ${icon.arrow} ${updates}"
-                 :cursor "pointer"
-                 :timeout "10s"
-                 ; :onclick "${EWW_CMD} open taskmenu"
-                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :onclick "0"
                  :icon {auto_up == false || network == false
                         ? icon.updates-off : icon.updates-on}
                  :text {auto_up == false || network == false || updates == "0"
@@ -86,11 +78,7 @@
     (task_button :class {standby == true ? "standby-on" : "standby-off"}
                  :tooltip {standby == true
                            ? "Swayidle is ON" : "Swayidle is OFF"}
-                 :cursor "pointer"
-                 :timeout "5s"
-                 :onclick {standby != true
-                           ? "scripts/standby_manager on"
-                           : "scripts/standby_manager off"}
+                 :onclick "1"
                  :icon {standby == true
                         ? icon.standby-on : icon.standby-off}
     ) 
@@ -98,10 +86,7 @@
     ; Brightness.
     (task_button :class "brightness-button"
                  :tooltip "Brightness ${icon.arrow} ${brightness}%"
-                 :cursor "pointer"
-                 ; :onclick "${EWW_CMD} open taskmenu"
-                 :onmiddleclick "light -S 100"
-                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :onclick "2"
                  :icon {icon.brightness}
                  :text "${brightness}%"
     )
@@ -109,10 +94,7 @@
     ; Volume.
     (task_button :class "sound-button"
                  :tooltip "Volume ${icon.arrow} ${volume}%"
-                 :cursor "pointer"
-                 ; :onclick "${EWW_CMD} open taskmenu"
-                 :onmiddleclick "pulsemixer --set-volume 0"
-                 :onrightclick "myxer &"
+                 :onclick "3"
                  :icon {volume != '0' ? icon.sound-on : icon.sound-off}
                  :text {volume != '0' ? "${volume}%" : "0%"}
     ) 
@@ -120,7 +102,7 @@
     ; Battery.
     (task_button :class "battery-button"
                  :tooltip "Battery ${icon.arrow} ${EWW_BATTERY.BAT0.status}"
-                 :cursor "progress"
+                 :onclick "2"
                  :icon {EWW_BATTERY.BAT0.capacity > 95
                          ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
                            ? icon.batC100 : icon.batN100
@@ -158,31 +140,30 @@
               :cursor "pointer"
               :onhover "${EWW_CMD} update date_visible=true"
               :onhoverlost "${EWW_CMD} update date_visible=false"
-              ; :onclick "${EWW_CMD} open taskmenu"
-              ; :onrightclick "${EWW_CMD} close taskmenu"
-      (box :space-evenly false
+      (button :timeout "1s"
+              :onclick "scripts/taskmenu_manager 5"
+              :onrightclick "${EWW_CMD} close taskmenu"  
+        (box :space-evenly false
 
-        ; Time (visible).
-        (revealer :reveal {!date_visible}
-                  :transition "slideleft"
-                  :duration "250ms"
-          (label :class "datetime-revealer-time"
-                 :text {datetime.time}))
+          ; Time (visible).
+          (revealer :reveal {!date_visible}
+                    :transition "slideleft"
+                    :duration "250ms"
+            (label :class "datetime-revealer-time"
+                   :text {datetime.time}))
 
-        ; Date (onhover).
-        (revealer :reveal {date_visible}
-                  :transition "slideright"
-                  :duration "250ms"
-          (label :class "datetime-revealer-date"
-                 :text {datetime.date}))
-    ))
+          ; Date (onhover).
+          (revealer :reveal {date_visible}
+                    :transition "slideright"
+                    :duration "250ms"
+            (label :class "datetime-revealer-date"
+                   :text {datetime.date}))
+    )))
 
     ; Powermenu.
     (task_button :class "powermenu-button"
                  :tooltip "powermenu"
-                 :cursor "pointer"
-                 ; :onclick "${EWW_CMD} open taskmenu"
-                 ; :onrightclick "${EWW_CMD} close taskmenu"
+                 :onclick "6"
                  :icon {icon.power}
     )
 ))

@@ -37,7 +37,8 @@
          :spacing 20
       (button :halign "start"
               :onclick "${EWW_CMD} close taskmenu"
-        (label :text {icon.close}))
+        (label :text {icon.close}
+               :style "font-size: 14px"))
       (label :text "Taskbar settings"))
 
     (tm_updates)
