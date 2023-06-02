@@ -22,7 +22,6 @@
 )
 
 (defpoll updates :interval "30m" :initial "0"
-                 :run-while {network == true}
   "scripts/updates_manager"
 )
 
@@ -31,7 +30,8 @@
 )
 
 
-(defwidget task_button [class ?icon ?text ?tooltip ?onclick ?onrightclick]
+(defwidget task_button [class ?icon ?text ?tooltip
+                        ?onclick ?onrightclick]
   (eventbox :cursor "pointer"
     (button :class {class}
             :tooltip {tooltip}
@@ -40,7 +40,8 @@
             :onrightclick "${EWW_CMD} close taskmenu"
       (box :space-evenly false
            :spacing {class =~ 'updates' ? 0 : 6}
-        (label :class {icon =~ '-off' ? "${class}-icon-off" : "${class}-icon"}
+        (label :class {icon =~ '-off' ? "${class}-icon-off"
+                                      : "${class}-icon"}
                :visible {icon != '' ? true : false}
                :text {icon})
         (label :class "${class}-text"
@@ -58,29 +59,35 @@
 
     ; Network.
     (task_button :class "network-button"
-                 :tooltip {network == false ? "Network is down..." : ""}
+                 :tooltip {network == true ? "Network is down..."
+                                           : ""}
                  :onclick "4"
-                 :icon {network == false ? icon.net-off : icon.net-on}
+                 :icon {network == false ? icon.net-off
+                                         : icon.net-on}
     )
 
     ; Updates.
-    (task_button :class {updates == "0" && network == true
-                         ? "updates-button-false" : "updates-button-true"}
+    (task_button :class {updates == "0"
+                         && network == true ? "updates-button-false"
+                                            : "updates-button-true"}
                  :tooltip "Pending updates ${icon.arrow} ${updates}"
                  :onclick "0"
-                 :icon {auto_up == false || network == false
-                        ? icon.updates-off : icon.updates-on}
-                 :text {auto_up == false || network == false || updates == "0"
-                        ? "" : updates}
+                 :icon {auto_up == false
+                        || network == false ? icon.updates-off
+                                            : icon.updates-on}
+                 :text {auto_up == false
+                        || network == false
+                        || updates == "0" ? "" : updates}
     )
 
     ; Standby.
-    (task_button :class {standby == true ? "standby-on" : "standby-off"}
-                 :tooltip {standby == true
-                           ? "Swayidle is ON" : "Swayidle is OFF"}
+    (task_button :class {standby == true ? "standby-on"
+                                         : "standby-off"}
+                 :tooltip {standby == true ? "Swayidle is ON"
+                                           : "Swayidle is OFF"}
                  :onclick "1"
-                 :icon {standby == true
-                        ? icon.standby-on : icon.standby-off}
+                 :icon {standby == true ? icon.standby-on
+                                        : icon.standby-off}
     ) 
 
     ; Brightness.
@@ -95,43 +102,44 @@
     (task_button :class "sound-button"
                  :tooltip "Volume ${icon.arrow} ${volume}%"
                  :onclick "3"
-                 :icon {volume != '0' ? icon.sound-on : icon.sound-off}
+                 :icon {volume != '0' ? icon.sound-on
+                                      : icon.sound-off}
                  :text {volume != '0' ? "${volume}%" : "0%"}
     ) 
 
     ; Battery.
     (task_button :class "battery-button"
-                 :tooltip "Battery ${icon.arrow} ${EWW_BATTERY.BAT0.status}"
+                 :tooltip "${icon.arrow} ${EWW_BATTERY.BAT0.status}"
                  :onclick "2"
                  :icon {EWW_BATTERY.BAT0.capacity > 95
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC100 : icon.batN100
-                         : EWW_BATTERY.BAT0.capacity > 85
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC90 : icon.batN90
-                         : EWW_BATTERY.BAT0.capacity > 75
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC80 : icon.batN80
-                         : EWW_BATTERY.BAT0.capacity > 65
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC70 : icon.batN70
-                         : EWW_BATTERY.BAT0.capacity > 55
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC60 : icon.batN60
-                         : EWW_BATTERY.BAT0.capacity > 45
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC50 : icon.batN50
-                         : EWW_BATTERY.BAT0.capacity > 25
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC40 : icon.batN40
-                         : EWW_BATTERY.BAT0.capacity > 15
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC20 : icon.batN30
-                         : EWW_BATTERY.BAT0.capacity > 5
-                         ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC10 : icon.batN10
-                         : EWW_BATTERY.BAT0.status =~ "Full|Charging"
-                           ? icon.batC00 : icon.batN00}
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC100 : icon.batN100
+                        : EWW_BATTERY.BAT0.capacity > 85
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC90 : icon.batN90
+                        : EWW_BATTERY.BAT0.capacity > 75
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC80 : icon.batN80
+                        : EWW_BATTERY.BAT0.capacity > 65
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC70 : icon.batN70
+                        : EWW_BATTERY.BAT0.capacity > 55
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC60 : icon.batN60
+                        : EWW_BATTERY.BAT0.capacity > 45
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC50 : icon.batN50
+                        : EWW_BATTERY.BAT0.capacity > 25
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC40 : icon.batN40
+                        : EWW_BATTERY.BAT0.capacity > 15
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC20 : icon.batN30
+                        : EWW_BATTERY.BAT0.capacity > 5
+                        ? EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC10 : icon.batN10
+                        : EWW_BATTERY.BAT0.status =~ "Full|Charging"
+                          ? icon.batC00 : icon.batN00}
                  :text "${EWW_BATTERY.BAT0.capacity}%"
     )
 
