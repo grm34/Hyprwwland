@@ -21,6 +21,15 @@ function update_occupied_workspaces() {
 }
 
 
+function update_on_start() {
+  local active id
+  active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
+  id=$((active-1))
+  eww_update "ws-active" "(.[$id].class|=\$value)"
+  update_occupied_workspaces "$active"
+}
+
+
 function handle() {
   case $1 in
     workspace*|createworkspace*)
@@ -36,18 +45,10 @@ function handle() {
 }
 
 
-function on_start() {
-  local active id
-  active="$(hyprctl monitors -j | jaq '.[].activeWorkspace.id')"
-  id=$((active-1))
-  eww_update "ws-active" "(.[$id].class|=\$value)"
-  update_occupied_workspaces "$active"
-}
-
-
-on_start
+update_on_start
 # Listen hyprland socket for events.
-socat -U \
-  - UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock \
-  | while read -r line; do handle "$line"; done
+sock="/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+socat -U - UNIX-CONNECT:"$sock" | while read -r line; do
+  handle "$line"
+done
 

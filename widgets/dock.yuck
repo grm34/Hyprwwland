@@ -12,6 +12,7 @@
 (defwidget dock []
   (eventbox :class "dock"
             :valign "center"
+            :timeout "10s"
             :onhover "scripts/window_manager dock"
             :onhoverlost "${EWW_CMD} update dock_visible=false"
     (box :space-evenly false
