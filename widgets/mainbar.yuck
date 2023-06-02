@@ -11,6 +11,7 @@
 (defwidget progress_reveal [class visible icon content]
   (eventbox :class {class}
             :cursor "progress"
+            :timeout "2s"
             :onhover "${EWW_CMD} update ${class}_graph=true"
             :onhoverlost "${EWW_CMD} update ${class}_graph=false"
     (box :space-evenly false
@@ -29,7 +30,8 @@
             (label :class "${class}-box-icon"
                    :text {icon})
             (label :class "${class}-box-text"
-                   :text {class != 'temp' ? "${content}%" : "${content}°C"}))
+                   :text {class != 'temp' ? "${content}%"
+                                          : "${content}°C"}))
           (progress :halign "center"
                     :valign "start"
                     :value {content}
