@@ -42,6 +42,7 @@
   )
 )
 
+
 ; Dock.
 (defwindow dock :monitor 0
                 :stacking "fg"
@@ -52,6 +53,7 @@
                                     :anchor "left center")
   (dock)
 )
+
 
 ; Taskmenu.
 (defwindow taskmenu :monitor 0
