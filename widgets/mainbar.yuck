@@ -11,8 +11,8 @@
 (defwidget progress_reveal [class visible icon content]
   (eventbox :class {class}
             :cursor "progress"
-            :onhover "eww update ${class}_graph=true"
-            :onhoverlost "eww update ${class}_graph=false"
+            :onhover "${EWW_CMD} update ${class}_graph=true"
+            :onhoverlost "${EWW_CMD} update ${class}_graph=false"
     (box :space-evenly false
          :orientation "v"
 
@@ -62,8 +62,8 @@
     (eventbox :class "menu"
               :cursor "pointer"
               :tooltip "Menu"
-              ; :onclick "eww open menu"
-              ; :onrightclick "eww close menu"
+              ; :onclick "${EWW_CMD} open menu"
+              ; :onrightclick "${EWW_CMD} close menu"
       (image :path "assets/images/menu.png"
              :image-width 20))
 

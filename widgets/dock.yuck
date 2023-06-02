@@ -13,7 +13,7 @@
   (eventbox :class "dock"
             :valign "center"
             :onhover "scripts/window_manager dock"
-            :onhoverlost "eww update dock_visible=false"
+            :onhoverlost "${EWW_CMD} update dock_visible=false"
     (box :space-evenly false
 
       ; Button (visible).
@@ -24,7 +24,7 @@
                   :width 6
                   :tooltip "dock"
                   :cursor "pointer"
-                  :onclick "eww update dock_visible=true"
+                  :onclick "${EWW_CMD} update dock_visible=true"
           (image :path "assets/images/dock.png"
                  :image-width 6)
       ))
