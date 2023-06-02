@@ -51,5 +51,6 @@
   "reboot": " ",
   "sleep": "󰤄",
   "logout": "󰍃",
-  "arrow": "  "
+  "arrow": "  ",
+  "close": "󰅙"
 }

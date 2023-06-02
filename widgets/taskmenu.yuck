@@ -3,13 +3,13 @@
 
 
 (defvar taskmenu_tabs '[
-  {"class": "tab-off", "onclick": "updates_content", "icon": " "},
-  {"class": "tab-off", "onclick": "standby_content", "icon": "󰈈 "},
-  {"class": "tab-off", "onclick": "settings_content", "icon": " "},
-  {"class": "tab-off", "onclick": "audio_content", "icon": " "},
-  {"class": "tab-off", "onclick": "network_content", "icon": "󰛳 "},
-  {"class": "tab-off", "onclick": "calendar_content", "icon": " "},
-  {"class": "tab-off", "onclick": "power_content", "icon": "⏻ "}]'
+  {"class": "tab-off", "visible": "false", "id": "0", "icon": " "},
+  {"class": "tab-off", "visible": "false", "id": "1", "icon": "󰈈 "},
+  {"class": "tab-off", "visible": "false", "id": "2", "icon": " "},
+  {"class": "tab-off", "visible": "false", "id": "3", "icon": " "},
+  {"class": "tab-off", "visible": "false", "id": "4", "icon": "󰛳 "},
+  {"class": "tab-off", "visible": "false", "id": "5", "icon": " "},
+  {"class": "tab-off", "visible": "false", "id": "6", "icon": "⏻ "}]'
 )
 
 
@@ -20,7 +20,8 @@
 
     (for tab in taskmenu_tabs
       (button :class {tab.class}
-              ; :onclick "${EWW_CMD} open ${tab.onclick}"
+              :timeout "1s"
+              :onclick "scripts/taskmenu_manager ${tab.id}"
         (label :text {tab.icon}
                :style "font-size: 24px")
     ))
@@ -32,18 +33,28 @@
        :orientation "v"
        :space-evenly false
 
-    (box
+    (box :space-evenly false
+         :spacing 20
       (button :halign "start"
               :onclick "${EWW_CMD} close taskmenu"
-        (label :text "x"))
-      (label :text "allo"))
+        (label :text {icon.close}))
+      (label :text "Taskbar settings"))
+
+    (tm_updates)
+    (tm_standby)
+    (tm_settings)
+    (tm_sound)
+    (tm_network)
+    (tm_calendar)
+    (tm_power)
 ))
 
 
 (defwidget taskmenu []
   (box :class "taskmenu"
     (box :orientation "h"
-         :spacing 14
+         :space-evenly false
+         :spacing 30
 
       (content)
       (tabs)

@@ -18,6 +18,13 @@
 (include "widgets/mainbar.yuck")
 (include "widgets/taskbar.yuck")
 (include "widgets/taskmenu.yuck")
+(include "widgets/tm_updates.yuck")
+(include "widgets/tm_standby.yuck")
+(include "widgets/tm_settings.yuck")
+(include "widgets/tm_sound.yuck")
+(include "widgets/tm_network.yuck")
+(include "widgets/tm_calendar.yuck")
+(include "widgets/tm_power.yuck")
 
 
 ; Bar.
