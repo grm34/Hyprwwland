@@ -1,0 +1,9 @@
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
+
+
+(defwidget tm_power []
+  (label :visible {taskmenu_tabs[6].visible}
+         :text "testing: power tab")
+)
+

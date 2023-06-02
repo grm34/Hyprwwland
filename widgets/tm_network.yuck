@@ -1,0 +1,9 @@
+; Hyprwwland Copyright (c) 2023 darkmaster grm34.
+; https://github.com/grm34/Hyprwwland
+
+
+(defwidget tm_network []
+  (label :visible {taskmenu_tabs[4].visible}
+         :text "testing: network tab")
+)
+
